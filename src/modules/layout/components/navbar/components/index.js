@@ -202,30 +202,15 @@ const NavBarComponent = () => {
 					</Dropdown.Item>
 				</Link>
 				<Dropdown.Divider className="m-0" />
-				<Link href={`/dashboard`} passHref>
-					<Dropdown.Item>Inspector</Dropdown.Item>
-				</Link>
 				<Link href="/new" passHref>
-					<Dropdown.Item>New Post</Dropdown.Item>
+					<Dropdown.Item>เพิ่มผลงาน</Dropdown.Item>
 				</Link>
-				<Link href="https://upload.socialbureau.io/" passHref target="_blank">
-					<Dropdown.Item>New files sent to you</Dropdown.Item>
-				</Link>
-
-				<Link href="https://mint-jutc.vercel.app/" passHref target="_blank">
-					<Dropdown.Item>Buy JUTC</Dropdown.Item>
-				</Link>
-
 				<Link href={`/settings/customization/`} passHref target="_blank">
-					<Dropdown.Item>Notifications</Dropdown.Item>
-				</Link>
-
-				<Link href="https://api-docs.socialbureau.io/" passHref target="_blank">
-					<Dropdown.Item>API docs</Dropdown.Item>
+					<Dropdown.Item>การแจ้งเตือน</Dropdown.Item>
 				</Link>
 
 				<Dropdown.Divider className="m-0" />
-				<Dropdown.Item onClick={onLogoutClick}>Logout</Dropdown.Item>
+				<Dropdown.Item onClick={onLogoutClick}>ออกจากระบบ</Dropdown.Item>
 			</Dropdown.Menu>
 		</Dropdown>
 	);
@@ -275,7 +260,6 @@ const NavBarComponent = () => {
 								<NotificationFeed colorMode="dark" />
 							</KnockFeedProvider>
 							{DropdownMenuUser('')}
-							<div className='.d-sm-none .d-md-block 	.d-none .d-sm-block mr-2'><WalletConnectorButton /></div>
 						</div>
 					)}
 					<button
@@ -291,7 +275,7 @@ const NavBarComponent = () => {
 						<Nav className="align-items-md-center">
 							<form className="form-inline py-md-0 py-2" onSubmit={onSearchSubmit}>
 								<input
-									placeholder="Search"
+									placeholder="ค้นหา"
 									type="text"
 									value={search}
 									onChange={handleChangeSearch}
@@ -336,7 +320,7 @@ const NavBarComponent = () => {
 				<Offcanvas.Body className="d-flex flex-column">
 					<form className="form-inline mb-3" onSubmit={onSearchSubmit}>
 						<input
-							placeholder="Search"
+							placeholder="ค้นหา"
 							type="text"
 							value={search}
 							onChange={handleChangeSearch}
@@ -364,18 +348,8 @@ const NavBarComponent = () => {
 
 					<Nav className="align-items-md-center ms-auto">
 						<Nav.Item className="d-md-block px-2">
-							<Link href="/index2.html" passHref>
-								<Nav.Link>Background Check</Nav.Link>
-							</Link>
-						</Nav.Item>
-						<Nav.Item className="d-md-block px-2">
 							<Link href="/new" passHref>
 								<Nav.Link>เพิ่มผลงาน</Nav.Link>
-							</Link>
-						</Nav.Item>
-						<Nav.Item className="d-md-block px-2">
-							<Link href="/new?bounty=1" passHref>
-								<Nav.Link>Bounty Hunting</Nav.Link>
 							</Link>
 						</Nav.Item>
 					</Nav>

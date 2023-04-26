@@ -24,7 +24,7 @@ const EditCommentComponent = ({ editComment }) => {
 	};
 
 	const validationSchema = Yup.object({
-		content: Yup.string().required('Comment is required').max(6666, 'Comment must be at most 6666 characters')
+		content: Yup.string().required('Comment is required').max(6666, 'Comment สูงสุด 6666 characters')
 	});
 
 	const onSubmit = async (values) => {
@@ -59,7 +59,7 @@ const EditCommentComponent = ({ editComment }) => {
 			) : (
 				<div className="row">
 					<div className="col-md-10 mx-auto">
-						<div className="wapper__card bg-light rounded-3 shadow-sm p-3 p-sm-5">
+						<div className="wapper__card bg-light rounded-16 shadow-sm p-3 p-sm-5">
 							<h4 className="mb-4">Editing comment</h4>
 							<div>
 								<div className="my-4 d-flex align-items-start flex-column flex-sm-row">
@@ -124,7 +124,7 @@ const EditCommentComponent = ({ editComment }) => {
 															onClick={() => setIsPreview(true)}
 															disabled={isLoading ? true : false}
 														>
-															Preview
+															ดูตัวอย่าง
 														</button>
 													)}
 													<CustomLink

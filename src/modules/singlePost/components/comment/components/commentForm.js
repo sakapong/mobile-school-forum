@@ -38,7 +38,7 @@ const CommentFormComponent = ({
 	};
 
 	const validationSchema = Yup.object({
-		content: Yup.string().required('Comment is required').max(6666, 'Comment must be at most 6666 characters')
+		content: Yup.string().required('Comment is required').max(6666, 'Comment สูงสุด 6666 characters')
 	});
 
 	const onSubmit = async (values, { resetForm }) => {
@@ -163,7 +163,7 @@ const CommentFormComponent = ({
 										onClick={() => setIsPreview(true)}
 										disabled={isLoading ? true : false}
 									>
-										Preview
+										ดูตัวอย่าง
 									</button>
 								)}
 								<button

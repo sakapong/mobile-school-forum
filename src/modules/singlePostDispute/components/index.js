@@ -21,7 +21,7 @@ const SinglePostComponentDispute = ({ singlePost, listPostUser, listComment }) =
 			<div className="row">
 				<div className="col-lg-9 mb-4 mb-lg-0">
 					<h2>Dispute</h2>
-					<article className="wapper__card single-post bg-light rounded-3 shadow-sm">
+					<article className="wapper__card single-post bg-light rounded-16 shadow-sm">
 						<div className="p-3 p-sm-5">
 							<div className="card" >
 								<div className="card-body mb-3">

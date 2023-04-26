@@ -117,7 +117,7 @@ const EditPostFormComponent = ({ editPost, isPreview }) => {
 		<Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
 			{({ setFieldValue, setFieldTouched, errors: error, touched, values }) => (
 				<Form>
-					<div className="bg-light rounded-3 shadow-sm">
+					<div className="bg-light rounded-16 shadow-sm">
 						{!isPreview ? (
 							<div className="p-3 p-sm-5">
 								<div className="row">

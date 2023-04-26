@@ -7,7 +7,7 @@ import SearchComponent from '@/modules/search/components';
 const Search = () => {
 	return (
 		<>
-			<MetaWebsite title="Search" />
+			<MetaWebsite title="ค้นหา" />
 			<LayoutComponent>
 				<SearchComponent />
 			</LayoutComponent>

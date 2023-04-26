@@ -8,7 +8,7 @@ const SideBarLeftComponent = () => {
 		<div className="sticky-top">
 			<div className="wapper__card mb-4">
 				<div className="px-2 py-2">
-					<h5 className="mb-0">Menu</h5>
+					<h5 className="mb-0">เมนู</h5>
 				</div>
 				<ListOptionsMenu />
 			</div>

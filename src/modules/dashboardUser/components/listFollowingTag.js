@@ -27,7 +27,7 @@ const ListFollowingTagComponent = ({ listTag }) => {
 										</h5>
 									</CustomLink>
 									<div className="">
-										<span className="text-muted small">{tag.total_posts} posts published</span>
+										<span className="text-muted small">{tag.total_posts} เผยแพร่ผลงาน</span>
 									</div>
 								</div>
 							</div>

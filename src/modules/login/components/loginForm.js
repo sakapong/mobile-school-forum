@@ -85,11 +85,11 @@ const LoginFormComponent = () => {
 	return (
 		<Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
 			<Form>
-				<h2 className="text-center mb-3">Login</h2>
+				<h2 className="text-center mb-3">เข้าสู่ระบบ</h2>
 				<div className="mb-3">
 					<InputForm
-						label="User name"
-						placeholder="Enter user name"
+						label="ชื่อผู้ใช้งาน"
+						placeholder="ใส่ชื่อผู้ใช้งาน"
 						id="user_name"
 						name="user_name"
 						type="text"
@@ -98,8 +98,8 @@ const LoginFormComponent = () => {
 				</div>
 				<div className="mb-3">
 					<InputForm
-						label="Password"
-						placeholder="Password"
+						label="รหัสผ่่าน"
+						placeholder="ใส่รหัสผ่าน"
 						id="password"
 						name="password"
 						type="password"
@@ -110,12 +110,12 @@ const LoginFormComponent = () => {
 					<div className="mb-3 form-check">
 						<input type="checkbox" className="form-check-input" id="remember" />
 						<label className="form-check-label" htmlFor="remember">
-							Remember
+							จดจำฉัน
 						</label>
 					</div>
 					<span>
 						<CustomLink className="text-decoration-none" href="/user/forgot-password">
-							Forgot password?
+							ลืมรหัสผ่าน?
 						</CustomLink>
 					</span>
 				</div>
@@ -123,11 +123,11 @@ const LoginFormComponent = () => {
 					{isLoading ? (
 						<button type="submit" className="btn btn-primary" disabled>
 							<span className="spinner-grow spinner-grow-sm me-1" role="status" aria-hidden="true" />
-							Login
+							เข้าสู่ระบบ
 						</button>
 					) : (
 						<button type="submit" className="btn btn-primary">
-							Login
+							เข้าสู่ระบบ
 						</button>
 					)}
 {/*					<br/>
@@ -135,15 +135,12 @@ const LoginFormComponent = () => {
 					<br/>
 					<WalletConnectorButton />*/}
 					<p className="mt-3">
-						Not a member?{' '}
+						ยังไม่เป็นสมาชิก{' '}
 						<CustomLink className="text-decoration-none" href="/register">
-							Need an account?
+							ต้องการสร้างบัญชีหรือไม่?
 						</CustomLink>
 					</p> 
 					<p>or login in with:</p>
-					<div>
-						<WalletConnectorButton />
-					</div>
 					{/*<div>
 						<SocialButtonLogin
 							handleSocialLogin={handleSocialLogin}

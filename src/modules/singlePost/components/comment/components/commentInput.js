@@ -64,7 +64,6 @@ const CommentInput = ({ listCommentClient, setListCommentClient, meta, setMeta, 
 					<CustomLink className="text-decoration-none" href="/register">
 						Register
 					</CustomLink> */}
-					<WalletConnectorButton />
                  &nbsp;to add comments on this post.
 				</div>
 			)}

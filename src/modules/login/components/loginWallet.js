@@ -153,9 +153,6 @@ const LoginWalletComponent = () => {
 						</CustomLink>
 					</p> 
 					<p>or login in with:</p>
-					<div>
-						<WalletConnectorButton />
-					</div>
 					{/*<div>
 						<SocialButtonLogin
 							handleSocialLogin={handleSocialLogin}

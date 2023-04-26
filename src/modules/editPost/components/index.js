@@ -24,7 +24,7 @@ const EditPostComponent = ({ editPost }) => {
 										className={`border-0  py-1 px-3 text-dark ${style.nav_link} ${!isPreview && style.active}`}
 										onClick={() => setIsPreview(false)}
 									>
-										Edit
+										แก้ไข
 									</button>
 								</li>
 								<li className="nav-item">
@@ -32,7 +32,7 @@ const EditPostComponent = ({ editPost }) => {
 										className={`border-0  py-1 px-3 text-dark ${style.nav_link} ${isPreview && style.active}`}
 										onClick={() => setIsPreview(true)}
 									>
-										Preview
+										ดูตัวอย่าง
 									</button>
 								</li>
 							</ul>

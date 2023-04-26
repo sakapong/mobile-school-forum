@@ -175,10 +175,10 @@ const RegisterFormComponentWeb3 = () => {
 					<h2 className="text-center mb-3">ลงทะเบียน</h2>
 					<div className="row">
 						<div className="mb-3 col-md-6">
-							<InputForm label="First name" placeholder="First name" id="first_name" name="first_name" type="text" />
+							<InputForm label="ชื่อจริง" placeholder="ชื่อจริง" id="first_name" name="first_name" type="text" />
 						</div>
 						<div className="mb-3 col-md-6">
-							<InputForm label="Last name" placeholder="Last name" id="last_name" name="last_name" type="text" />
+							<InputForm label="นามสกุล" placeholder="นามสกุล" id="last_name" name="last_name" type="text" />
 						</div>
 						<div className="mb-3 col-md-6">
 							<InputForm
@@ -192,8 +192,8 @@ const RegisterFormComponentWeb3 = () => {
 						</div>
 						<div className="mb-3 col-md-6">
 							<InputForm
-								label="User name"
-								placeholder="User name"
+								label="ชื่อผู้ใช้งาน"
+								placeholder="ชื่อผู้ใช้งาน"
 								id="user_name"
 								name="user_name"
 								type="text"
@@ -201,12 +201,12 @@ const RegisterFormComponentWeb3 = () => {
 							/>
 						</div>
 						<div className="mb-3 col-md-6">
-							<InputForm label="Password" placeholder="Password" id="password" name="password" type="password" />
+							<InputForm label="รหัสผ่าน" placeholder="รหัสผ่าน" id="password" name="password" type="password" />
 						</div>
 						<div className="mb-3 col-md-6">
 							<InputForm
-								label="Confirm password"
-								placeholder="Confirm password"
+								label="ยืนยันรหัสผ่าน"
+								placeholder="ยืนยันรหัสผ่าน"
 								id="password_confirm"
 								name="password_confirm"
 								type="password"
@@ -214,7 +214,7 @@ const RegisterFormComponentWeb3 = () => {
 						</div>
 						<div className="mb-3 col-md-6">
 							<InputForm
-								label="Phone number"
+								label="เบอร์โทรศัพท์มือถือ"
 								placeholder="84 336 077 131"
 								id="phone_number"
 								name="phone_number"
@@ -222,15 +222,15 @@ const RegisterFormComponentWeb3 = () => {
 							/>
 						</div>
 						<div className="mb-3 col-md-6">
-							<SelectForm label="Gender" name="gender">
-								<option value={gender[0]}>Select gender</option>
-								<option value={gender[1]}>Male</option>
-								<option value={gender[2]}>Female</option>
-								<option value={gender[3]}>Unknown</option>
+							<SelectForm label="เพศ" name="gender">
+								<option value={gender[0]}>เลือกเพศ</option>
+								<option value={gender[1]}>ชาย</option>
+								<option value={gender[2]}>หญิง</option>
+								<option value={gender[3]}>ไม่ระบุเพศ</option>
 							</SelectForm>
 						</div>
 						<div className="mb-3 col-md-12">
-							<TextForm rows="3" label="Biography" placeholder="Biography" id="biography" name="biography" />
+							<TextForm rows="3" label="ประวัติส่วนตัว" placeholder="ประวัติส่วนตัว" id="biography" name="biography" />
 						</div>
 						<div className="mb-3 col-md-12">
 							<ImageUserForm
@@ -249,7 +249,7 @@ const RegisterFormComponentWeb3 = () => {
 						</div>
 						<div className="mb-3 col-md-12">
 							<div className="form-check">
-								<CheckboxForm label="Agree to terms of service" id="agreeterms" name="agreeterms" />
+								<CheckboxForm label="ฉันยอมรับเงื่อนไขการให้บริการ" id="agreeterms" name="agreeterms" />
 							</div>
 						</div>
 					</div>
@@ -257,16 +257,16 @@ const RegisterFormComponentWeb3 = () => {
 						{isLoading ? (
 							<button type="submit" className="btn btn-primary" disabled>
 								<span className="spinner-grow spinner-grow-sm me-1" role="status" aria-hidden="true" />
-								Register
+								ลงทะเบียน
 							</button>
 						) : (
 							<button type="submit" className="btn btn-primary">
-								Register
+								ลงทะเบียน
 							</button>
 						)}
 						<p className="mt-3">
 							<CustomLink className="text-decoration-none" href="/login" as="/login">
-								Have an account?
+								มีบัญชีแล้ว?
 							</CustomLink>
 						</p>
 						{/* <p className="mt-3">or register with:</p>

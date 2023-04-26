@@ -44,10 +44,10 @@ const DeleteCommentComponent = ({ deleteComment }) => {
 			) : (
 				<div className="row">
 					<div className="col-md-8 mx-auto">
-						<div className="wapper__card bg-light rounded-3 shadow-sm p-3 p-sm-5">{deleteComment.data.content}</div>
+						<div className="wapper__card bg-light rounded-16 shadow-sm p-3 p-sm-5">{deleteComment.data.content}</div>
 					</div>
 					<div className="col-md-10 mx-auto">
-						<div className="wapper__card bg-light rounded-3 shadow-sm p-3 p-sm-5">
+						<div className="wapper__card bg-light rounded-16 shadow-sm p-3 p-sm-5">
 							<h4 className="mb-4">Are you sure you want to delete this comment?</h4>
 							<div>
 								{isLoading ? (

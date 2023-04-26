@@ -1,7 +1,6 @@
 const { PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_BUILD } = require('next/constants');
-const withTM = require('next-transpile-modules')(['@pusher/push-notifications-web']);
 
-const nextConfig = (phase) => {
+module.exports = (phase) => {
 	// when started in development mode `next dev` or `npm run dev` regardless of the value of STAGING environmental variable
 	const isDev = phase === PHASE_DEVELOPMENT_SERVER;
 	// when `next build` or `npm run build` is used
@@ -10,12 +9,8 @@ const nextConfig = (phase) => {
 	const isStaging = phase === PHASE_PRODUCTION_BUILD && process.env.STAGING === '1';
 
 	console.log(`isDev:${isDev} isProd:${isProd} isStaging:${isStaging}`);
-	console.log('%cINSPECTOR AREA', 'font-size: 4rem; color: red; font-weight: 600;');
 
 	const env = {
-		PUSHER_KEY: process.env.NEXT_PUBLIC_PUSHER_KEY,
-		PUSHER_SECRET: process.env.NEXT_PUBLIC_PUSHER_SECRET,
-		PUSHER_APP_ID: process.env.NEXT_PUBLIC_PUSHER_APP_ID,
 		WEBSITE_URL: (() => {
 			if (isDev) return 'http://localhost:3000';
 			if (isProd) {
@@ -25,12 +20,18 @@ const nextConfig = (phase) => {
 			return 'RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)';
 		})(),
 		API_URL: (() => {
+			// if (isDev) return 'https://cdn.mobileschool.online/api';
+			// if (isProd) return 'https://cdn.mobileschool.online/api';
+			// if (isStaging) return 'https://cdn.mobileschool.online/api'
 			if (isDev) return 'https://api-play.mobileschool.online/api';
 			if (isProd) return 'https://api-play.mobileschool.online/api';
 			if (isStaging) return 'https://api-play.mobileschool.online/api';
 			return 'RESTURL_SESSIONS:not (isDev,isProd && !isStaging,isProd && isStaging)';
 		})(),
 		IMAGES_URL: (() => {
+			// 			if (isDev) return 'https://cdn.mobileschool.online/public/images';
+			// if (isProd) return 'https://cdn.mobileschool.online/public/images';
+			// if (isStaging) return 'https://cdn.mobileschool.online/public/images';
 			if (isDev) return 'https://api-play.mobileschool.online/images-local';
 			if (isProd) return 'https://api-play.mobileschool.online/images-local';
 			if (isStaging) return 'https://api-play.mobileschool.online/images-local';
@@ -51,30 +52,25 @@ const nextConfig = (phase) => {
 			TIMEOUT: 30000
 		},
 		IMAGES: {
-			DEFAULT_IMAGE_AVATAR: 'images/image-error.png'
+			DEFAULT_IMAGE_AVATAR: 'default_avatar.png'
 		},
 		META: {
-			TITLE: 'โรงเรียนมือถือฟอรั่ม',
-			DESCRIPTION: 'โรงเรียนมือถือ สร้างโอกาสทางการศึกษา',
-			TWITTER: '@socialbureau_',
+			TITLE: 'Libeyondea Forum',
+			DESCRIPTION: 'A social network for software developers.',
+			TWITTER: '@libeyondea',
 			IMAGE: 'libeyondea-background-night.png'
 		}
 	};
 	return {
 		env,
 		reactStrictMode: true,
-		trailingSlash: true,
 		images: {
-			domains: ['localhost', 'api.socialbureau.io', 'socialbureau.io', 'cdn.socialbureau.io']
+			domains: ['localhost', 'cdn.mobileschool.online', 'api-play.mobileschool.online']
 		},
 		i18n: {
-			locales: ['en', 'th'],
+			locales: ['en', 'vi'],
 			defaultLocale: 'en',
 			localeDetection: false
 		}
 	};
 };
-
-console.log("nextConfig:", nextConfig());
-
-module.exports = withTM(nextConfig());

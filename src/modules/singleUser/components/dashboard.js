@@ -30,7 +30,7 @@ const SingleUserDashboardComponent = ({ singleUser, listPostUser, listTagUser })
         <div className="container-xl py-4">
 			<div className="row">
 				<div className="col-9 mb-4">
-					<div className={`text-left bg-light rounded-3 shadow-sm  ${style.info__user} cover-bg`}>
+					<div className={`text-left bg-light rounded-16 shadow-sm  ${style.info__user} cover-bg`}>
 						<div className={`position-relative mb-2  ${style.avt} ${style.cover_bg}`}>
 							<span className="d-inline-flex p-3 rounded-circle">
 								<CustomImage

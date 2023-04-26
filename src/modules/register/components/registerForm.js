@@ -40,16 +40,16 @@ const RegisterFormComponent = () => {
 	};
 	const validationSchema = Yup.object({
 		first_name: Yup.string()
-			.min(1, 'Fisrt name must be at least 1 characters')
-			.max(16, 'Fisrt name must be at most 16 characters')
+			.min(1, 'Fisrt name ต้องมีอย่างน้อย 1 ตัวอักษร')
+			.max(16, 'Fisrt name สูงสุด 16 ตัวอักษร')
 			.required('First name is required'),
 		last_name: Yup.string()
-			.min(1, 'Last name must be at least 1 characters')
-			.max(16, 'Last name must be at most 16 characters')
+			.min(1, 'Last name ต้องมีอย่างน้อย 1 ตัวอักษร')
+			.max(16, 'Last name สูงสุด 16 ตัวอักษร')
 			.required('Last name is required'),
 		user_name: Yup.string()
-			.min(6, 'User name must be at least 6 characters')
-			.max(16, 'User name must be at most 16 characters')
+			.min(6, 'User name ต้องมีอย่างน้อย 6 ตัวอักษร')
+			.max(16, 'User name สูงสุด 16 ตัวอักษร')
 			.matches(/^(?![_.-])(?!.*[_.-]{2})[a-zA-Z0-9._-]+(?<![_.-])$/, 'User name invalid')
 			.required('User name is required'),
 		email: Yup.string()
@@ -61,28 +61,28 @@ const RegisterFormComponent = () => {
 		password: Yup.string().required('Password is required'),
 		password_confirm: Yup.string()
 			.required('Comfirm password is required')
-			.oneOf([Yup.ref('password')], 'Password is not match'),
+			.oneOf([Yup.ref('password')], 'รหัสผ่านไม่ตรงกัน'),
 		phone_number: Yup.string()
-			.min(10, 'Phone number must be at least 10 characters')
+			.min(10, 'Phone number ต้องมีอย่างน้อย 10 ตัวอักษร')
 			.matches(/^[0-9]+$/, 'Phone number invalid')
 			.nullable(),
 		address: Yup.string()
-			.min(6, 'Address must be at least 6 characters')
-			.max(66, 'Address must be at most 66 characters')
+			.min(6, 'Address ต้องมีอย่างน้อย 6 ตัวอักษร')
+			.max(66, 'Address สูงสุด 66 ตัวอักษร')
 			.nullable(),
 		avatar: Yup.mixed()
-			.test('fileSize', 'File too large', (value) => value === null || (value && value.size <= FILE_SIZE))
+			.test('fileSize', 'ไฟล์ใหญ่เกินไป', (value) => value === null || (value && value.size <= FILE_SIZE))
 			.test(
 				'fileFormat',
-				'Unsupported Format',
+				'ไฟล์ไม่รองรับ',
 				(value) => value === null || (value && SUPPORTED_FORMATS.includes(value.type))
 			),
-		gender: Yup.string().oneOf(['male', 'female', 'unknown'], 'Gender invalid').required('Please select gender'),
+		gender: Yup.string().oneOf(['male', 'female', 'unknown'], 'Gender invalid').required('โปรดระบุเพศ'),
 		biography: Yup.string()
-			.min(6, 'Bio must be at least 6 characters')
-			.max(66, 'Bio must be at most 666 characters')
+			.min(6, 'Bio อย่างน้อย 6 ตัวอักษร')
+			.max(66, 'Bio สูงสุด 666 ตัวอักษร')
 			.nullable(),
-		agreeterms: Yup.boolean().oneOf([true], 'You must agree to terms of service').required('Required')
+		agreeterms: Yup.boolean().oneOf([true], 'คุณต้องยอมรับเงื่อนไขการให้บริการ').required('Required')
 	});
 
 	const onSubmit = async (values) => {
@@ -107,10 +107,10 @@ const RegisterFormComponent = () => {
 			});
 			if (response.data.success) {
 				setVerify(response.data.data.email);
-				showToast.success('Register success');
+				showToast.success('ลงทะเบียนสำเร็จแล้ว');
 			}
 		} catch (error) {
-			showToast.error('Register error');
+			showToast.error('ไม่สามารถลงทะเบียนได้ในขณะนี้');
 			if (!error?.response?.data?.success) {
 				setErrors(error.response.data);
 			}
@@ -132,12 +132,12 @@ const RegisterFormComponent = () => {
 			});
 			if (response.data.success) {
 				setCookie('token', response.data.data.access_token);
-				showToast.success('Login success');
+				showToast.success('เข้าสู่ระบบสำเร็จแล้ว');
 				// router.push('/');
 				router.push('/tags');
 			}
 		} catch (error) {
-			showToast.error('Login failed');
+			showToast.error('ไม่สามารถเข้าสู่ระบบได้');
 		} finally {
 			setLoading(false);
 		}
@@ -183,7 +183,7 @@ const RegisterFormComponent = () => {
 		<Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
 			{({ setFieldValue, setFieldTouched, errors: error, touched }) => (
 				<Form>
-					<h2 className="text-center mb-3">Register</h2>
+					<h2 className="text-center mb-3">ลงทะเบียน</h2>
 					<div className="row">
 						<div className="mb-3 col-md-6">
 							<InputForm label="First name" placeholder="First name" id="first_name" name="first_name" type="text" />
@@ -263,7 +263,7 @@ const RegisterFormComponent = () => {
 						</div>
 						<div className="mb-3 col-md-12">
 							<div className="form-check">
-								<CheckboxForm label="Agree to terms of service" id="agreeterms" name="agreeterms" />
+								<CheckboxForm label="ฉันยอมรับเงื่อนไขการให้บริการ" id="agreeterms" name="agreeterms" />
 							</div>
 						</div>
 					</div>

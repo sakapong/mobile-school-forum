@@ -64,7 +64,7 @@ const ListPostComponent = ({ listPost }) => {
 								<div className="align-items-md-center">
 						<form className="form-inline py-md-0 py-2" onSubmit={onSearchSubmit}>
 								<input
-									placeholder="Search"
+									placeholder="ค้นหา"
 									type="text"
 									value={search}
 									onChange={handleChangeSearch}
@@ -75,7 +75,7 @@ const ListPostComponent = ({ listPost }) => {
 					</div>
 					{listPost.data.map((post) => (
 						<div className="col" key={post.id}>
-							<div className="wapper__card d-flex bg-light rounded-3 shadow-sm p-3 flex-column flex-sm-row">
+							<div className="wapper__card d-flex bg-light rounded-16 shadow-sm p-3 flex-column flex-sm-row">
 								<div className="d-flex align-items-center me-auto me-1 mb-1 mb-sm-0">
 									<CustomLink
 										href={`/u/${post.user.user_name}/${post.slug}`}

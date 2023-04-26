@@ -15,7 +15,7 @@ const SinglePostComponent = ({ singlePost, listPostUser, listComment }) => {
 		<div className="container-xl py-4">
 			<div className="row">
 				<div className="col-lg-9 mb-4 mb-lg-0">
-					<article className="wapper__card single-post bg-light rounded-3 shadow-sm">
+					<article className="wapper__card single-post bg-light rounded-16 shadow-sm">
 						{singlePost.data?.image && (
 							<div>
 {/*								<CustomImage

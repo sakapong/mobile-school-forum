@@ -25,7 +25,7 @@ const NewPostComponent = () => {
 										className={`border-0 py-1 px-3 text-dark ${style.nav_link} ${!isPreview ? style.active : ''}`}
 										onClick={() => setIsPreview(false)}
 									>
-										New
+										สร้างใหม่
 									</button>
 								</li>
 								<li className="nav-item">
@@ -33,7 +33,7 @@ const NewPostComponent = () => {
 										className={`border-0 py-1 px-3 text-dark ${style.nav_link} ${isPreview ? style.active : ''}`}
 										onClick={() => setIsPreview(true)}
 									>
-										Preview
+										ดูตัวอย่าง
 									</button>
 								</li>
 							</ul>

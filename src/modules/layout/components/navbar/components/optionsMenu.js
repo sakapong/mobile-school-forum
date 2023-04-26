@@ -4,12 +4,12 @@ import { FcAbout, FcContacts, FcFaq, FcHome, FcPrivacy } from 'react-icons/fc';
 const optionsMenu = [
 	{
 		icon: <FcHome className="h4 mb-0 me-1" />,
-		name: 'Home',
+		name: 'หน้าแรก',
 		href: '/'
 	},
 	{
 		icon: <FaTags className="h4 mb-0 me-1" />,
-		name: 'Tags',
+		name: 'แท็ค',
 		href: '/tags'
 	},
 	// {
@@ -29,7 +29,7 @@ const optionsMenu = [
 	// },
 	{
 		icon: <FcPrivacy className="h4 mb-0 me-1" />,
-		name: 'Privacy Policy',
+		name: 'นโยบายความเป็นส่วนตัว',
 		href: '/',
 		hidden: true
 	}

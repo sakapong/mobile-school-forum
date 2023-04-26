@@ -8,7 +8,7 @@ const SideBarRightNewPostComponent = () => {
 			<p className="text-secondary mb-0">Editor Basics Use Markdown to write and format posts.</p>
 			<details className="my-1">
 				<summary className="cursor-pointer text-secondary ">Commonly used syntax</summary>
-				<table className="bg-light rounded-3 shadow-sm w-100 mt-2 mb-4 small">
+				<table className="bg-light rounded-16 shadow-sm w-100 mt-2 mb-4 small">
 					<tbody>
 						<tr>
 							<td className="p-2">

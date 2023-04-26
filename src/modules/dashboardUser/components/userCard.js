@@ -5,7 +5,7 @@ import CustomLink from '@/common/components/CustomLink/components';
 
 const UserCardComponent = ({ user }) => {
 	return (
-		<div className="wapper__card bg-light rounded-3 shadow-sm p-4 text-center h-100">
+		<div className="wapper__card bg-light rounded-16 shadow-sm p-4 text-center h-100">
 			<CustomLink
 				href={`/u/${user.user_name}`}
 				className="text-decoration-none d-inline-block d-flex align-items-center justify-content-center"

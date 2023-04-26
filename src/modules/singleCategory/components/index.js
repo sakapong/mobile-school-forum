@@ -19,17 +19,17 @@ const SingleCategoryComponent = ({ singleCategory, listPostCategory, pid }) => {
 							pidTab={pid[1]}
 							items={[
 								{
-									title: 'Feed',
+									title: 'ฟีด',
 									slug: 'feed',
 									href: `/c/${singleCategory.data?.slug}/feed`
 								},
 								{
-									title: 'Latest',
+									title: 'ล่าสุด',
 									slug: 'latest',
 									href: `/c/${singleCategory.data?.slug}/latest`
 								},
 								{
-									title: 'Oldest',
+									title: 'เก่าสุด',
 									slug: 'oldest',
 									href: `/c/${singleCategory.data?.slug}/oldest`
 								}

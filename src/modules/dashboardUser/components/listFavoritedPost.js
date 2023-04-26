@@ -10,14 +10,14 @@ import timeAgo from '@/common/utils/timeAgo';
 const ListFavoritedPostComponent = ({ listPost }) => {
 	return (
 		<>
-			<h4 className="mb-3">Posts ({listPost?.meta?.total})</h4>
+			<h4 className="mb-3">ผลงาน ({listPost?.meta?.total})</h4>
 			{isEmpty(listPost.data) ? (
-				<EmptyBox text="Empty posts (ListFavoritedPostComponent)" />
+				<EmptyBox text="ไม่มีโพส (ListFavoritedPostComponent)" />
 			) : (
 				<div className="row row-cols-1 g-3 mb-3">
 					{listPost.data.map((post) => (
 						<div className="col" key={post.id}>
-							<div className="wapper__card d-flex bg-light rounded-3 shadow-sm p-3 flex-column flex-sm-row">
+							<div className="wapper__card d-flex bg-light rounded-16 shadow-sm p-3 flex-column flex-sm-row">
 								<div className="d-flex align-items-center me-auto me-1 mb-1 mb-sm-0">
 									<CustomLink
 										href={`/u/${post.user.user_name}/${post.slug}`}

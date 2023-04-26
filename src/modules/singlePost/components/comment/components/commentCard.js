@@ -183,7 +183,7 @@ const CommentCard = ({
 					</button>
 				</div>
 				<div className={`w-100 ${style.comment__detail} ${minimized ? 'd-block' : 'd-none'}`}>
-					<div className="d-flex align-items-center rounded-3 shadow-sm border p-2 p-sm-3 bg-white text-break">
+					<div className="d-flex align-items-center rounded-16 shadow-sm border p-2 p-sm-3 bg-white text-break">
 						<CustomLink
 							href={`/u/${comment.user?.user_name}`}
 							className="text-decoration-none text-dark d-inline-block"

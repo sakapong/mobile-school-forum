@@ -30,7 +30,7 @@ const TagCardComponent = ({ tag, classNameContainer = '', isSingle = false }) =>
 						<p className="card-text">{tag.content}</p>
 					</div>
 					<div className="mb-2">
-						<span className="text-muted small">{tag.total_posts} posts published</span>
+						<span className="text-muted small">{tag.total_posts} เผยแพร่ผลงาน</span>
 					</div>
 					<div className="d-flex justify-content-end">
 						<FollowTagButtonComponent slug={tag?.slug} following={tag?.following} />

@@ -40,7 +40,7 @@ const SettingUserComponent = ({ settingUser, pid }) => {
 							/>
 						</div>
 						<div className="col-lg-9">
-							<div className="bg-light p-4 rounded-3 shadow-sm">
+							<div className="bg-light p-4 rounded-16 shadow-sm">
 								{(!pid[0] || pid[0] === 'profile') && <EditProfileFormComponent editProfile={settingUser} />}
 								{pid[0] === 'customization' && <EditCustomizationComponent />}
 							</div>

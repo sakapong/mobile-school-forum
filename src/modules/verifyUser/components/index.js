@@ -49,7 +49,7 @@ const VerifyUserComponent = ({ verifyUser }) => {
 		<div className="container-xl py-4">
 			<div className="row">
 				<div className="col-lg-8 col-md-10 mx-auto">
-					<div className="bg-light rounded-3 shadow-sm p-4">
+					<div className="bg-light rounded-16 shadow-sm p-4">
 						<Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
 							<Form>
 								<h2 className="text-center mb-3">Verify email</h2>

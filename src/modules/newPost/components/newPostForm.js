@@ -135,7 +135,7 @@ const NewPostFormComponent = ({ isPreview }) => {
 				<Form>
 					<div className="ิshadow-sm">
 						{!isPreview ? (
-							<div className="bg-white rounded-3 p-3 p-sm-5">
+							<div className="bg-white rounded-16 p-3 p-sm-5">
 								<div className="row">
 									<div className="mb-3 col-md-12 mb-0">
 										<SelectForm label="หมวดผลงาน" name="category_id">
@@ -161,7 +161,7 @@ const NewPostFormComponent = ({ isPreview }) => {
 											tags={tags}
 											setTag={setTag}
 											errors={errors.error?.message?.tags}
-											placeholder="Add up to 4 tags..."
+											placeholder="ใส่อย่างน้อยจำนวน 4 แท็ค"
 										/>
 									</div>
 									<div className="mb-3 col-md-12">

@@ -42,12 +42,12 @@ const HomeComponent = ({ listPostPinned, listPost, pid }) => {
 								// 	href: '/feed'
 								// },
 								{
-									title: 'Latest',
+									title: 'ล่าสุด',
 									slug: 'latest',
 									href: '/latest'
 								},
 								{
-									title: 'Oldest',
+									title: 'เก่าสุด',
 									slug: 'oldest',
 									href: '/oldest'
 								}

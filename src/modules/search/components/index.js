@@ -95,12 +95,12 @@ const SearchComponent = () => {
 										href: `/search?q=${q}&type=${type}&sort=score`
 									},
 									{
-										title: 'Latest',
+										title: 'ล่าสุด',
 										slug: 'latest',
 										href: `/search?q=${q}&type=${type}&sort=latest`
 									},
 									{
-										title: 'Oldest',
+										title: 'เก่าสุด',
 										slug: 'oldest',
 										href: `/search?q=${q}&type=${type}&sort=oldest`
 									}

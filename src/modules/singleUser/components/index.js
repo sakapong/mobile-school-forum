@@ -25,7 +25,7 @@ const SingleUserComponent = ({ singleUser, listPostUser }) => {
 		<div className="container-xl py-4">
 			<div className="row">
 				<div className="col-12 mb-4">
-					<div className={`text-left bg-light rounded-3 shadow-sm px-4 pb-4 pt-4 ${style.info__user} cover-bg`}>
+					<div className={`text-left bg-light rounded-16 shadow-sm px-4 pb-4 pt-4 ${style.info__user} cover-bg`}>
 						<div className={`position-relative mb-2 ${style.avt}`}>
 							<span className="d-inline-flex p-3 rounded-circle">
 {/*								<CustomImage
@@ -100,7 +100,7 @@ const SingleUserComponent = ({ singleUser, listPostUser }) => {
 				</div>
 				<div className="col-lg-4 col-md-4 mb-4 mb-md-0">
 					<h4>Statistics</h4>
-					<ul className="wapper__card list-group rounded-3 shadow-sm">
+					<ul className="wapper__card list-group rounded-16 shadow-sm">
 						<li className="list-group-item d-flex flex-wrap align-items-center">
 							<GrArticle className="me-1" />
 							<span>{singleUser.data?.total_posts} Cases</span>
@@ -123,7 +123,7 @@ const SingleUserComponent = ({ singleUser, listPostUser }) => {
 						</li>
 					</ul>
 					<h4 className="mt-4">Badges</h4>
-					<ul className="wapper__card list-group rounded-3 shadow-sm">
+					<ul className="wapper__card list-group rounded-16 shadow-sm">
 						<li className="list-group-item d-flex flex-wrap align-items-center">
 							<CustomImage
 									src={`/images/nft-rank-01.png`}
@@ -157,7 +157,7 @@ const SingleUserComponent = ({ singleUser, listPostUser }) => {
 						
 					</ul>
 					<h4 className="mt-4">Top 5 Categories</h4>
-					<ul className="wapper__card list-group rounded-3 shadow-sm">
+					<ul className="wapper__card list-group rounded-16 shadow-sm">
 						<ListCategoryComponent />
 					{/*	<li className="list-group-item d-flex flex-wrap align-items-center">
 							

@@ -43,16 +43,16 @@ const EditProfileFormComponent = ({ editProfile }) => {
 
 	const validationSchema = Yup.object({
 		first_name: Yup.string()
-			.min(1, 'Fisrt name must be at least 1 characters')
-			.max(16, 'Fisrt name must be at most 16 characters')
+			.min(1, 'Fisrt name ต้องมีอย่างน้อย 1 characters')
+			.max(16, 'Fisrt name สูงสุด 16 characters')
 			.required('First name is required'),
 		last_name: Yup.string()
-			.min(1, 'Last name must be at least 1 characters')
-			.max(16, 'Last name must be at most 16 characters')
+			.min(1, 'Last name ต้องมีอย่างน้อย 1 characters')
+			.max(16, 'Last name สูงสุด 16 characters')
 			.required('Last name is required'),
 		user_name: Yup.string()
-			.min(6, 'User name must be at least 6 characters')
-			.max(66, 'User name must be at most 66 characters')
+			.min(6, 'User name ต้องมีอย่างน้อย 6 characters')
+			.max(66, 'User name สูงสุด 66 characters')
 			.matches(/^(?![_.-])(?!.*[_.-]{2})[a-zA-Z0-9._-]+(?<![_.-])$/, 'User name invalid')
 			.required('User name is required'),
 		email: Yup.string()
@@ -62,12 +62,12 @@ const EditProfileFormComponent = ({ editProfile }) => {
 			)
 			.required('Email is required'),
 		phone_number: Yup.string()
-			.min(10, 'Phone number must be at least 10 characters')
+			.min(10, 'Phone number ต้องมีอย่างน้อย 10 characters')
 			.matches(/^[0-9]+$/, 'Phone number invalid')
 			.nullable(),
 		address: Yup.string()
-			.min(6, 'Address must be at least 6 characters')
-			.max(66, 'Address must be at most 66 characters')
+			.min(6, 'Address ต้องมีอย่างน้อย 6 characters')
+			.max(66, 'Address สูงสุด 66 characters')
 			.nullable(),
 		avatar: Yup.mixed()
 			.test('fileSize', 'File too large', (value) => value === null || (value && value.size <= FILE_SIZE))
@@ -78,8 +78,8 @@ const EditProfileFormComponent = ({ editProfile }) => {
 			),
 		gender: Yup.string().oneOf(['male', 'female', 'unknown'], 'Gender invalid').required('Please select gender'),
 		biography: Yup.string()
-			.min(6, 'Bio must be at least 6 characters')
-			.max(66, 'Bio must be at most 666 characters')
+			.min(6, 'Bio ต้องมีอย่างน้อย 6 characters')
+			.max(66, 'Bio สูงสุด 666 characters')
 			.nullable()
 	});
 

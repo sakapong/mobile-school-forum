@@ -20,17 +20,17 @@ const SingleTagComponent = ({ singleTag, listPostTag, pid }) => {
 							pidTab={pid[1]}
 							items={[
 								{
-									title: 'Feed',
+									title: 'ฟีด',
 									slug: 'feed',
 									href: `/t/${singleTag.data?.slug}/feed`
 								},
 								{
-									title: 'Latest',
+									title: 'ล่าสุด',
 									slug: 'latest',
 									href: `/t/${singleTag.data?.slug}/latest`
 								},
 								{
-									title: 'Oldest',
+									title: 'เก่าสุด',
 									slug: 'oldest',
 									href: `/t/${singleTag.data?.slug}/oldest`
 								}
