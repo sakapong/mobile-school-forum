@@ -302,7 +302,7 @@ const NavBarComponent = () => {
 						<Nav className="align-items-md-center ms-auto">
 							<Nav.Item className="d-none d-md-block px-2">
 								<Link href="/new" passHref>
-									<Nav.Link>Report Crime</Nav.Link>
+									<Nav.Link>เพิ่มผลงาน</Nav.Link>
 								</Link>
 							</Nav.Item>
 							{/*{DropdownLocale()}*/}
@@ -370,7 +370,7 @@ const NavBarComponent = () => {
 						</Nav.Item>
 						<Nav.Item className="d-md-block px-2">
 							<Link href="/new" passHref>
-								<Nav.Link>Report Crime</Nav.Link>
+								<Nav.Link>เพิ่มผลงาน</Nav.Link>
 							</Link>
 						</Nav.Item>
 						<Nav.Item className="d-md-block px-2">

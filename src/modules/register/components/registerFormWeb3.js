@@ -172,15 +172,15 @@ const RegisterFormComponentWeb3 = () => {
         <Formik initialValues={initialValues} onSubmit={onSubmit}>
 			{({ setFieldValue, setFieldTouched, errors: error, touched }) => (
 				<Form>
-					<h2 className="text-center mb-3">Register with Web3 Wallet</h2>
+					<h2 className="text-center mb-3">ลงทะเบียน</h2>
 					<div className="row">
-						<div className="mb-3 col-md-6 d-none">
+						<div className="mb-3 col-md-6">
 							<InputForm label="First name" placeholder="First name" id="first_name" name="first_name" type="text" />
 						</div>
-						<div className="mb-3 col-md-6 d-none">
+						<div className="mb-3 col-md-6">
 							<InputForm label="Last name" placeholder="Last name" id="last_name" name="last_name" type="text" />
 						</div>
-						<div className="mb-3 col-md-6 d-none">
+						<div className="mb-3 col-md-6">
 							<InputForm
 								label="Email"
 								placeholder="Email"
@@ -190,7 +190,7 @@ const RegisterFormComponentWeb3 = () => {
 								errors={errors.error?.message?.email}
 							/>
 						</div>
-						<div className="mb-3 col-md-6 d-none">
+						<div className="mb-3 col-md-6">
 							<InputForm
 								label="User name"
 								placeholder="User name"
@@ -200,10 +200,10 @@ const RegisterFormComponentWeb3 = () => {
 								errors={errors.error?.message?.user_name}
 							/>
 						</div>
-						<div className="mb-3 col-md-6 d-none">
+						<div className="mb-3 col-md-6">
 							<InputForm label="Password" placeholder="Password" id="password" name="password" type="password" />
 						</div>
-						<div className="mb-3 col-md-6 d-none">
+						<div className="mb-3 col-md-6">
 							<InputForm
 								label="Confirm password"
 								placeholder="Confirm password"
@@ -212,7 +212,7 @@ const RegisterFormComponentWeb3 = () => {
 								type="password"
 							/>
 						</div>
-						<div className="mb-3 col-md-6 d-none">
+						<div className="mb-3 col-md-6">
 							<InputForm
 								label="Phone number"
 								placeholder="84 336 077 131"
@@ -221,16 +221,13 @@ const RegisterFormComponentWeb3 = () => {
 								type="text"
 							/>
 						</div>
-						<div className="mb-3 col-md-6 d-none">
+						<div className="mb-3 col-md-6">
 							<SelectForm label="Gender" name="gender">
 								<option value={gender[0]}>Select gender</option>
 								<option value={gender[1]}>Male</option>
 								<option value={gender[2]}>Female</option>
 								<option value={gender[3]}>Unknown</option>
 							</SelectForm>
-						</div>
-						<div className="mb-3 col-md-12">
-							<TextForm rows="2" value={address} label="Wallet Address" placeholder="Wallet Address" id="address" name="address" disabled />
 						</div>
 						<div className="mb-3 col-md-12">
 							<TextForm rows="3" label="Biography" placeholder="Biography" id="biography" name="biography" />

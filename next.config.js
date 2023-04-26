@@ -14,27 +14,27 @@ const nextConfig = (phase) => {
 
 	const env = {
 		PUSHER_KEY: process.env.NEXT_PUBLIC_PUSHER_KEY,
-    PUSHER_SECRET: process.env.NEXT_PUBLIC_PUSHER_SECRET,
-    PUSHER_APP_ID: process.env.NEXT_PUBLIC_PUSHER_APP_ID,
+		PUSHER_SECRET: process.env.NEXT_PUBLIC_PUSHER_SECRET,
+		PUSHER_APP_ID: process.env.NEXT_PUBLIC_PUSHER_APP_ID,
 		WEBSITE_URL: (() => {
 			if (isDev) return 'http://localhost:3000';
 			if (isProd) {
-				return 'https://sb-inspector-forum.vercel.app';
+				return 'https://play.mobileschool.online';
 			}
-			return 'https://sb-inspector-forum.vercel.app';
-			// return 'RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)';
+			if (isStaging) return 'https://play.mobileschool.online';
+			return 'RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)';
 		})(),
 		API_URL: (() => {
-			if (isDev) return 'https://api-play.mobileschool.online';
-			if (isProd) return 'https://api-play.mobileschool.online/';
-			return 'https://api-play.mobileschool.online/';
-			// return 'RESTURL_SESSIONS:not (isDev,isProd && !isStaging,isProd && isStaging)';
+			if (isDev) return 'https://api-play.mobileschool.online/api';
+			if (isProd) return 'https://api-play.mobileschool.online/api';
+			if (isStaging) return 'https://api-play.mobileschool.online/api';
+			return 'RESTURL_SESSIONS:not (isDev,isProd && !isStaging,isProd && isStaging)';
 		})(),
 		IMAGES_URL: (() => {
-			if (isDev) return 'https://cdn.socialbureau.io/images';
-			if (isProd) return 'https://cdn.socialbureau.io/images';
-			return 'https://cdn.socialbureau.io/images';
-			// return 'RESTURL_SESSIONS:not (isDev,isProd && !isStaging,isProd && isStaging)';
+			if (isDev) return 'https://api-play.mobileschool.online/images-local';
+			if (isProd) return 'https://api-play.mobileschool.online/images-local';
+			if (isStaging) return 'https://api-play.mobileschool.online/images-local';
+			return 'RESTURL_SESSIONS:not (isDev,isProd && !isStaging,isProd && isStaging)';
 		})(),
 		LIMIT_PAGE: {
 			LIST_POST_HOME: 10,
@@ -65,7 +65,7 @@ const nextConfig = (phase) => {
 		reactStrictMode: true,
 		trailingSlash: true,
 		images: {
-			domains: ['localhost', 'api.socialbureau.io','socialbureau.io','cdn.socialbureau.io']
+			domains: ['localhost', 'api.socialbureau.io', 'socialbureau.io', 'cdn.socialbureau.io']
 		},
 		i18n: {
 			locales: ['en', 'th'],
@@ -75,6 +75,6 @@ const nextConfig = (phase) => {
 	};
 };
 
-console.log("nextConfig:",nextConfig());
+console.log("nextConfig:", nextConfig());
 
 module.exports = withTM(nextConfig());
