@@ -31,17 +31,10 @@ const CommentCard = ({
 			<>
 				<div className={`flex-shrink-0 me-2 me-sm-3 flex-column ${minimized ? 'd-none' : 'd-flex'}`}>
 					<CustomLink href={`/u/${comment.user?.user_name}`} className="mb-2 text-decoration-none d-inline-flex">
-						{/*<CustomImage
-							width="33"
-							height="33"
-							src={`${process.env.IMAGES_URL}/${comment.user?.avatar}`}
-							alt={comment.user?.user_name}
-							className="rounded-circle h-100 w-100"
-						/> */}
 						<CustomImage
 							width="33"
 							height="33"
-							src={`/images/image-error.png`}
+							src={`${process.env.IMAGES_URL}/${comment.user?.avatar}`}
 							alt={comment.user?.user_name}
 							className="rounded-circle h-100 w-100"
 						/>

@@ -17,33 +17,32 @@ const NewPost = () => {
 	);
 };
 
-// export async function getServerSideProps({ req }) {
-// 	try {
-// 		const resCurrentUser = await httpRequest.get({
-// 			url: `/current_user`,
-// 			token: getCookie('token', req)
-// 		});
-
-// 		if (resCurrentUser.data.success) {
-// 			return {
-// 				props: {
-// 					currentUser: resCurrentUser.data
-// 				}
-// 			};
-// 		}
-// 	} catch (error) {
-// 		if (error?.response?.status === 401) {
-// 			return {
-// 				redirect: {
-// 					destination: '/login',
-// 					permanent: false
-// 				}
-// 			};
-// 		}
-// 		return {
-// 			notFound: true
-// 		};
-// 	}
-// }
+export async function getServerSideProps({ req }) {
+	try {
+		const resCurrentUser = await httpRequest.get({
+			url: `/current_user`,
+			token: getCookie('token', req)
+		});
+		if (resCurrentUser.data.success) {
+			return {
+				props: {
+					currentUser: resCurrentUser.data
+				}
+			};
+		}
+	} catch (error) {
+		if (error?.response?.status === 401) {
+			return {
+				redirect: {
+					destination: '/login',
+					permanent: false
+				}
+			};
+		}
+		return {
+			notFound: true
+		};
+	}
+}
 
 export default NewPost;

@@ -1,8 +1,10 @@
-$height-navbar: 70px;
+$height-navbar: 80px;
 
 body{
 	background-color: #F9F9F9 !important;
 	font-family: "Prompt" !important;
+	min-height: 100vh;
+	padding-top: $height-navbar;
 }
 ::-webkit-scrollbar-track {
 	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
@@ -20,10 +22,6 @@ body{
 	border-radius: 10px;
 	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 	background-color: #555;
-}
-
-body {
-	padding-top: $height-navbar;
 }
 
 .rnf-notification-icon-button svg {

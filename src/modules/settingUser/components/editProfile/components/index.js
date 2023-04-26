@@ -179,13 +179,13 @@ const EditProfileFormComponent = ({ editProfile }) => {
 						</div>
 					)}
 					<div className="row">
-						<div className="mb-3 col-md-6 d-none">
+						<div className="mb-3 col-md-6">
 							<InputForm label="First name" placeholder="First name" id="first_name" name="first_name" type="text" />
 						</div>
-						<div className="mb-3 col-md-6 d-none">
+						<div className="mb-3 col-md-6">
 							<InputForm label="Last name" placeholder="Last name" id="last_name" name="last_name" type="text" />
 						</div>
-						<div className="mb-3 col-md-6 d-none">
+						<div className="mb-3 col-md-6 ">
 							<div className="d-flex flex-column flex-sm-row">
 								<div className="w-100">
 									<InputForm
@@ -217,7 +217,7 @@ const EditProfileFormComponent = ({ editProfile }) => {
 									))}
 							</div>
 						</div>
-						<div className="mb-3 col-md-6 d-none">
+						<div className="mb-3 col-md-6">
 							<InputForm
 								label="User name"
 								placeholder="User name"
@@ -227,7 +227,7 @@ const EditProfileFormComponent = ({ editProfile }) => {
 								errors={errors.error?.message?.user_name}
 							/>
 						</div>
-						<div className="mb-3 col-md-6 d-none">
+						<div className="mb-3 col-md-6">
 							<InputForm
 								label="Phone number"
 								placeholder="84 336 077 131"
@@ -236,7 +236,7 @@ const EditProfileFormComponent = ({ editProfile }) => {
 								type="text"
 							/>
 						</div>
-						<div className="mb-3 col-md-6 d-none">
+						<div className="mb-3 col-md-6">
 							<SelectForm label="Gender" name="gender">
 								<option value={gender[0]}>Select gender</option>
 								<option value={gender[1]}>Male</option>

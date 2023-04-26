@@ -5,7 +5,7 @@ import CustomLink from '@/common/components/CustomLink/components';
 const EditProfileButtonComponent = () => {
 	return (
 		<CustomLink className="btn btn-primary btn-sm" href={`/settings`}>
-			Edit profile
+			แก้ไขข้อมูลส่วนตัว
 		</CustomLink>
 	);
 };

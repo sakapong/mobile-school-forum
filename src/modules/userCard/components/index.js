@@ -20,16 +20,8 @@ const UserCardComponent = ({ user }) => {
 								href={`/u/${user.user_name}`}
 								className="text-decoration-none d-inline-block d-flex align-items-center"
 							>
-								{/* <CustomImage
+								<CustomImage
 									src={`${process.env.IMAGES_URL}/${user.avatar}`}
-									className="rounded-circle h-100 w-100"
-									width={33}
-									height={33}
-									alt={user.user_name}
-									layout="fixed"
-								/> */}
-							<CustomImage
-									src={`/images/user-icon.jpg`}
 									className="rounded-circle h-100 w-100"
 									width={33}
 									height={33}

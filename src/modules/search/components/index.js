@@ -39,28 +39,28 @@ const SearchComponent = () => {
 						pidTab={type}
 						items={[
 							{
-								title: 'Tasks',
+								title: 'ผลงานของเพื่อน',
 								slug: 'post',
 								href: `/search?q=${q}&type=post`
 							},
 							{
-								title: 'People',
+								title: 'เพื่อน',
 								slug: 'user',
 								href: `/search?q=${q}&type=user`
 							},
 							{
-								title: 'Data',
+								title: 'ความคิดเห็น',
 								slug: 'comment',
 								href: `/search?q=${q}&type=comment`
 							},
 							{
-								title: 'Tags',
+								title: 'Hashtag',
 								slug: 'tag',
 								href: `/search?q=${q}&type=tag`
 							},
 							user
 								? {
-										title: 'My tasks',
+										title: 'ผลงานของฉัน',
 										slug: 'my_post',
 										href: `/search?q=${q}&type=my_post`
 								  }

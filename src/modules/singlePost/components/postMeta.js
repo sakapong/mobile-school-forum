@@ -12,18 +12,10 @@ const PostMetaComponent = ({ singlePost }) => {
 					href={`/u/${singlePost.data.user?.user_name}`}
 					className="text-decoration-none d-inline-block d-flex align-items-center text-dark fw-bold me-3"
 				>
-{/*					<CustomImage
-						width="40"
-						height="40"
-						src={`${process.env.IMAGES_URL}/${singlePost.data.user?.avatar}`}
-						className="rounded-circle"
-						alt={singlePost.data.user?.user_name}
-						layout="fixed"
-					/>*/}
 					<CustomImage
 						width="40"
 						height="40"
-						src={`/images/image-error.png`}
+						src={`${process.env.IMAGES_URL}/${singlePost.data.user?.avatar}`}
 						className="rounded-circle"
 						alt={singlePost.data.user?.user_name}
 						layout="fixed"

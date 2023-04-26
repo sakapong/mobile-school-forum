@@ -28,15 +28,8 @@ const SingleUserComponent = ({ singleUser, listPostUser }) => {
 					<div className={`text-left bg-light rounded-16 shadow-sm px-4 pb-4 pt-4 ${style.info__user} cover-bg`}>
 						<div className={`position-relative mb-2 ${style.avt}`}>
 							<span className="d-inline-flex p-3 rounded-circle">
-{/*								<CustomImage
-									src={`${process.env.IMAGES_URL}/${singleUser.data?.avatar}`}
-									alt={singleUser.data?.user_name}
-									className="avatar rounded-circle"
-									width="133"
-									height="133"
-								/>*/}
 								<CustomImage
-									src={`/images/user-icon.jpg`}
+									src={`${process.env.IMAGES_URL}/${singleUser.data?.avatar}`}
 									alt={singleUser.data?.user_name}
 									className="avatar rounded-circle"
 									width="133"
@@ -74,10 +67,7 @@ const SingleUserComponent = ({ singleUser, listPostUser }) => {
 						<h4 className="text-break mb-1">
 							@{singleUser.data?.user_name}
 						</h4>
-						<p className="text-break text-secondary mb-2">Inspector</p>
-						<p className="text-break text-secondary mb-2">0x22f45E683b2574eFe3b2d82642E4176Fa1967c42</p>
-						<p className="text-break text-secondary mb-2">Member since {timeFormat("2023-03-22 03:57:51")}</p>
-						
+
 						{singleUser.data?.biography && <p className="text-break mb-2">{singleUser.data?.biography}</p>}
 						{user && singleUser.data?.user_name === user?.user_name && (
 							<div>
@@ -99,87 +89,62 @@ const SingleUserComponent = ({ singleUser, listPostUser }) => {
 					</div>
 				</div>
 				<div className="col-lg-4 col-md-4 mb-4 mb-md-0">
-					<h4>Statistics</h4>
+					<h4>สถิติ</h4>
 					<ul className="wapper__card list-group rounded-16 shadow-sm">
 						<li className="list-group-item d-flex flex-wrap align-items-center">
 							<GrArticle className="me-1" />
-							<span>{singleUser.data?.total_posts} Cases</span>
+							<span>{singleUser.data?.total_posts} ผลงาน</span>
 						</li>
 						<li className="list-group-item d-flex flex-wrap align-items-center">
 							<GrArticle className="me-1" />
-							<span>77.80 RS (Reliability Score)</span>
+							<span>77.80 EXP (ค่าประสบการณ์)</span>
 						</li>
 						<li className="list-group-item d-flex flex-wrap align-items-center">
 							<FaRegComment className="me-1" />
-							<span>{singleUser.data?.total_comments} comment written</span>
+							<span>{singleUser.data?.total_comments} แสดงความคิดเห็น</span>
 						</li>
 						<li className="list-group-item d-flex flex-wrap align-items-center">
 							<FaRegHeart className="me-1" />
-							<span>{singleUser.data?.total_favorited} Posts favorited</span>
+							<span>{singleUser.data?.total_favorited} โพสต์ที่ชื่นชอบ</span>
 						</li>
 						<li className="list-group-item d-flex flex-wrap align-items-center">
 							<FaHashtag className="me-1" />
-							<span>{singleUser.data?.total_tags_followed} Tags followed</span>
+							<span>{singleUser.data?.total_tags_followed} Hashtag ที่ติดตาม</span>
 						</li>
 					</ul>
-					<h4 className="mt-4">Badges</h4>
+					<h4 className="mt-4">ความสำเร็จ</h4>
 					<ul className="wapper__card list-group rounded-16 shadow-sm">
 						<li className="list-group-item d-flex flex-wrap align-items-center">
 							<CustomImage
-									src={`/images/nft-rank-01.png`}
-									className="rounded-circle h-100 w-100"
-									width={33}
-									height={33}
-									layout="fixed"
-								/>
-							<span>12 Gold Badges</span>
+								src={`/images/nft-rank-01.png`}
+								className="rounded-circle h-100 w-100"
+								width={33}
+								height={33}
+								layout="fixed"
+							/>
+							<span>ผู้คงแก่เรียน</span>
 						</li>
 						<li className="list-group-item d-flex flex-wrap align-items-center">
 							<CustomImage
-									src={`/images/nft-rank-02.png`}
-									className="rounded-circle h-100 w-100"
-									width={33}
-									height={33}
-									layout="fixed"
-								/>
-							<span>37 Silver Badges</span>
+								src={`/images/nft-rank-02.png`}
+								className="rounded-circle h-100 w-100"
+								width={33}
+								height={33}
+								layout="fixed"
+							/>
+							<span>ผู้ไม่พลาดเป้า</span>
 						</li>
 						<li className="list-group-item d-flex flex-wrap align-items-center">
 							<CustomImage
-									src={`/images/nft-rank-03.png`}
-									className="rounded-circle h-100 w-100"
-									width={33}
-									height={33}
-									layout="fixed"
-								/>
-							<span>24 Bronze Badges</span>
+								src={`/images/nft-rank-03.png`}
+								className="rounded-circle h-100 w-100"
+								width={33}
+								height={33}
+								layout="fixed"
+							/>
+							<span>นักรบประจำสัปดาห์</span>
 						</li>
-						
-					</ul>
-					<h4 className="mt-4">Top 5 Categories</h4>
-					<ul className="wapper__card list-group rounded-16 shadow-sm">
-						<ListCategoryComponent />
-					{/*	<li className="list-group-item d-flex flex-wrap align-items-center">
-							
-							<span>#1 Cryptocurrency</span>
-						</li>
-						<li className="list-group-item d-flex flex-wrap align-items-center">
-				
-							<span>#2 Adulterer</span>
-						</li>
-						<li className="list-group-item d-flex flex-wrap align-items-center">
-						
-							<span>#3 Bycicle</span>
-						</li>
-						<li className="list-group-item d-flex flex-wrap align-items-center">
-							
-							<span>#4 Pets</span>
-						</li>
-						<li className="list-group-item d-flex flex-wrap align-items-center">
-						
-							<span>#5 Car</span>
-						</li>*/}
-						
+
 					</ul>
 				</div>
 				<div className="col-lg-8 col-md-8">

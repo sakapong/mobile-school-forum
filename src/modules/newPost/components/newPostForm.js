@@ -68,9 +68,8 @@ const NewPostFormComponent = ({ isPreview }) => {
 				}
 			});
 			if (response.data.success) {
-				postUrl = `https://dev.socialbureau.io/u/${response.data.data.user.user_name}/${response.data.data.slug}`
 				showToast.success('Create post success');
-				// router.push(`/u/${response.data.data.user.user_name}/${response.data.data.slug}`);
+				router.push(`/u/${response.data.data.user.user_name}/${response.data.data.slug}`);
 				
 			}
 		} catch (error) {
@@ -80,7 +79,7 @@ const NewPostFormComponent = ({ isPreview }) => {
 				setErrors(error.response.data);
 			}
 		} finally {
-			let theMessage = ``;
+			/* let theMessage = ``;
 			if(values.category_id == 1)
 				theMessage = `New Post Alert (click the link below to verify): \n${postUrl}`
 			else if(values.category_id == 2)
@@ -95,7 +94,7 @@ const NewPostFormComponent = ({ isPreview }) => {
             setLoading(true);
             const response = await httpRequest.notifyLine({
                 data: data
-            });
+            }); */
 			setLoading(false);
 		}
 	};

@@ -18,15 +18,8 @@ const SideBarRightUserComponent = ({ postUser, listPostUser }) => {
 						href={`/u/${postUser?.user_name}`}
 						className="text-decoration-none d-inline-block text-dark fw-bold"
 					>
-{/*						<CustomImage
-							src={`${process.env.IMAGES_URL}/${postUser.avatar}`}
-							alt={postUser.user_name}
-							className="avatar rounded-circle img-thumbnail"
-							width="55"
-							height="55"
-						/>*/}
 						<CustomImage
-							src={`/images/image-error.png`}
+							src={`${process.env.IMAGES_URL}/${postUser.avatar}`}
 							alt={postUser.user_name}
 							className="avatar rounded-circle img-thumbnail"
 							width="55"

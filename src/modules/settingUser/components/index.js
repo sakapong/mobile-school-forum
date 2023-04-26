@@ -16,7 +16,7 @@ const SettingUserComponent = ({ settingUser, pid }) => {
 			) : (
 				<>
 					<h3 className="mb-4 fw-bold">
-						Settings for{' '}
+						การตั้งค่าสำหรับ for{' '}
 						<CustomLink href={`/u/${user.user_name}`} className="text-decoration-none">
 							@{user.user_name}
 						</CustomLink>
@@ -27,12 +27,12 @@ const SettingUserComponent = ({ settingUser, pid }) => {
 								pidTab={pid[0]}
 								items={[
 									{
-										title: 'Profile',
+										title: 'โปรไฟล์',
 										slug: 'profile',
 										href: '/settings/profile'
 									},
 									{
-										title: 'Notification',
+										title: 'การแจ้งเตือน',
 										slug: 'customization',
 										href: '/settings/customization'
 									}

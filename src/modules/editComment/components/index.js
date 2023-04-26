@@ -64,20 +64,13 @@ const EditCommentComponent = ({ editComment }) => {
 							<div>
 								<div className="my-4 d-flex align-items-start flex-column flex-sm-row">
 									<CustomLink href={`/u/${user?.user_name}`} className={`me-3 mb-3 ${isLoading ? 'disabled' : ''}`}>
-										{/*<CustomImage
+										<CustomImage
 											width="33"
 											height="33"
 											src={`${process.env.IMAGES_URL}/${user?.avatar}`}
 											alt={user?.user_name}
 											className="d-flex rounded-circle"
-										/> */}
-									<CustomImage
-										width="33"
-										height="33"
-										src={`/images/image-error.png`}
-										alt={user?.user_name}
-										className="rounded-circle h-100 w-100"
-									/>
+										/>
 									</CustomLink>
 									<div className="flex-fill w-100">
 										<Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
