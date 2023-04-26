@@ -193,7 +193,7 @@ const PostCardComponent = ({ post }) => {
 							className="d-flex align-items-center text-decoration-none text-secondary me-2"
 						>
 							<Link href="#" passHref>
-									<Nav.Link className="btn btn-success text-white fw-bold"><span className="d-none d-sm-block">Buy Data</span></Nav.Link>
+									<Nav.Link className="btn btn-success text-white fw-bold"><span className="d-none d-sm-block">ทำต่อไป</span></Nav.Link>
 							</Link>
 						</CustomLink>
 						)}
@@ -203,7 +203,7 @@ const PostCardComponent = ({ post }) => {
 							className="d-flex align-items-center text-decoration-none text-secondary me-2"
 						>
 							<Link href="#" passHref>
-									<Nav.Link className="btn btn-primary text-white fw-bold"><span className="d-none d-sm-block">Give Rewards</span></Nav.Link>
+									<Nav.Link className="btn btn-primary text-white fw-bold"><span className="d-none d-sm-block">ให้กำลังใจ</span></Nav.Link>
 							</Link>
 						</CustomLink>
 						)}
