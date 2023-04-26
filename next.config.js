@@ -55,9 +55,9 @@ module.exports = (phase) => {
 			DEFAULT_IMAGE_AVATAR: 'default_avatar.png'
 		},
 		META: {
-			TITLE: 'Libeyondea Forum',
-			DESCRIPTION: 'A social network for software developers.',
-			TWITTER: '@libeyondea',
+			TITLE: 'โรงเรียนมือถือฟอรั่ม',
+			DESCRIPTION: 'สร้างโอกาสทางการศึกษาไทย',
+			TWITTER: '@mobileschool',
 			IMAGE: 'libeyondea-background-night.png'
 		}
 	};
