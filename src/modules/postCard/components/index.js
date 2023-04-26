@@ -19,11 +19,6 @@ import { FaBolt, FaEllipsisH, FaFacebookF, FaHeart, FaRegHeart, FaTwitter } from
 import { useWeb3Context } from '@/common/context'
 
 const PostCardComponent = ({ post }) => {
-
-	 const { web3Provider, connect, address } = useWeb3Context()
-
-//	console.log("post",post);
-
 	function rand(min, max) { // min and max included 
 	  return Math.floor(Math.random() * (max - min + 1) + min)
 	}
@@ -192,7 +187,7 @@ const PostCardComponent = ({ post }) => {
 							totalFavorited={post.total_favorited}
 							slug={post.slug}
 						/>
-						{post.category.id == 3 && web3Provider && (
+						{post.category.id == 3 && (
 						<CustomLink
 							href={`#`}
 							className="d-flex align-items-center text-decoration-none text-secondary me-2"
@@ -202,7 +197,7 @@ const PostCardComponent = ({ post }) => {
 							</Link>
 						</CustomLink>
 						)}
-						{post.category.id != 3 && web3Provider && (
+						{post.category.id != 3 && (
 						<CustomLink
 							href={`#`}
 							className="d-flex align-items-center text-decoration-none text-secondary me-2"

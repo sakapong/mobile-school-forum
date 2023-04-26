@@ -17,8 +17,6 @@ import style from '@/modules/settingUser/styles/style.module.scss';
 import { useWeb3Context } from '@/common/context'
 
 const EditProfileFormComponent = ({ editProfile }) => {
-	 const { web3Provider, connect, address } = useWeb3Context()
-
 	const router = useRouter();
 	const { mutateUser } = useUser();
 	const [isLoading, setLoading] = useState(false);

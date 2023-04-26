@@ -18,8 +18,6 @@ import showToast from '@/common/utils/showToast';
 import ListOptionsMenu from '@/modules/layout/components/navbar/components/listOptionsMenu';
 import style from '@/modules/layout/components/navbar/styles/style.module.scss';
 
-import WalletConnectorButton from '@/common/components/WalletConnector';
-import { useWeb3Context } from '@/common/context';
 
 import { KnockFeedProvider } from "@knocklabs/react-notification-feed";
 import useIdentify from "@/common/hooks/useIdentify";
@@ -42,8 +40,6 @@ const NavBarComponent = () => {
 
 	const { userId, isLoading } = useIdentify();
 	const [tenant, setTenant] = useState(Tenants.TeamA);
-
-	const { web3Provider, connect, address, disconnect, chainId } = useWeb3Context()
 	const router = useRouter();
 	const { user } = useUser();
 	const [search, setSearch] = useState(router.query?.q || '');
@@ -284,30 +280,29 @@ const NavBarComponent = () => {
 							</form>
 						</Nav>
 						<Nav className="align-items-md-center ms-auto">
-							<Nav.Item className="d-none d-md-block px-2">
-								<CustomLink href="/new" className="btn btn-outline-primary">
-									เพิ่มผลงาน
-								</CustomLink>
-							</Nav.Item>
 							{/*{DropdownLocale()}*/}
 
-							{!user && (
+							{!user ? (
 								<>
-									<WalletConnectorButton />
-									{/*								<Nav.Item className="d-none">
+									<Nav.Item>
 										<Link href="/register" passHref>
-											<Nav.Link>Register</Nav.Link>
+											<Nav.Link>ลงทะเบียน</Nav.Link>
 										</Link>
 									</Nav.Item>
-									<Nav.Item className="d-none">
+									<Nav.Item>
 										<Link href="/login" passHref>
-											<Nav.Link>Login</Nav.Link>
+											<Nav.Link>เข้าสู่ระบบ</Nav.Link>
 										</Link>
 									</Nav.Item>
-									*/}
-
-
 								</>
+							) : (
+							<>
+								<Nav.Item className="d-none d-md-block px-2">
+									<CustomLink href="/new" className="btn btn-outline-primary">
+										เพิ่มผลงาน
+									</CustomLink>
+								</Nav.Item>
+							</>
 							)}
 						</Nav>
 					</Navbar.Collapse>
@@ -341,7 +336,6 @@ const NavBarComponent = () => {
 							<div className="border-top my-3" />
 						</>
 					)}
-					<WalletConnectorButton />
 					<nav className="mb-auto">
 						<ListOptionsMenu />
 					</nav>

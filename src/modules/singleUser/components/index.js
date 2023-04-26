@@ -97,7 +97,7 @@ const SingleUserComponent = ({ singleUser, listPostUser }) => {
 						</li>
 						<li className="list-group-item d-flex flex-wrap align-items-center">
 							<GrArticle className="me-1" />
-							<span>77.80 EXP (ค่าประสบการณ์)</span>
+							<span>0 EXP (ค่าประสบการณ์)</span>
 						</li>
 						<li className="list-group-item d-flex flex-wrap align-items-center">
 							<FaRegComment className="me-1" />

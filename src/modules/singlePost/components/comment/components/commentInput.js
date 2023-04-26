@@ -7,11 +7,8 @@ import CommentFormComponent from '@/modules/singlePost/components/comment/compon
 import CommentLoadingComponent from '@/modules/singlePost/components/comment/components/commentLoading';
 import style from '@/modules/singlePost/components/comment/styles/style.module.scss';
 
-import WalletConnectorButton from '@/common/components/WalletConnector';
-import { useWeb3Context } from '@/common/context';
 
 const CommentInput = ({ listCommentClient, setListCommentClient, meta, setMeta, postSlug }) => {
-	const { web3Provider, connect, address } = useWeb3Context()
 	const { user } = useUser();
 	const [isLoading, setLoading] = useState(false);
 	const [isPreview, setIsPreview] = useState(false);

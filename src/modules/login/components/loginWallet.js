@@ -10,12 +10,7 @@ import httpRequest from '@/common/utils/httpRequest';
 import { setCookie } from '@/common/utils/session';
 import showToast from '@/common/utils/showToast';
 
-import WalletConnectorButton from '@/common/components/WalletConnector';
-import { useWeb3Context } from '@/common/context';
-
 const LoginWalletComponent = () => {
-		const { web3Provider, connect, address } = useWeb3Context()
-
 		const inputElement = useRef()
 		const [stateOfInput, setStateOfInput] = useState("");
 		const [stateOfOutput, setStateOfOutput] = useState("");
