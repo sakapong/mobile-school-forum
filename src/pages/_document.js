@@ -22,8 +22,6 @@ class MyDocument extends Document {
 					<link rel="shortcut icon" href="/favicon.ico" />
 					<link rel="manifest" href="/manifest.json" />
 					<meta name="google-site-verification" content="9YzX8i754FQ0s-m0_uzsr8GtPuXBdchifjMeMRPQ-t0" />
-					<link rel="preconnect" href="https://fonts.gstatic.com" />
-        			<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;&display=swap" rel="stylesheet" />
 				</Head>
 				<body>
 					<Main />
