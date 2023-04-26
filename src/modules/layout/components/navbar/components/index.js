@@ -239,9 +239,9 @@ const NavBarComponent = () => {
 						<Navbar.Brand className="d-flex align-items-center me-md-3 me-auto">
 							<CustomImage
 								className=""
-								src={`/images/logo.jpg`}
-								width={44}
-								height={44}
+								src={`/images/logo.png`}
+								width={180}
+								height={60}
 								alt="Logo"
 								layout="fixed"
 							/>
