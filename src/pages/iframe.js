@@ -12,7 +12,7 @@ const BackgroudCheckV2 = () => {
 
 	return (
 		<>
-			<MetaWebsite title="Welcome to Social Bureau" />
+			<MetaWebsite title="โรงเรียนมือถือฟอรั่ม" />
 			<Layout onButtonClick={() => setKeyValue(keyValue + 1)} >
 				
       	        <iframe

@@ -71,7 +71,7 @@ const PostFooterComponent = ({ favorited, totalFavorited, postSlug, postUserName
 					</>
 				)}
 				<span className="me-1">{sumFavorited}</span>
-				<span className="d-none d-sm-block">likes</span>
+				<span className="d-none d-sm-block">ถูกใจ</span>
 			</button>
 			<OverlayTrigger
 				trigger="click"

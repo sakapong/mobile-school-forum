@@ -53,13 +53,13 @@ import useIdentify from "@/common/hooks/useIdentify";
 // ]); // pass the modules you would like to see transpiled
 
 const Tenants = {
-  TeamA: "team-a",
-  TeamB: "team-b",
+	TeamA: "team-a",
+	TeamB: "team-b",
 };
 
 const TenantLabels = {
-  [Tenants.TeamA]: "Team A",
-  [Tenants.TeamB]: "Team B",
+	[Tenants.TeamA]: "Team A",
+	[Tenants.TeamB]: "Team B",
 };
 
 const TopProgressBar = dynamic(
@@ -75,21 +75,20 @@ const App = ({ Component, pageProps }) => {
 	const router = useRouter();
 
 	const { userId, isLoading } = useIdentify();
-  const [tenant, setTenant] = useState(Tenants.TeamA);
+	const [tenant, setTenant] = useState(Tenants.TeamA);
 
 	return (
-		<Web3ContextProvider>
 		<>
-			
+
 			<Head>
 				<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 			</Head>
 			{/*<DynamicComponentWithNoSSR />*/}
 			<TopProgressBar />
-			<Toaster 
-          position="top-center"
-          reverseOrder={false}
-        />
+			<Toaster
+				position="top-center"
+				reverseOrder={false}
+			/>
 			<SWRConfig
 				value={{
 					fetcher: fetcher,
@@ -105,8 +104,8 @@ const App = ({ Component, pageProps }) => {
 			>
 				<ChakraProvider>
 
-						<Component {...pageProps} key={router.asPath} />
-					
+					<Component {...pageProps} key={router.asPath} />
+
 				</ChakraProvider>
 				<ToastContainer
 					position="bottom-right"
@@ -121,7 +120,6 @@ const App = ({ Component, pageProps }) => {
 				/>
 			</SWRConfig>
 		</>
-		</Web3ContextProvider>
 	);
 };
 

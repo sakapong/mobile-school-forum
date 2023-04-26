@@ -73,7 +73,7 @@ const TagListFormComponent = ({ errors, tags, setTag, ...props }) => {
 	return (
 		<>
 			<label htmlFor="tags" className="form-label">
-				Tags
+				แท็ค
 			</label>
 			<ul className="border rounded px-2 flex-wrap d-flex border mb-0 bg-white">
 				{tags.map(

@@ -7,8 +7,8 @@
 <img alt="Figma" src="https://img.shields.io/badge/figma%20-%23F24E1E.svg?&style=for-the-badge&logo=figma&logoColor=white"/>
 </p>
 <br />
-<p align="center"><img src="./images/logo.png" alt='frontend-forum-example' width="33%"/></p>
-<h3 align="center">Social Bureau Insepctor Forum</h3>
+<p align="center"><img src="./images/logo.jpg" alt='frontend-forum-example' width="33%"/></p>
+<h3 align="center">Mobile School Forum</h3>
 <p align="center">
 	<a href="https://github.com/libeyondea/frontend-forum-example"><strong>Explore the docs »</strong></a>
 	<br />

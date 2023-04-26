@@ -49,7 +49,7 @@ const PostCardComponent = ({ post }) => {
 									layout="fixed"
 								/>*/}
 								<CustomImage
-									src={`/images/JUTC.svg`}
+									src={`/images/user-icon.jpg`}
 									className="rounded-circle h-100 w-100"
 									width={33}
 									height={33}
@@ -119,7 +119,7 @@ const PostCardComponent = ({ post }) => {
 									className="text-decoration-none d-inline-block d-flex align-items-center"
 								>
 									<CustomImage
-										src={`/images/JUTC.svg`}
+										src={`/images/user-icon.jpg`}
 										className="rounded-circle h-100 w-100 px-2"
 										width={33}
 										height={33}
@@ -201,7 +201,7 @@ const PostCardComponent = ({ post }) => {
 						>
 							<FaRegComment className="me-1" />
 							<span className="me-1">{post.total_comments}</span>
-							<span className="d-none d-sm-block">comments</span>
+							<span className="d-none d-sm-block">ความคิดเห็น</span>
 						</CustomLink>
 						<FavoritePostButtonComponent
 							favorited={post.favorited}

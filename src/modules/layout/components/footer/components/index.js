@@ -10,12 +10,12 @@ const FooterComponent = () => {
 					<div className="col-12 col-md-3 mb-4">
 						<CustomImage
 							className="logo"
-							src={`/images/logo.png`}
-							width={260}
-							height={120}
-							alt="Social Bureau"
+							src={`/images/logo.jpg`}
+							width={64}
+							height={64}
+							alt="Mobile School"
 						/>
-						<small className="d-block text-light">Copyright © Social Bureau 2023</small>
+						<small className="d-block text-light">Copyright © Mobile School 2023</small>
 					</div>
 					<div className="col-6 col-md-3 mb-4">
 						<h5 className="text-white">Features</h5>

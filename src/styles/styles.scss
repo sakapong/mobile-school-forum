@@ -1,5 +1,9 @@
 $height-navbar: 70px;
 
+body{
+	background-color: #F9F9F9 !important;
+	font-family: "kanit" !important;
+}
 ::-webkit-scrollbar-track {
 	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 	border-radius: 10px;
@@ -114,9 +118,6 @@ body {
 	}
 }
 
-.bg-dark {
-	background-color: #142440 !important;
-}
 
 .none {
 	display: none;
@@ -213,7 +214,18 @@ body {
 
 }
 
+.btn{
+	border-radius: 32px;
+}
+
 .btn-badge {
 	background-color: #3468b0;
 }
     
+
+
+.btn-primary {
+    color: #fff;
+    background-color: #00A8C9;
+    border-color:#00A8C9;
+}

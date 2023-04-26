@@ -29,7 +29,7 @@ const UserCardComponent = ({ user }) => {
 									layout="fixed"
 								/> */}
 							<CustomImage
-									src={`/images/JUTC.svg`}
+									src={`/images/user-icon.jpg`}
 									className="rounded-circle h-100 w-100"
 									width={33}
 									height={33}

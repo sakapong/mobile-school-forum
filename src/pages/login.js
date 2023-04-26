@@ -15,7 +15,7 @@ const Login = () => {
 							src={`https://socialbureau.io/wp-content/uploads/2021/09/logo-1.png`}
 							width={260}
 							height={120}
-							alt="Social Bureau"
+							alt="Mobile School"
 						/>*/}
 				<LoginComponent />
 			</Layout>

@@ -88,7 +88,7 @@ const WalletConnectorButton = () => {
                 </>
             ) : (
                 <button className="btn btn-primary" type="button" onClick={connect}>
-                    Connect Wallet
+                    เข้าสู่ระบบ    
                 </button>
             )}
 

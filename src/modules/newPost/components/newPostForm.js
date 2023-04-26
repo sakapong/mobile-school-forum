@@ -133,17 +133,17 @@ const NewPostFormComponent = ({ isPreview }) => {
 		<Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
 			{({ setFieldValue, setFieldTouched, errors: error, touched, values, handleChange }) => (
 				<Form>
-					<div className="bg-light rounded-3 shadow-sm">
+					<div className="ิshadow-sm">
 						{!isPreview ? (
-							<div className="p-3 p-sm-5">
+							<div className="bg-white rounded-3 p-3 p-sm-5">
 								<div className="row">
 									<div className="mb-3 col-md-12 mb-0">
-										<SelectForm label="Category" name="category_id">
-											<option value="">Select category</option>
+										<SelectForm label="หมวดผลงาน" name="category_id">
+											<option value="">เลือกหมวดผลงาน</option>
 											{!listCategory ? (
-												<option value="">Loading...</option>
+												<option value="">กำลังดาวโหลด...</option>
 											) : isEmpty(listCategory?.data) ? (
-												<option value="">Empty category</option>
+												<option value="">ไม่มีหมวดผลงาน</option>
 											) : (
 												listCategory?.data?.map((category) => (
 													<option value={category.id} key={category.id}>
@@ -154,8 +154,29 @@ const NewPostFormComponent = ({ isPreview }) => {
 										</SelectForm>
 									</div>
 									<div className="mb-3 col-md-12">
+										<InputForm label="หัวข้อผลงาน" placeholder="กรอกหัวข้อผลงาน" id="title" name="title" type="text" />
+									</div>
+									<div className="mb-3 col-md-12">
+										<TagListForm
+											tags={tags}
+											setTag={setTag}
+											errors={errors.error?.message?.tags}
+											placeholder="Add up to 4 tags..."
+										/>
+									</div>
+									<div className="mb-3 col-md-12">
+										<TextForm
+											rows="16"
+											label="เนื้อหาผลงาน (Markdown)"
+											placeholder="อธิบายเนื้อหาผลงานพร้อมทั้งข้อมูลอื่นๆที่น่าสนใจ"
+											id="content"
+											name="content"
+											type="text"
+										/>
+									</div>
+									<div className="mb-3 col-md-12">
 										<ImagePostForm
-											label="Evidences (.png, .jpg, .jpeg .gif)"
+											label="ภาพประกอบ (.png, .jpg, .jpeg .gif)"
 											id="image"
 											name="image"
 											type="file"
@@ -169,28 +190,6 @@ const NewPostFormComponent = ({ isPreview }) => {
 											removeImage={() => onChangeRemoveImage(setFieldValue)}
 										/>
 									</div>
-									<div className="mb-3 col-md-12">
-										<InputForm label="Title" placeholder="Enter title" id="title" name="title" type="text" />
-									</div>
-									<div className="mb-3 col-md-12">
-										<TagListForm
-											tags={tags}
-											setTag={setTag}
-											errors={errors.error?.message?.tags}
-											placeholder="Add up to 4 tags..."
-										/>
-									</div>
-									<div className="mb-3 col-md-12">
-										<TextForm
-											rows="16"
-											label="Content (Markdown)"
-											placeholder="Enter content and other support evidences here"
-											id="content"
-											name="content"
-											type="text"
-										/>
-									</div>
-									
 								</div>
 							</div>
 						) : (
@@ -230,11 +229,11 @@ const NewPostFormComponent = ({ isPreview }) => {
 						{isLoading ? (
 							<button type="submit" className="btn btn-primary" disabled>
 								<span className="spinner-grow spinner-grow-sm me-1" role="status" aria-hidden="true" />
-								Submit
+								โพสต์ผลงาน
 							</button>
 						) : (
 							<button type="submit" className="btn btn-primary">
-								Submit
+								โพสต์ผลงาน
 							</button>
 						)}
 					</div>

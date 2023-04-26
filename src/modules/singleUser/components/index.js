@@ -36,7 +36,7 @@ const SingleUserComponent = ({ singleUser, listPostUser }) => {
 									height="133"
 								/>*/}
 								<CustomImage
-									src={`/images/JUTC.svg`}
+									src={`/images/user-icon.jpg`}
 									alt={singleUser.data?.user_name}
 									className="avatar rounded-circle"
 									width="133"

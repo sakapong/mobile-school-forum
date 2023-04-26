@@ -46,7 +46,7 @@ const ListTagComponent = () => {
 												href={`/u/${post.user.user_name}/${post.slug}#comment-post`}
 												className="p-1 text-decoration-none d-inline-block text-secondary"
 											>
-												{post.total_comments} comments
+												{post.total_comments} ความคิดเห็น
 											</CustomLink>
 										</div>
 									)}

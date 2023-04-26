@@ -15,7 +15,7 @@ const NewPostComponent = () => {
 {/*			{!user ? (
 				<LoadingSpinner />
 			) : ( */}
-				<h2>New Post / Bounty</h2>
+				<h2>เพิ่มผลงานใหม่</h2>
 				<div className="row">
 					<div className="col-md-9">
 						<div className="d-flex align-items-center mb-3">

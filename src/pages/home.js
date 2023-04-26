@@ -17,7 +17,7 @@ const giauPass = "https://i.imgur.com/8IuucQZ.jpg";
 
 	return (
 		<>
-			<MetaWebsite title="Welcome to Social Bureau" />
+			<MetaWebsite title="โรงเรียนมือถือฟอรั่ม" />
 			<Layout>
 				<div className="container-xl">
 					<Carousel>

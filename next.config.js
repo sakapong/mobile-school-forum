@@ -54,8 +54,8 @@ const nextConfig = (phase) => {
 			DEFAULT_IMAGE_AVATAR: 'images/image-error.png'
 		},
 		META: {
-			TITLE: 'Social Bureau Forum',
-			DESCRIPTION: 'A social network for crime inspectors.',
+			TITLE: 'โรงเรียนมือถือฟอรั่ม',
+			DESCRIPTION: 'โรงเรียนมือถือ สร้างโอกาสทางการศึกษา',
 			TWITTER: '@socialbureau_',
 			IMAGE: 'libeyondea-background-night.png'
 		}

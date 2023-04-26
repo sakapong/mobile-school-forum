@@ -34,7 +34,7 @@ const SingleUserDashboardComponent = ({ singleUser, listPostUser, listTagUser })
 						<div className={`position-relative mb-2  ${style.avt} ${style.cover_bg}`}>
 							<span className="d-inline-flex p-3 rounded-circle">
 								<CustomImage
-									src={`/images/JUTC.svg`}
+									src={`/images/user-icon.jpg`}
 									alt={singleUser.data?.user_name}
 									className="avatar rounded-circle"
 									width="133"
