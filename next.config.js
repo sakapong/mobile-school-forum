@@ -25,9 +25,9 @@ const nextConfig = (phase) => {
 			// return 'RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)';
 		})(),
 		API_URL: (() => {
-			if (isDev) return 'https://api.socialbureau.io/api';
-			if (isProd) return 'https://api.socialbureau.io/api';
-			return 'https://api.socialbureau.io/api';
+			if (isDev) return 'https://api-play.mobileschool.online';
+			if (isProd) return 'https://api-play.mobileschool.online/';
+			return 'https://api-play.mobileschool.online/';
 			// return 'RESTURL_SESSIONS:not (isDev,isProd && !isStaging,isProd && isStaging)';
 		})(),
 		IMAGES_URL: (() => {
