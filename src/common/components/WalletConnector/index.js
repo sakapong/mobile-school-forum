@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import { useState,useEffect } from "react";
 import { useRouter } from 'next/router';
 import clsx from "clsx";
@@ -87,9 +88,9 @@ const WalletConnectorButton = () => {
                     <WalletConnectorDialogNew showDialog={showDialog} close={close} />
                 </>
             ) : (
-                <button className="btn btn-primary" type="button" onClick={connect}>
-                    เข้าสู่ระบบ    
-                </button>
+                <a className="btn btn-primary" type="button" href="/login">
+                    เข้าสู่ระบบ
+                </a>
             )}
 
         </>
