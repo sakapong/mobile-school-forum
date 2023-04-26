@@ -98,7 +98,7 @@ const CommentMetaComponent = ({
 					>
 						<FaRegComment className="me-1" />
 						{/* <span className="me-1">666</span> */}
-						<span className="d-none d-sm-block">reply</span>
+						<span className="d-none d-sm-block">ตอบกลับ</span>
 					</button>
 				</div>
 			) : (

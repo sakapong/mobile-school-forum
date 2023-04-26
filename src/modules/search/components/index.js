@@ -32,7 +32,7 @@ const SearchComponent = () => {
 
     return (
         <div className="container-xl py-4">
-			<h3 className="mb-4 fw-bold">Search results</h3>
+			<h3 className="mb-4 fw-bold">ผลการค้นหา</h3>
 			<div className="row">
 				<div className="col-lg-3 mb-4">
 					<TabVertical

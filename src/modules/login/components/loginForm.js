@@ -98,7 +98,7 @@ const LoginFormComponent = () => {
 				</div>
 				<div className="mb-3">
 					<InputForm
-						label="รหัสผ่่าน"
+						label="รหัสผ่าน"
 						placeholder="ใส่รหัสผ่าน"
 						id="password"
 						name="password"
@@ -136,11 +136,10 @@ const LoginFormComponent = () => {
 					<WalletConnectorButton />*/}
 					<p className="mt-3">
 						ยังไม่เป็นสมาชิก{' '}
-						<CustomLink className="text-decoration-none" href="/register">
+						<CustomLink href="/register">
 							ต้องการสร้างบัญชีหรือไม่?
 						</CustomLink>
 					</p> 
-					<p>or login in with:</p>
 					{/*<div>
 						<SocialButtonLogin
 							handleSocialLogin={handleSocialLogin}

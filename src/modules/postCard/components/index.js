@@ -66,7 +66,7 @@ const PostCardComponent = ({ post }) => {
 									className="text-decoration-none d-inline-block d-flex align-items-center"
 								>
 									
-									<span className="badge bg-warning">Data Sales</span>
+									<span className="badge" style={{backgroundColor: "#D78920"}}>โชคโชน (Enjoy)</span>
 								</div>
 							</div>
 						</div>
@@ -79,7 +79,7 @@ const PostCardComponent = ({ post }) => {
 									className="text-decoration-none d-inline-block d-flex align-items-center"
 								>
 									
-									<span className="badge bg-secondary">Knowledge</span>
+									<span className="badge bg-secondary">ความรู้ (Knowledge)</span>
 								</div>
 							</div>
 						</div>
@@ -92,7 +92,7 @@ const PostCardComponent = ({ post }) => {
 									className="text-decoration-none d-inline-block d-flex align-items-center"
 								>
 									
-									<span className="badge btn-danger">Crime Report</span>
+									<span className="badge" style={{backgroundColor: "#92D236"}}>ชิม (Taste)</span>
 								</div>
 							</div>
 						</div>
@@ -105,7 +105,7 @@ const PostCardComponent = ({ post }) => {
 									className="text-decoration-none d-inline-block d-flex align-items-center"
 								>
 									
-									<span className="badge btn-primary">Dispute</span>
+									<span className="badge" style={{backgroundColor: "#FC1FA4"}}>ชอบ (Like)</span>
 								</div>
 							</div>
 						</div>
@@ -113,22 +113,14 @@ const PostCardComponent = ({ post }) => {
 						
 						{post.category.id == 4 && (
 						<div className="d-flex position-absolute action-2">
-							<div className="me-1">
-								<div
-								
-									className="text-decoration-none d-inline-block d-flex align-items-center"
-								>
-									<CustomImage
-										src={`/images/user-icon.jpg`}
-										className="rounded-circle h-100 w-100 px-2"
-										width={33}
-										height={33}
-										alt={post.user.user_name}
-										layout="fixed"
-									/>
-									<span>{randomPrice} JUTC</span>
-								</div>
+						<div className="me-1">
+							<div
+							
+								className="text-decoration-none d-inline-block d-flex align-items-center"
+							>
+								<span className="badge" style={{backgroundColor: "#1EBD43"}}>เชียวชาญ (Expertise)</span>
 							</div>
+						</div>
 						</div>
 						)}
 						<div className={`d-flex position-absolute action`}>

@@ -285,9 +285,9 @@ const NavBarComponent = () => {
 						</Nav>
 						<Nav className="align-items-md-center ms-auto">
 							<Nav.Item className="d-none d-md-block px-2">
-								<Link href="/new" passHref>
-									<Nav.Link>เพิ่มผลงาน</Nav.Link>
-								</Link>
+								<CustomLink href="/new" className="btn btn-outline-primary">
+									เพิ่มผลงาน
+								</CustomLink>
 							</Nav.Item>
 							{/*{DropdownLocale()}*/}
 
@@ -320,7 +320,7 @@ const NavBarComponent = () => {
 				<Offcanvas.Body className="d-flex flex-column">
 					<form className="form-inline mb-3" onSubmit={onSearchSubmit}>
 						<input
-							placeholder="ค้นหา"
+							placeholder="Search"
 							type="text"
 							value={search}
 							onChange={handleChangeSearch}

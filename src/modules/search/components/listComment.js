@@ -12,7 +12,7 @@ const ListCommentComponent = ({ listComment }) => {
 			{!listComment ? (
 				<LoadingPost />
 			) : isEmpty(listComment.data) ? (
-				<EmptyBoxComponent text="No results match" />
+				<EmptyBoxComponent text="ไม่พบข้อมูลตามที่ท่านต้องการค้นหา" />
 			) : (
 				<>
 					<div className="row row-cols-1 g-3 mb-3">

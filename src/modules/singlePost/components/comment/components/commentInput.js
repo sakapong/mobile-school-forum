@@ -64,7 +64,7 @@ const CommentInput = ({ listCommentClient, setListCommentClient, meta, setMeta, 
 					<CustomLink className="text-decoration-none" href="/register">
 						Register
 					</CustomLink> */}
-                 &nbsp;to add comments on this post.
+                 &nbsp;ต้องการแสดงความคิดเห็น.
 				</div>
 			)}
 			{isLoading && <CommentLoadingComponent />}

@@ -152,7 +152,6 @@ const LoginWalletComponent = () => {
 							Need an account?
 						</CustomLink>
 					</p> 
-					<p>or login in with:</p>
 					{/*<div>
 						<SocialButtonLogin
 							handleSocialLogin={handleSocialLogin}

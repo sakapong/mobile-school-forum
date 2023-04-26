@@ -43,11 +43,11 @@ const SideBarRightUserComponent = ({ postUser, listPostUser }) => {
 				<div>
 					<ul className="list-group list-group-flush">
 						<li className="bg-light list-group-item border-0 p-0 mb-2">
-							<div className="text-secondary fw-bold small">ROLE</div>
+							<div className="text-secondary fw-bold small">บทบาท</div>
 							<div className="small">{postUser.role.title}</div>
 						</li>
 						<li className="bg-light list-group-item border-0 p-0">
-							<div className="text-secondary fw-bold small">JOINED</div>
+							<div className="text-secondary fw-bold small">เข้าร่วมเมื่อ</div>
 							<div className="small">
 								<time dateTime={postUser.created_at}>{timeFormat(postUser.created_at)}</time>
 							</div>
@@ -58,7 +58,7 @@ const SideBarRightUserComponent = ({ postUser, listPostUser }) => {
 			<div className="wapper__card bg-light rounded-16 shadow-sm border">
 				<div className="px-3 py-2 border-bottom">
 					<h5 className="mb-0">
-						More from
+						เพิ่มเติมจาก
 						<CustomLink
 							href={`/u/${postUser?.user_name}`}
 							className="text-decoration-none d-inline-block fw-bold ms-1"

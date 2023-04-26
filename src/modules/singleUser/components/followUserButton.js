@@ -57,11 +57,11 @@ const FollowUserButtonComponent = ({ following, user_name }) => {
 					<span className="spinner-grow spinner-grow-sm me-1" role="status" aria-hidden="true" />
 					{isFollow ? (
 						<>
-							<FaMinus className="me-1" /> UnFollow
+							<FaMinus className="me-1" /> เลิกติดตาม
 						</>
 					) : (
 						<>
-							<FaPlus className="me-1" /> Follow
+							<FaPlus className="me-1" /> ติดตาม
 						</>
 					)}
 				</button>
@@ -72,11 +72,11 @@ const FollowUserButtonComponent = ({ following, user_name }) => {
 				>
 					{isFollow ? (
 						<>
-							<FaMinus className="me-1" /> UnFollow
+							<FaMinus className="me-1" /> เลิกติดตาม
 						</>
 					) : (
 						<>
-							<FaPlus className="me-1" /> Follow
+							<FaPlus className="me-1" /> ติดตาม
 						</>
 					)}
 				</button>

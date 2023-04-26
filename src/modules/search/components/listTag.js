@@ -12,7 +12,7 @@ const ListTagComponent = ({ listTag }) => {
 			{!listTag ? (
 				<LoadingTag classNameContainer="row-cols-lg-2" />
 			) : isEmpty(listTag.data) ? (
-				<EmptyBoxComponent text="No results match" />
+				<EmptyBoxComponent text="ไม่พบข้อมูลตามที่ท่านต้องการค้นหา" />
 			) : (
 				<>
 					<div className="row row-cols-1 row-cols-lg-2 g-3 mb-3">

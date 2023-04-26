@@ -9,7 +9,7 @@ const CommentComponent = ({ listComment, postSlug, postUserName }) => {
 
 	return (
 		<div id="comment-post">
-			<h4 className="mb-0">Comments ({meta.total})</h4>
+			<h4 className="mb-0">ความคิดเห็น ({meta.total})</h4>
 			<CommentInputComponent
 				listCommentClient={listCommentClient}
 				setListCommentClient={setListCommentClient}

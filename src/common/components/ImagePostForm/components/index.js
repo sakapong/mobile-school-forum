@@ -21,7 +21,7 @@ const ImagePostFormComponent = ({ errors, error, touched, label, imageSrc, imagA
 								})}
 							/>
 							<label className="mb-0" htmlFor={props.id || props.name}>
-								Change
+								เปลี่ยน
 							</label>
 						</button>
 						{touched && error && <div className="invalid-feedback d-block">{error}</div>}
@@ -35,7 +35,7 @@ const ImagePostFormComponent = ({ errors, error, touched, label, imageSrc, imagA
 						</div>
 						<div className="d-flex align-items-center">
 							<button type="button" className="btn btn-danger" onClick={removeImage}>
-								Remove
+								ลบ
 							</button>
 						</div>
 					</div>

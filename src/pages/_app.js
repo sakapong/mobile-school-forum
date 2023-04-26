@@ -12,7 +12,6 @@ import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { SWRConfig } from 'swr';
-import { Web3ContextProvider } from '@/common/context'
 
 import fetcher from '@/common/utils/fetcher';
 import { removeCookie } from '@/common/utils/session';
@@ -82,6 +81,8 @@ const App = ({ Component, pageProps }) => {
 
 			<Head>
 				<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+				<link rel="preconnect" href="https://fonts.gstatic.com" />
+        		<link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet" />
 			</Head>
 			{/*<DynamicComponentWithNoSSR />*/}
 			<TopProgressBar />
