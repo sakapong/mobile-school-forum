@@ -18,7 +18,7 @@ const SinglePostComponent = ({ singlePost, listPostUser, listComment }) => {
 					<article className="wapper__card single-post bg-light rounded-16 shadow-sm">
 						{singlePost.data?.image && (
 							<div>
-{/*								<CustomImage
+								<CustomImage
 									src={`${process.env.IMAGES_URL}/${singlePost.data?.image}`}
 									className="rounded-3"
 									alt={singlePost.data?.title}
@@ -26,7 +26,7 @@ const SinglePostComponent = ({ singlePost, listPostUser, listComment }) => {
 									width={500}
 									height={200}
 									isBlur
-								/>*/}
+								/>
 {/*								<CustomImage
 									src={`/images/bg-1.png`}
 									className="rounded-3"
@@ -40,7 +40,7 @@ const SinglePostComponent = ({ singlePost, listPostUser, listComment }) => {
 						)}
 						<div className="p-3 p-sm-5">
 							<div className="mb-3">
-								<h1>{singlePost.data?.title}</h1>
+								<h1 class="post-title">{singlePost.data?.title}</h1>
 							</div>
 							<PostTagListComponent tags={singlePost.data.tags} />
 							<PostMetaComponent singlePost={singlePost} />

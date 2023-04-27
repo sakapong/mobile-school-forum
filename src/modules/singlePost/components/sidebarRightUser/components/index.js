@@ -76,7 +76,7 @@ const SideBarRightUserComponent = ({ postUser, listPostUser }) => {
 											className="p-1 text-decoration-none d-inline-block text-secondary"
 										>
 											<span className="text-muted">#</span>
-											{tag.slug}
+											{tag.title}
 										</CustomLink>
 									))}
 								</div>

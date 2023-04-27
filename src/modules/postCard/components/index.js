@@ -15,6 +15,7 @@ import NavLink from 'react-bootstrap/NavLink';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
 import { FaBolt, FaEllipsisH, FaFacebookF, FaHeart, FaRegHeart, FaTwitter } from 'react-icons/fa';
+import { FcAssistant } from 'react-icons/fc';
 
 import { useWeb3Context } from '@/common/context'
 
@@ -117,17 +118,17 @@ const PostCardComponent = ({ post }) => {
 										overlay={
 											<Popover id={`popover-positioned-options-single-user`}>
 												<Popover.Header as="h3" className="text-center">
-													Inspector
+													Mentor
 												</Popover.Header>
 												<Popover.Body className="p-0">
 													<CustomLink href="#" className="d-flex align-items-center dropdown-item">
-														Credibility
+														✅ ผ่าน
 													</CustomLink>
 													<CustomLink href="#" className="d-flex align-items-center dropdown-item">
-														Likelihood
+														❌ ไม่ผ่าน
 													</CustomLink>
 													<CustomLink href="#" className="d-flex align-items-center dropdown-item">
-														Report
+														📝 รายงาน
 													</CustomLink>
 												</Popover.Body>
 											</Popover>
@@ -185,26 +186,27 @@ const PostCardComponent = ({ post }) => {
 							totalFavorited={post.total_favorited}
 							slug={post.slug}
 						/>
-						{post.category.id == 3 && (
+						{post.category.id == 1 && (
 						<CustomLink
 							href={`#`}
 							className="d-flex align-items-center text-decoration-none text-secondary me-2"
 						>
 							<Link href="#" passHref>
-									<Nav.Link className="btn btn-success text-white fw-bold"><span className="d-none d-sm-block">ทำต่อไป</span></Nav.Link>
+									<Nav.Link className="btn btn-primary text-white fw-bold"><span className=" d-sm-block">ให้กำลังใจ</span></Nav.Link>
 							</Link>
 						</CustomLink>
 						)}
-						{post.category.id != 3 && (
+						{post.category.id == 2 && (
 						<CustomLink
 							href={`#`}
 							className="d-flex align-items-center text-decoration-none text-secondary me-2"
 						>
 							<Link href="#" passHref>
-									<Nav.Link className="btn btn-primary text-white fw-bold"><span className="d-none d-sm-block">ให้กำลังใจ</span></Nav.Link>
+									<Nav.Link className="btn btn-success text-white fw-bold"><span className=" d-sm-block">ทำต่อไป</span></Nav.Link>
 							</Link>
 						</CustomLink>
 						)}
+						
 					</div>
 				</div>
 			</div>

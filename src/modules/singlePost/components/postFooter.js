@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
 import { FaEllipsisH, FaFacebookF, FaHeart, FaRegHeart, FaTwitter } from 'react-icons/fa';
+
+import { FcShare } from 'react-icons/fc';
+
 import { GoReport } from 'react-icons/go';
 
 import CustomLink from '@/common/components/CustomLink/components';
@@ -81,13 +84,9 @@ const PostFooterComponent = ({ favorited, totalFavorited, postSlug, postUserName
 				overlay={
 					<Popover id={`popover-positioned-options-single-post`}>
 						<Popover.Header as="h3" className="text-center">
-							Options
+							แชร์
 						</Popover.Header>
 						<Popover.Body className="p-0">
-							<CustomLink href="/report_abuse" className="d-flex align-items-center dropdown-item">
-								<GoReport className="me-1" />
-								Report abuse
-							</CustomLink>
 							<CustomLink
 								target="_blank"
 								rel="noopener noreferrer"
@@ -113,7 +112,7 @@ const PostFooterComponent = ({ favorited, totalFavorited, postSlug, postUserName
 				}
 			>
 				<button type="button" className="d-flex align-items-center p-0 border-0 bg-transparent">
-					<FaEllipsisH />
+					<FcShare className="h1" />
 				</button>
 			</OverlayTrigger>
 		</div>
