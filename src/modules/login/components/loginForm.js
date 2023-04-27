@@ -22,10 +22,10 @@ const LoginFormComponent = () => {
     const username = router.query.username;
     const password = router.query.password;
 
-    const formRef = useRef(null);
-	  useEffect(() => {
-	    formRef.current.submit();
-	  }, []);
+    // const formRef = useRef(null);
+	  // useEffect(() => {
+	  //   formRef.current.submit();
+	  // }, []);
 
 
     const [isLoading, setLoading] = useState(false);
@@ -124,6 +124,7 @@ const LoginFormComponent = () => {
 						id="user_name"
 						name="user_name"
 						type="text"
+						value={username}
 						errors={errors.error?.message}
 					/>
 				</div>
@@ -134,6 +135,7 @@ const LoginFormComponent = () => {
 						id="password"
 						name="password"
 						type="password"
+						value={password}
 						errors={errors.error?.message}
 					/>
 				</div>
