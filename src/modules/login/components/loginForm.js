@@ -35,10 +35,10 @@ const LoginFormComponent = () => {
         user_name: router.query.username,
         password: router.query.password
     };
-    const validationSchema = Yup.object({
-        user_name: Yup.string().required('User name is required'),
-        password: Yup.string().required('Password is required')
-    });
+    // const validationSchema = Yup.object({
+    //     user_name: Yup.string().required('User name is required'),
+    //     password: Yup.string().required('Password is required')
+    // });
 
     const onSubmit = async (values) => {
         try {
@@ -105,7 +105,8 @@ const LoginFormComponent = () => {
         showToast.error();
     };
     return (
-        <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+        // <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+    	<Formik initialValues={initialValues} onSubmit={onSubmit}>
 			<Form>
 			<h1 className="text-center mb-3">
 				<CustomImage
