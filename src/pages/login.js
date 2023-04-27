@@ -1,26 +1,38 @@
 import React from 'react';
+import { GetServerSidePropsContext } from "next"
+import { getServerSession } from "next-auth/next"
+import { useSession } from "next-auth/react"
+import { authOptions } from "./api/auth/[...nextauth]"
 
 import MetaWebsite from '@/common/meta/MetaWebsite';
 import Layout from '@/modules/layout/components';
 import LoginComponent from '@/modules/login/components';
-import CustomImage from '@/common/components/CustomImage/components';
+
+
 
 const Login = () => {
+	const { data } = useSession()
+
 	return (
 		<>
 			<MetaWebsite title="Login" />
 			<Layout>
-{/*				<CustomImage
-							className="logo"
-							src={`https://socialbureau.io/wp-content/uploads/2021/09/logo-1.png`}
-							width={260}
-							height={120}
-							alt="Mobile School"
-						/>*/}
 				<LoginComponent />
 			</Layout>
 		</>
 	);
 };
+
+export async function getServerSideProps(context) {
+  return {
+    props: {
+      session: await getServerSession(
+        context.req,
+        context.res,
+        authOptions
+      ),
+    },
+  }
+}
 
 export default Login;

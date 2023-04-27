@@ -8,10 +8,14 @@ export default function useUser() {
     const [isLoadingUser, setIsLoadingUser] = useState(true);
     const { data, mutate: mutateUser } = useSWR(getCookie('token') ? `/current_user` : null);
 
+
+
     useEffect(() => {
         if (data) {
             setIsLoadingUser(false);
             if (data.data) {
+                console.log("user:",data.data);
+                console.log("getCookie('token')",getCookie('token'));
                 setUser(data.data);
             }
         }

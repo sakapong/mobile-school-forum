@@ -13,6 +13,8 @@ import React, { useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { SWRConfig } from 'swr';
 
+import { SessionProvider } from "next-auth/react"
+
 import fetcher from '@/common/utils/fetcher';
 import { removeCookie } from '@/common/utils/session';
 import showToast from '@/common/utils/showToast';
@@ -70,7 +72,7 @@ const TopProgressBar = dynamic(
 
 console.log('%cINSPECTOR AREA', 'font-size: 4rem; color: red; font-weight: 600;');
 
-const App = ({ Component, pageProps }) => {
+const App = ({ Component, pageProps: { session, ...pageProps } }) => {
 	const router = useRouter();
 
 	const { userId, isLoading } = useIdentify();
@@ -104,9 +106,9 @@ const App = ({ Component, pageProps }) => {
 				}}
 			>
 				<ChakraProvider>
-
-					<Component {...pageProps} key={router.asPath} />
-
+					<SessionProvider session={session}>
+						<Component {...pageProps} key={router.asPath} />
+					</SessionProvider>
 				</ChakraProvider>
 				<ToastContainer
 					position="bottom-right"

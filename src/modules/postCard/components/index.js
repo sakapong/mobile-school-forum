@@ -23,8 +23,6 @@ const PostCardComponent = ({ post }) => {
 	  return Math.floor(Math.random() * (max - min + 1) + min)
 	}
 
-	const randomPrice = rand(1000,100000);
-
 	return (
 		<div className={`card shadow-sm ${style.post_card}`}>
 			<div className="p-3">
