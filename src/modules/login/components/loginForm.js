@@ -14,20 +14,20 @@ import CustomImage from '@/common/components/CustomImage/components';
 import { useSession, signIn, signOut } from "next-auth/react"
 import { randomBytes } from 'crypto'
 
-const AutoSubmitToken = () => {
-	const { values, submitForm } = useFormikContext();
-    useEffect(() => {
-	  	// setUsername(router.query.username)
-	    // setPassword(router.query.password)
-	    // someFunctionWithLogic()
-    	// console.log("initialValues",initialValues)
-    	// Submit the form imperatively as an effect as soon as form values.token are 6 digits long
-     if (values.user_name.length > 6 && values.password.length > 6) {
-        onSubmit();
-     }
-	  }, [values, submitForm]);
-	  return null
-}
+// const AutoSubmitToken = () => {
+// 	const { values, submitForm } = useFormikContext();
+//     useEffect(() => {
+// 	  	// setUsername(router.query.username)
+// 	    // setPassword(router.query.password)
+// 	    // someFunctionWithLogic()
+//     	// console.log("initialValues",initialValues)
+//     	// Submit the form imperatively as an effect as soon as form values.token are 6 digits long
+//      if (values.user_name.length > 6 && values.password.length > 6) {
+//         onSubmit();
+//      }
+// 	  }, [values, submitForm]);
+// 	  return null
+// }
 
 const LoginFormComponent = () => {
 
@@ -176,7 +176,7 @@ const LoginFormComponent = () => {
 						errors={errors.error?.message}
 					/>
 				</div>
-				<AutoSubmitToken />
+				{/*<AutoSubmitToken />*/}
 				<div className="d-flex justify-content-between mb-3">
 					<div className="mb-3 form-check">
 						<input type="checkbox" className="form-check-input" id="remember" />
