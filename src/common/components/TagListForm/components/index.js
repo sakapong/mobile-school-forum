@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaTimes } from 'react-icons/fa';
 
-import convertTextToSlug from '@/common/utils/convertTextToSlug ';
+import convertTextToSlug from '@/common/utils/convertTextToSlug';
 
 const TagListFormComponent = ({ errors, tags, setTag, ...props }) => {
 	const [input, setInput] = useState('');
@@ -14,10 +14,10 @@ const TagListFormComponent = ({ errors, tags, setTag, ...props }) => {
 		switch (e.keyCode) {
 			case 13: // Enter
 			case 9: // Tab
-			case 188: // Comma
-				if (e.keyCode !== 9) e.preventDefault();
-				handleInputKeyDown(e);
-				break;
+			// case 188: // Comma
+			// 	if (e.keyCode !== 9) e.preventDefault();
+			// 	handleInputKeyDown(e);
+			// 	break;
 			case 8: // Backspace
 				handleDeleteKeyDown();
 				break;
@@ -49,6 +49,7 @@ const TagListFormComponent = ({ errors, tags, setTag, ...props }) => {
 	};
 
 	const handleInputOnBlur = (e) => {
+		console.log("tags",tags);
 		const value = convertTextToSlug(e.target.value);
 		if (value) {
 			if (tags.find((tag) => tag.slug.toLowerCase() === value.toLowerCase())) {
@@ -57,6 +58,7 @@ const TagListFormComponent = ({ errors, tags, setTag, ...props }) => {
 			setTag([
 				...tags,
 				{
+					value: value,
 					slug: value
 				}
 			]);

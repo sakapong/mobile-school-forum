@@ -169,7 +169,7 @@ const PostCardComponent = ({ post }) => {
 								className="p-1 text-decoration-none d-inline-block tag"
 							>
 								<span className="tag">#
-								{tag.slug}</span>
+								{tag.title}</span>
 							</CustomLink>
 						))}
 					</div>
