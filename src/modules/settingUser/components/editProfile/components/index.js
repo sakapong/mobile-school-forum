@@ -243,7 +243,7 @@ const EditProfileFormComponent = ({ editProfile }) => {
 							</SelectForm>
 						</div>
 						<div className="mb-3 col-md-12">
-							<TextForm rows="2" label="Address" placeholder="Address" id="address" name="address" value={address} disabled />
+							<TextForm rows="2" label="Address" placeholder="Address" id="address" name="address" />
 						</div>
 						<div className="mb-3 col-md-12">
 							<TextForm rows="3" label="Biography" placeholder="Biography" id="biography" name="biography" />
