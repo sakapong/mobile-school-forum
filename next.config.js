@@ -33,9 +33,9 @@ module.exports = (phase) => {
 			// 			if (isDev) return 'https://cdn.mobileschool.online/public/images';
 			// if (isProd) return 'https://cdn.mobileschool.online/public/images';
 			// if (isStaging) return 'https://cdn.mobileschool.online/public/images';
-			if (isDev) return 'https://api-play.mobileschool.online/images-local';
-			if (isProd) return 'https://api-play.mobileschool.online/images-local';
-			if (isStaging) return 'https://api-play.mobileschool.online/images-local';
+			if (isDev) return 'https://cdn-play.mobileschool.online/images';
+			if (isProd) return 'https://cdn-play.mobileschool.online/images';
+			if (isStaging) return 'https://cdn-play.mobileschool.online/images';
 			return 'RESTURL_SESSIONS:not (isDev,isProd && !isStaging,isProd && isStaging)';
 		})(),
 		LIMIT_PAGE: {
@@ -66,11 +66,11 @@ module.exports = (phase) => {
 		env,
 		reactStrictMode: true,
 		images: {
-			domains: ['localhost', 'cdn.mobileschool.online', 'api-play.mobileschool.online'],
+			domains: ['localhost', 'cdn-play.mobileschool.online', 'cdn.mobileschool.online', 'api-play.mobileschool.online'],
 			// unoptimized: true,
 		},
 		i18n: {
-			locales: ['en', 'vi'],
+			locales: ['en'],
 			defaultLocale: 'en',
 			localeDetection: false
 		}
