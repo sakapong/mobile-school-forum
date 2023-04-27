@@ -1,6 +1,6 @@
 import { Form, Formik } from 'formik';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { useState,useRef,useEffect } from 'react';
 import * as Yup from 'yup';
 
 import CustomLink from '@/common/components/CustomLink/components';
@@ -21,6 +21,11 @@ const LoginFormComponent = () => {
     const router = useRouter();
     const username = router.query.username;
     const password = router.query.password;
+
+    const formRef = useRef(null);
+	  useEffect(() => {
+	    formRef.current.submit();
+	  }, []);
 
 
     const [isLoading, setLoading] = useState(false);
