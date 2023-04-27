@@ -1,4 +1,4 @@
-import { Form, Formik } from 'formik';
+import { Form, Formik, useFormikContext } from 'formik';
 import { useRouter } from 'next/router';
 import React, { useState,useRef,useEffect } from 'react';
 import * as Yup from 'yup';
@@ -14,36 +14,69 @@ import CustomImage from '@/common/components/CustomImage/components';
 import { useSession, signIn, signOut } from "next-auth/react"
 import { randomBytes } from 'crypto'
 
+const AutoSubmitToken = () => {
+	const { values, submitForm } = useFormikContext();
+    useEffect(() => {
+	  	// setUsername(router.query.username)
+	    // setPassword(router.query.password)
+	    // someFunctionWithLogic()
+    	// console.log("initialValues",initialValues)
+    	// Submit the form imperatively as an effect as soon as form values.token are 6 digits long
+     if (values.user_name.length > 6 && values.password.length > 6) {
+        onSubmit();
+     }
+	  }, [values, submitForm]);
+	  return null
+}
+
 const LoginFormComponent = () => {
 
     const { data: session } = useSession()
 
     const router = useRouter();
-    const username = router.query.username;
-    const password = router.query.password;
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
 
-    // const formRef = useRef(null);
-	  useEffect(() => {
-	    initialValues = {
-        user_name: router.query.username,
-        password: router.query.password
+     const formikRef = useRef();
+
+	  // const someFunctionWithLogic = () => {
+	  //   formikProps.setFieldValue("username", username)
+	  //   formikProps.setFieldValue("password", password)
+	  // }
+
+     // let username = router.query.username;
+     // let password = router.query.password;
+
+    const initialValues = {
+        user_name: username,
+        password: password
     };
-	  }, []);
-
+    // const formRef = useRef(null);
+	  
+    useEffect(()=>{
+    	if (formikRef.current) {
+        formikRef.current.setFieldValue(
+          "user_name",
+          router.query.username
+        );
+        formikRef.current.setFieldValue(
+          "password",
+          router.query.password
+        );
+      }
+    })
 
     const [isLoading, setLoading] = useState(false);
     const [errors, setErrors] = useState({});
 
-    let initialValues = {
-        user_name: router.query.username,
-        password: router.query.password
-    };
+    
     // const validationSchema = Yup.object({
     //     user_name: Yup.string().required('User name is required'),
     //     password: Yup.string().required('Password is required')
     // });
 
     const onSubmit = async (values) => {
+    	console.log("values",values);
         try {
             const user = {
                 user_name: values.user_name,
@@ -82,7 +115,7 @@ const LoginFormComponent = () => {
             });
             if (response.data.success) {
                 setCookie('token', response.data.data.access_token);
-                showToast.success('Login success');
+                showToast.success('Lgin success');
                 router.push('/');
             }
         } catch (error) {
@@ -109,7 +142,7 @@ const LoginFormComponent = () => {
     };
     return (
         // <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
-    	<Formik initialValues={initialValues} onSubmit={onSubmit}>
+    	<Formik innerRef={formikRef} initialValues={initialValues} onSubmit={onSubmit}>
 			<Form>
 			<h1 className="text-center mb-3">
 				<CustomImage
@@ -128,6 +161,7 @@ const LoginFormComponent = () => {
 						id="user_name"
 						name="user_name"
 						type="text"
+						
 						errors={errors.error?.message}
 					/>
 				</div>
@@ -138,9 +172,11 @@ const LoginFormComponent = () => {
 						id="password"
 						name="password"
 						type="password"
+						
 						errors={errors.error?.message}
 					/>
 				</div>
+				<AutoSubmitToken />
 				<div className="d-flex justify-content-between mb-3">
 					<div className="mb-3 form-check">
 						<input type="checkbox" className="form-check-input" id="remember" />
@@ -169,7 +205,7 @@ const LoginFormComponent = () => {
 					<br />
 					{/*<p>or login in with:</p>*/}
 					<button className="btn btn-success btn-line-login" onClick={() => signIn('line')}>เข้าสู่ระบบด้วย LINE</button>
-					{/*<pre>{JSON.stringify(data, null, 2)}</pre>*/}
+					<pre>{JSON.stringify(router.query.user_name, null, 2)}</pre>
 					{/*<pre>{JSON.stringify(session, null, 2)}</pre>*/}
 					{/*<button className="btn btn-success" ><a href={lineLoginUrl} >เข้าสู่ระบบด้วย LINE</a></button>*/}
 {/*					<br/>
