@@ -53,7 +53,7 @@ const LoginFormComponent = () => {
             }
         } catch (error) {
             showToast.error('Login error');
-            if (!error ? .response ? .data ? .success) {
+            if (!error?.response?.data?.success) {
                 setErrors(error.response.data);
             }
         } finally {
