@@ -23,15 +23,18 @@ const LoginFormComponent = () => {
     const password = router.query.password;
 
     // const formRef = useRef(null);
-	  // useEffect(() => {
-	  //   formRef.current.submit();
-	  // }, []);
+	  useEffect(() => {
+	    initialValues = {
+        user_name: router.query.username,
+        password: router.query.password
+    };
+	  }, []);
 
 
     const [isLoading, setLoading] = useState(false);
     const [errors, setErrors] = useState({});
 
-    const initialValues = {
+    let initialValues = {
         user_name: router.query.username,
         password: router.query.password
     };
@@ -125,7 +128,6 @@ const LoginFormComponent = () => {
 						id="user_name"
 						name="user_name"
 						type="text"
-						value={username}
 						errors={errors.error?.message}
 					/>
 				</div>
@@ -136,7 +138,6 @@ const LoginFormComponent = () => {
 						id="password"
 						name="password"
 						type="password"
-						value={password}
 						errors={errors.error?.message}
 					/>
 				</div>
@@ -167,7 +168,7 @@ const LoginFormComponent = () => {
 					<br />
 					<br />
 					{/*<p>or login in with:</p>*/}
-					<button className="btn btn-success" onClick={() => signIn('line')}>เข้าสู่ระบบด้วย LINE</button>
+					<button className="btn btn-success btn-line-login" onClick={() => signIn('line')}>เข้าสู่ระบบด้วย LINE</button>
 					{/*<pre>{JSON.stringify(data, null, 2)}</pre>*/}
 					{/*<pre>{JSON.stringify(session, null, 2)}</pre>*/}
 					{/*<button className="btn btn-success" ><a href={lineLoginUrl} >เข้าสู่ระบบด้วย LINE</a></button>*/}
