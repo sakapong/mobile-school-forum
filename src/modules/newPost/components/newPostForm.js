@@ -69,7 +69,7 @@ const NewPostFormComponent = ({ isPreview }) => {
 			});
 			if (response.data.success) {
 				showToast.success('Create post success');
-				// router.push(`/u/${response.data.data.user.user_name}/${response.data.data.slug}`);
+				router.push(`/u/${response.data.data.user.user_name}/${response.data.data.slug}`);
 				
 			}
 		} catch (error) {

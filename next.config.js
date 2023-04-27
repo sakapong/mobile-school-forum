@@ -23,8 +23,8 @@ module.exports = (phase) => {
 			// if (isDev) return 'https://cdn.mobileschool.online/api';
 			// if (isProd) return 'https://cdn.mobileschool.online/api';
 			// if (isStaging) return 'https://cdn.mobileschool.online/api'
-			// if (isDev) return 'https://api-play.mobileschool.online/api';
-			if (isDev) return 'http://localhost:8000/api';
+			if (isDev) return 'https://api-play.mobileschool.online/api';
+			// if (isDev) return 'http://localhost:8000/api';
 			if (isProd) return 'https://api-play.mobileschool.online/api';
 			if (isStaging) return 'https://api-play.mobileschool.online/api';
 			return 'RESTURL_SESSIONS:not (isDev,isProd && !isStaging,isProd && isStaging)';
@@ -66,7 +66,8 @@ module.exports = (phase) => {
 		env,
 		reactStrictMode: true,
 		images: {
-			domains: ['localhost', 'cdn.mobileschool.online', 'api-play.mobileschool.online']
+			domains: ['localhost', 'cdn.mobileschool.online', 'api-play.mobileschool.online'],
+			// unoptimized: true,
 		},
 		i18n: {
 			locales: ['en', 'vi'],
