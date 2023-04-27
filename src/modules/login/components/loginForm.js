@@ -148,8 +148,8 @@ const LoginFormComponent = () => {
 				<CustomImage
 							className="logo"
 							src={`/images/user-icon.jpg`}
-							width={180}
-							height={180}
+							width={125}
+							height={125}
 							alt="โรงเรียนมือถือ"
 						/>
 						</h1>

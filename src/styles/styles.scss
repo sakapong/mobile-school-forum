@@ -248,3 +248,26 @@ body{
 .bg-secondary{
 	background-color: #FA602F !important;
 }
+
+.navbar {
+  border-bottom: solid 1px #EBEBEB;
+}
+.bottom-tab-nav {
+  box-shadow: 0 0.125rem 2.25rem rgba(0, 0, 0, 0.075) !important;
+  border-top: solid 1px #EBEBEB;
+  max-height: 70px;
+    padding: 0;
+}
+.nav-link.nav-footer-checkin {
+	margin-top: -37px;
+}
+.nav-link,
+.bottom-nav-link {
+  color: #55575b;
+}
+.bottom-nav-link.active {
+  color: #922c88;
+}
+// .bottom-tab-label {
+//   font-size: 13px;
+// }

@@ -36,21 +36,36 @@ const HomeComponent = ({ listPostPinned, listPost, pid }) => {
 						<TabHorizontal
 							pidTab={pid[1]}
 							items={[
-								// {
-								// 	title: 'Feed',
-								// 	slug: 'feed',
-								// 	href: '/feed'
-								// },
 								{
-									title: 'ล่าสุด',
-									slug: 'latest',
+									title: 'ชิม',
+									slug: 'feed',
+									href: '/feed'
+								},
+								{
+									title: 'ชอบ',
+									slug: 'feed',
 									href: '/latest'
 								},
 								{
-									title: 'เก่าสุด',
-									slug: 'oldest',
-									href: '/oldest'
-								}
+									title: 'โชคโชน',
+									slug: 'feed',
+									href: '/feed'
+								},
+								{
+									title: 'เชี่ยวชาญ',
+									slug: 'feed',
+									href: '/latest'
+								},
+								// {
+								// 	title: 'ฟีด',
+								// 	slug: 'feed',
+								// 	href: '/feed'
+								// },
+								// {
+								// 	title: 'ล่าสุด',
+								// 	slug: 'latest',
+								// 	href: '/latest'
+								// },
 							]}
 						/>
 					</div>

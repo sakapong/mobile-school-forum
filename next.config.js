@@ -67,7 +67,7 @@ module.exports = (phase) => {
 		reactStrictMode: true,
 		images: {
 			domains: ['localhost', 'cdn-play.mobileschool.online', 'cdn.mobileschool.online', 'api-play.mobileschool.online'],
-			// unoptimized: true,
+			unoptimized: true,
 		},
 		i18n: {
 			locales: ['en'],
