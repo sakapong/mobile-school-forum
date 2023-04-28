@@ -49,21 +49,6 @@ const tabs = [{
   label: "ค้นหา"
 }]
 
-const UpdatingPopover = React.forwardRef(
-  ({ popper, children, show: _, ...props }, ref) => {
-    useEffect(() => {
-      console.log('updating!');
-      popper.scheduleUpdate();
-    }, [children, popper]);
-
-    return (
-      <Popover ref={ref} body {...props}>
-        {children}
-      </Popover>
-    );
-  },
-);
-
 const FooterNavigation = (props) => {
 
   const { user } = useUser();

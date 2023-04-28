@@ -40,7 +40,7 @@ const SinglePostComponent = ({ singlePost, listPostUser, listComment }) => {
 						)}
 						<div className="p-3 p-sm-5">
 							<div className="mb-3">
-								<h1 class="post-title">{singlePost.data?.title}</h1>
+								<h1 className="post-title">{singlePost.data?.title}</h1>
 							</div>
 							<PostTagListComponent tags={singlePost.data.tags} />
 							<PostMetaComponent singlePost={singlePost} />
