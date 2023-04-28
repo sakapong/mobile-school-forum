@@ -2,9 +2,11 @@
 	
 }
 .info__user {
-	border-top: 7rem solid #fff;
+
+	// border-top: 7rem solid #fff;
 	.avt {
-		margin-top: -7rem !important;
+		float:left;
+		margin-top: -1rem !important;
 		span {
 			background-color: #fff;
 		}
