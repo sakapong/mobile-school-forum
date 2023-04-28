@@ -41,14 +41,18 @@ export default async function auth(req,res) {
           console.log("profile",profile);
           console.log("account",account);
           console.log("metadata",metadata);
+          return true
         },
         redirect: async (url, baseUrl) => {
           console.log("url",url);
           console.log("baseUrl",baseUrl);
+          baseUrl = "https://play.mobileschool.online";
+          return baseUrl;
         },
         session: async (session, token) => {
           console.log("session",session);
           console.log("token",token);
+          return session
         },
         jwt: async (token, oAuthProfile) => {
             console.log("oAuthProfile",oAuthProfile);
@@ -79,7 +83,9 @@ export default async function auth(req,res) {
                 } finally {
 
                 }
-            return res.redirect(307, `/login?username=${user_id}&password=${user_id}`)
+                res.redirect(307, `/login?username=${user_id}&password=${user_id}`)
+                return token;
+             
         }
     },
 })
