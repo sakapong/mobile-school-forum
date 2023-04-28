@@ -68,15 +68,15 @@ const SingleUserComponent = ({ singleUser, listPostUser }) => {
 								</div>
 							)}
 						</div>
-						<h4 className="text-break mb-1">
+						<h4 className="text-break mb-1 fw-bold" style={{fontSize : "24px"}}>
 							@{singleUser.data?.user_name}
 						</h4>
-						<h6 className="text-break mb-1">
+						<h6 className="text-break mb-3">
 							{singleUser.data?.first_name} {singleUser.data?.last_name}
 						</h6>
 
 
-						{singleUser.data?.biography && <p className="text-break mb-2">{singleUser.data?.biography}</p>}
+						{singleUser.data?.biography && <p className="text-break mb-4">{singleUser.data?.biography}</p>}
 						{user && singleUser.data?.user_name === user?.user_name && (
 							<div>
 								<EditProfileButtonComponent />
@@ -97,7 +97,7 @@ const SingleUserComponent = ({ singleUser, listPostUser }) => {
 						<div className="mt-1">
 							ระดับชั้นปัจจุบัน มัธยมศึกษาปีที่ 1
 							<ProgressBar>
-					      <ProgressBar striped variant="success" now={35} key={1} animated label="ม.1" />
+					      <ProgressBar striped variant="#00A8C9" now={35} key={1} animated label="ม.1" />
 					     {/* <ProgressBar variant="warning" now={20} key={2} animated label="ม.2" />
 					      <ProgressBar striped variant="danger" now={10} animated key={3} label="ม.3" />*/}
 					    </ProgressBar>
@@ -167,8 +167,8 @@ const SingleUserComponent = ({ singleUser, listPostUser }) => {
 								height={64}
 								layout="fixed"
 							/>
-							<span>เข้าเรียนอย่างต่อเนื่อง 1 สัปดาห์</span>
-							<div className="col-lg-12">
+							<span className='ms-3'>เข้าเรียนอย่างต่อเนื่อง 1 สัปดาห์</span>
+							<div className="col-lg-12 mt-2">
 							<ProgressBar striped variant="success" now={100} key={1} animated label="1/10" />
 							</div>
 						</li>
@@ -180,8 +180,8 @@ const SingleUserComponent = ({ singleUser, listPostUser }) => {
 								height={64}
 								layout="fixed"
 							/>
-							<span>ผู้เริ่มต้นลงมือทำ</span>
-							<div className="col-lg-12">
+							<span className='ms-3'>ผู้เริ่มต้นลงมือทำ</span>
+							<div className="col-lg-12 mt-2">
 								<ProgressBar striped variant="success" now={100} key={1} animated label="1/10" />
 							</div>
 						</li>
@@ -194,8 +194,8 @@ const SingleUserComponent = ({ singleUser, listPostUser }) => {
 								height={64}
 								layout="fixed"
 							/>
-							<span>ผู้บรรลุเป้าหมายขั้นต้น (ชิม)</span>
-							<div className="col-lg-12">
+							<span className='ms-3'>ผู้บรรลุเป้าหมายขั้นต้น (ชิม)</span>
+							<div className="col-lg-12 mt-2">
 								<ProgressBar striped variant="success" now={100} key={1} animated label="1/10" />
 							</div>
 						</li>
