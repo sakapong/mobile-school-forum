@@ -204,7 +204,7 @@ const LoginFormComponent = () => {
 					<br />
 					<br />
 					{/*<p>or login in with:</p>*/}
-					<button className="btn btn-success btn-line-login" onClick={() => signIn('line')}>เข้าสู่ระบบด้วย LINE</button>
+					<button className="d-none btn btn-success btn-line-login" onClick={() => signIn('line')}>เข้าสู่ระบบด้วย LINE</button>
 					<pre>{JSON.stringify(router.query.user_name, null, 2)}</pre>
 					{/*<pre>{JSON.stringify(session, null, 2)}</pre>*/}
 					{/*<button className="btn btn-success" ><a href={lineLoginUrl} >เข้าสู่ระบบด้วย LINE</a></button>*/}
