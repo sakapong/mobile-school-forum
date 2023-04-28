@@ -27,7 +27,7 @@ const ListTagComponent = () => {
 						<div className="px-3 py-2 border-bottom">
 							<h5 className="mb-0">
 								<CustomLink href={`/t/${tag.slug}`} className="text-decoration-none d-inline-block fw-bold text-dark">
-									#{tag.slug}
+									#{tag.title}
 								</CustomLink>
 							</h5>
 						</div>

@@ -22,7 +22,7 @@ const SettingUserComponent = ({ settingUser, pid }) => {
 						</CustomLink>
 					</h3>
 					<div className="row">
-						<div className="col-lg-3 mb-4">
+{/*						<div className="col-lg-3 mb-4">
 							<TabVertical
 								pidTab={pid[0]}
 								items={[
@@ -38,11 +38,12 @@ const SettingUserComponent = ({ settingUser, pid }) => {
 									}
 								]}
 							/>
-						</div>
+						</div>*/}
 						<div className="col-lg-9">
 							<div className="bg-light p-4 rounded-16 shadow-sm">
-								{(!pid[0] || pid[0] === 'profile') && <EditProfileFormComponent editProfile={settingUser} />}
-								{pid[0] === 'customization' && <EditCustomizationComponent />}
+							{(!pid[0] || pid[0] === 'profile') && <EditProfileFormComponent editProfile={settingUser} />}
+								{/*{(!pid[0] || pid[0] === 'profile') && <EditProfileFormComponent editProfile={settingUser} />}*/}
+								{/*{pid[0] === 'customization' && <EditCustomizationComponent />}*/}
 							</div>
 						</div>
 					</div>

@@ -29,7 +29,7 @@ const tabs = [{
   label: "ความรู้"
 },{
 	index: 3,
-  route: "/checkin",
+  route: "#",
   className: "nav-footer-checkin",
   imageSrc: "/images/footer/ico-checkin.png",
   // icon: faHome,

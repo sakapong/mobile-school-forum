@@ -75,24 +75,24 @@ const SearchComponent = () => {
 								pidTab={query?.sort}
 								items={[
 									{
-										title: 'Upvote',
+										title: 'ชิม',
 										slug: 'upvote',
-										href: `/search?q=${q}&type=${type}&sort=upvote`
+										href: `/search?q=${q}&type=${type}&sort=latest`
 									},
 									{
-										title: 'Recommended',
+										title: 'ชอบ',
 										slug: 'recommended',
-										href: `/search?q=${q}&type=${type}&sort=recommended`
+										href: `/search?q=${q}&type=${type}&sort=latest`
 									},
 									{
-										title: 'Relavance',
+										title: 'โชคโชน',
 										slug: 'relavance',
-										href: `/search?q=${q}&type=${type}&sort=relavance`
+										href: `/search?q=${q}&type=${type}&sort=latest`
 									},
 									{
-										title: 'Score',
+										title: 'เชี่ยวชาญ',
 										slug: 'score',
-										href: `/search?q=${q}&type=${type}&sort=score`
+										href: `/search?q=${q}&type=${type}&sort=latest`
 									},
 									{
 										title: 'ล่าสุด',

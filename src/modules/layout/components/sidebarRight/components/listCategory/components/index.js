@@ -24,7 +24,7 @@ const ListCategoryComponent = () => {
 				!isEmpty(listCategory?.data) && (
 					<div className="wapper__card bg-light rounded-16 shadow-sm border mb-4">
 						<div className="px-3 py-2 border-bottom">
-							<h5 className="mb-0 fw-bold">หมวดหมู่</h5>
+							<h5 className="mb-0 fw-bold">บันทึกการเรียนรู้</h5>
 						</div>
 						<ul className="list-group">
 							{listCategory?.data?.map((category) => (

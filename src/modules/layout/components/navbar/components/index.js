@@ -201,8 +201,11 @@ const NavBarComponent = () => {
 				<Link href="/new" passHref>
 					<Dropdown.Item>เพิ่มผลงาน</Dropdown.Item>
 				</Link>
-				<Link href={`/settings/customization/`} passHref target="_blank">
-					<Dropdown.Item>การแจ้งเตือน</Dropdown.Item>
+				<Link href="/new" passHref>
+					<Dropdown.Item>เช็คอิน</Dropdown.Item>
+				</Link>
+				<Link href={`/settings/`} passHref target="_blank">
+					<Dropdown.Item>แก้ไขโปรไฟล์</Dropdown.Item>
 				</Link>
 
 				<Dropdown.Divider className="m-0" />

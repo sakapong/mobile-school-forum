@@ -38,23 +38,23 @@ const HomeComponent = ({ listPostPinned, listPost, pid }) => {
 							items={[
 								{
 									title: 'ชิม',
-									slug: 'feed',
-									href: '/feed'
+									slug: 'latest',
+									href: '/latest'
 								},
 								{
 									title: 'ชอบ',
 									slug: 'feed',
-									href: '/latest'
+									href: '/feed'
 								},
 								{
 									title: 'โชคโชน',
 									slug: 'feed',
-									href: '/feed'
+									href: '#'
 								},
 								{
 									title: 'เชี่ยวชาญ',
 									slug: 'feed',
-									href: '/latest'
+									href: '#'
 								},
 								// {
 								// 	title: 'ฟีด',

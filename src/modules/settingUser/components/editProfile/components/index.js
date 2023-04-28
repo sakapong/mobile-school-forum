@@ -167,7 +167,7 @@ const EditProfileFormComponent = ({ editProfile }) => {
 			{({ setFieldValue, setFieldTouched, errors: error, touched }) => (
 				<Form>
 					{!editProfile.data.verified && (
-						<div className="alert alert-danger text-break" role="alert">
+						<div className="alert alert-danger text-break d-none" role="alert">
 							<h5 className="text-dark mb-0">Confirm your email to complete your profile.</h5>
 							<div className="d-flex align-items-center flex-wrap">
 								<CustomLink className="text-decoration-none me-1" href={`mailto:${editProfile.data.email}`}>
@@ -178,16 +178,16 @@ const EditProfileFormComponent = ({ editProfile }) => {
 					)}
 					<div className="row">
 						<div className="mb-3 col-md-6">
-							<InputForm label="First name" placeholder="First name" id="first_name" name="first_name" type="text" />
+							<InputForm label="ชื่อ" placeholder="First name" id="first_name" name="first_name" type="text" />
 						</div>
 						<div className="mb-3 col-md-6">
-							<InputForm label="Last name" placeholder="Last name" id="last_name" name="last_name" type="text" />
+							<InputForm label="นามสกุล" placeholder="Last name" id="last_name" name="last_name" type="text" />
 						</div>
 						<div className="mb-3 col-md-6 ">
 							<div className="d-flex flex-column flex-sm-row">
 								<div className="w-100">
 									<InputForm
-										label="Email"
+										label="อีเมลล์"
 										placeholder="Email"
 										id="email"
 										name="email"
@@ -217,7 +217,7 @@ const EditProfileFormComponent = ({ editProfile }) => {
 						</div>
 						<div className="mb-3 col-md-6">
 							<InputForm
-								label="User name"
+								label="Username"
 								placeholder="User name"
 								id="user_name"
 								name="user_name"
@@ -227,7 +227,7 @@ const EditProfileFormComponent = ({ editProfile }) => {
 						</div>
 						<div className="mb-3 col-md-6">
 							<InputForm
-								label="Phone number"
+								label="เบอร์มือถือ"
 								placeholder="84 336 077 131"
 								id="phone_number"
 								name="phone_number"
@@ -235,7 +235,7 @@ const EditProfileFormComponent = ({ editProfile }) => {
 							/>
 						</div>
 						<div className="mb-3 col-md-6">
-							<SelectForm label="Gender" name="gender">
+							<SelectForm label="เพศ" name="gender">
 								<option value={gender[0]}>Select gender</option>
 								<option value={gender[1]}>Male</option>
 								<option value={gender[2]}>Female</option>
@@ -243,14 +243,14 @@ const EditProfileFormComponent = ({ editProfile }) => {
 							</SelectForm>
 						</div>
 						<div className="mb-3 col-md-12">
-							<TextForm rows="2" label="Address" placeholder="Address" id="address" name="address" />
+							<TextForm rows="2" label="ที่อยู่" placeholder="Address" id="address" name="address" />
 						</div>
 						<div className="mb-3 col-md-12">
-							<TextForm rows="3" label="Biography" placeholder="Biography" id="biography" name="biography" />
+							<TextForm rows="3" label="แนะนำตัวเอง" placeholder="Biography" id="biography" name="biography" />
 						</div>
 						<div className="mb-3 col-md-12">
 							<ImageUserForm
-								label="Avatar"
+								label="รูปโปรไฟล์"
 								id="avatar"
 								name="avatar"
 								type="file"
@@ -268,11 +268,11 @@ const EditProfileFormComponent = ({ editProfile }) => {
 						{isLoading ? (
 							<button type="submit" className="btn btn-primary" disabled>
 								<span className="spinner-grow spinner-grow-sm me-1" role="status" aria-hidden="true" />
-								Update
+								อัพเดท
 							</button>
 						) : (
 							<button type="submit" className="btn btn-primary">
-								Update
+								อัพเดท
 							</button>
 						)}
 					</div>
