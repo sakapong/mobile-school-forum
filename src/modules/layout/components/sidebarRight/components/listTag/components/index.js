@@ -23,7 +23,7 @@ const ListTagComponent = () => {
 			) : (
 				!isEmpty(listTag?.data) &&
 				listTag?.data?.map((tag) => (
-					<div className="wapper__card bg-light rounded-16 shadow-sm border mb-4" key={tag.id}>
+					<div className="wapper__card bg-white rounded-16 shadow-sm border mb-4" key={tag.id}>
 						<div className="px-3 py-2 border-bottom">
 							<h5 className="mb-0">
 								<CustomLink href={`/t/${tag.slug}`} className="text-decoration-none d-inline-block fw-bold text-dark">

@@ -225,8 +225,12 @@ body{
 
 }
 
-.btn, .form-control, .card{
+.btn, .form-control {
 	border-radius: 32px;
+}
+
+.card{
+	border-radius: 16px;
 }
 
 .form-control{

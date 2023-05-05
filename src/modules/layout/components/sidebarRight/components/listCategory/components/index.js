@@ -15,14 +15,14 @@ const ListCategoryComponent = () => {
 	return (
 		<>
 			{!listCategory ? (
-				<div className="wapper__card bg-light rounded-16 shadow-sm border mb-4">
+				<div className="wapper__card bg-white rounded-16 shadow-sm border mb-4">
 					<ul className="list-group">
 						<li className="loading-animation py-3 d-flex"></li>
 					</ul>
 				</div>
 			) : (
 				!isEmpty(listCategory?.data) && (
-					<div className="wapper__card bg-light rounded-16 shadow-sm border mb-4">
+					<div className="wapper__card bg-white rounded-16 shadow-sm border mb-4">
 						<div className="px-3 py-2 border-bottom">
 							<h5 className="mb-0 fw-bold">บันทึกการเรียนรู้</h5>
 						</div>
