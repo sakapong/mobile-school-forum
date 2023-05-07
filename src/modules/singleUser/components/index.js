@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
-import { FaEllipsisH, FaHashtag, FaRegComment, FaRegHeart } from 'react-icons/fa';
+import { FaEllipsisH, FaHashtag, FaRegComment, FaRegHeart, FaRegEdit } from 'react-icons/fa';
 import { GoReport } from 'react-icons/go';
 import { GrArticle } from 'react-icons/gr';
 
@@ -25,185 +25,193 @@ import ProgressBar from 'react-bootstrap/ProgressBar';
 
 const SingleUserComponent = ({ singleUser, listPostUser }) => {
 	const { user } = useUser();
+	const [activeTab, setActiveTab] = useState(1)
+
+	const handleChangeTab = (tabIndex) => {
+		setActiveTab(tabIndex)
+	}
 	return (
 		<div className="container-xl py-4">
 			<div className="row">
 				<div className="col-12 mb-4">
-					<div className={`text-left bg-light rounded-16 shadow-sm px-4 pb-4 pt-4 ${style.info__user} cover-bg`}>
-						<div className={`position-relative mb-2 ${style.avt}`}>
-							<span className="d-inline-flex p-3 rounded-circle">
-								<CustomImage
-									src={`${process.env.IMAGES_URL}/${singleUser.data?.avatar}`}
-									alt={singleUser.data?.user_name}
-									className="avatar rounded-circle"
-									width="133"
-									height="133"
-								/>
-							</span>
+					<div className={`text-left bg-light rounded-16 shadow-sm px-4 pb-4 pt-4 ${style.info__user} cover-b bg-white`}>
+						<div>
+							<div className={`position-relative mb-2 ${style.avt}`}>
+								<span className="d-inline-flex p-3 rounded-circle">
+									<CustomImage
+										src={`${process.env.IMAGES_URL}/${singleUser.data?.avatar}`}
+										alt={singleUser.data?.user_name}
+										className="avatar rounded-circle"
+										width="133"
+										height="133"
+									/>
+								</span>
+								{singleUser.data?.user_name !== user?.user_name && (
+									<div className={`d-flex d-none position-absolute ${style.more__user}`}>
+										<OverlayTrigger
+											trigger="click"
+											key="options-single-user"
+											placement="left"
+											rootClose
+											overlay={
+												<Popover id={`popover-positioned-options-single-user`}>
+													<Popover.Header as="h3" className="text-center">
+														Options
+													</Popover.Header>
+													<Popover.Body className="p-0">
+														<CustomLink href="/report_abuse" className="d-flex align-items-center dropdown-item">
+															<GoReport className="me-1" />
+															Report abuse
+														</CustomLink>
+													</Popover.Body>
+												</Popover>
+											}
+										>
+											<button type="button" className="d-flex align-items-center p-0 border-0 bg-transparent">
+												<FaEllipsisH className="h4 mb-0" />
+											</button>
+										</OverlayTrigger>
+									</div>
+								)}
+							</div>
+							<h4 className="text-break mb-1 fw-bold" style={{ fontSize: "24px" }}>
+								@{singleUser.data?.user_name}
+							</h4>
+							<h6 className="text-break mb-3">
+								{singleUser.data?.first_name} {singleUser.data?.last_name}
+							</h6>
+							<div className="mt-1">
+								{singleUser.data?.total_user_followers} <span className="text-secondary">followers</span> ·{' '}
+								{singleUser.data?.total_following_users} <span className="text-secondary">following</span>
+							</div>
+							{user && singleUser.data?.user_name === user?.user_name && (
+								<div>
+									<CustomLink className="link-secondary" href={`/settings`}>
+										<FaRegEdit size={24}/>
+									</CustomLink>
+								</div>
+							)}
 							{singleUser.data?.user_name !== user?.user_name && (
-								<div className={`d-flex d-none position-absolute ${style.more__user}`}>
-									<OverlayTrigger
-										trigger="click"
-										key="options-single-user"
-										placement="left"
-										rootClose
-										overlay={
-											<Popover id={`popover-positioned-options-single-user`}>
-												<Popover.Header as="h3" className="text-center">
-													Options
-												</Popover.Header>
-												<Popover.Body className="p-0">
-													<CustomLink href="/report_abuse" className="d-flex align-items-center dropdown-item">
-														<GoReport className="me-1" />
-														Report abuse
-													</CustomLink>
-												</Popover.Body>
-											</Popover>
-										}
-									>
-										<button type="button" className="d-flex align-items-center p-0 border-0 bg-transparent">
-											<FaEllipsisH className="h4 mb-0" />
-										</button>
-									</OverlayTrigger>
+								<div className="d-flex ">
+									<FollowUserButtonComponent
+										user_name={singleUser.data?.user_name}
+										following={singleUser.data?.following}
+									/>
 								</div>
 							)}
 						</div>
-						<h4 className="text-break mb-1 fw-bold" style={{fontSize : "24px"}}>
-							@{singleUser.data?.user_name}
-						</h4>
-						<h6 className="text-break mb-3">
-							{singleUser.data?.first_name} {singleUser.data?.last_name}
-						</h6>
-
-
-						{singleUser.data?.biography && <p className="text-break mb-4">{singleUser.data?.biography}</p>}
-						{user && singleUser.data?.user_name === user?.user_name && (
-							<div>
-								<EditProfileButtonComponent />
-							</div>
-						)}
-						{singleUser.data?.user_name !== user?.user_name && (
-							<div className="d-flex ">
-								<FollowUserButtonComponent
-									user_name={singleUser.data?.user_name}
-									following={singleUser.data?.following}
-								/>
-							</div>
-						)}
-						<div className="mt-1">
-							{singleUser.data?.total_user_followers} <span className="text-secondary">followers</span> ·{' '}
-							{singleUser.data?.total_following_users} <span className="text-secondary">following</span>
-						</div>
-						<div className="mt-1">
-							ระดับชั้นปัจจุบัน มัธยมศึกษาปีที่ 1
+						<div className="mt-1" style={{ clear: "both"}}>
+							<h3 className='fw-bold mb-3'>ระดับชั้นปัจจุบัน</h3>
 							<ProgressBar>
-					      <ProgressBar striped variant="#00A8C9" now={35} key={1} animated label="ม.1" />
-					     {/* <ProgressBar variant="warning" now={20} key={2} animated label="ม.2" />
+								<ProgressBar striped variant="primary" now={35} key={1} animated label="ม.1" />
+								{/* <ProgressBar variant="warning" now={20} key={2} animated label="ม.2" />
 					      <ProgressBar striped variant="danger" now={10} animated key={3} label="ม.3" />*/}
-					    </ProgressBar>
+							</ProgressBar>
 						</div>
 					</div>
 				</div>
 				<div className="col-lg-12 col-md-12 mb-10 mb-md-0">
-					<TabHorizontalComponent
-
-									items={[
-										{
-											title: 'โปรไฟล์',
-											slug: 'a1',
-											href: `#a1`
-										},
-										{
-											title: 'ความสำเร็จ',
-											slug: 'a3',
-											href: `#a3`
-										},
-										{
-											title: 'ผลงาน',
-											slug: 'a2',
-											href: `#a2`
-										},
-										
-									]}
+					<div className='text-left bg-light rounded-16 shadow-sm px-4 pb-3 pt-3 bg-white'>
+						<ul className="nav nav-pills">
+							<li className="nav-item">
+								<a
+									className={`btn btn-outline-primary ${activeTab == 1 ? 'active' : ''}`}
+									aria-current="page"
+									onClick={() => handleChangeTab(1)}
+								>
+									โปรไฟล์
+								</a>
+							</li>
+							<li className="nav-item">
+								<a
+									className={`btn btn-outline-primary ${activeTab == 2 ? 'active' : ''}`}
+									onClick={() => handleChangeTab(2)}
+								>
+									ผลงาน
+								</a>
+							</li>
+							<li className="nav-item">
+								<a
+									className={`btn btn-outline-primary ${activeTab == 3 ? 'active' : ''}`}
+									onClick={() => handleChangeTab(3)}
+								>
+									ความสำเร็จ
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div className="col-lg-12 col-md-12 mt-4 mb-4 mb-md-0">
+					{activeTab === 1 && (
+						<ul className="wapper__card list-group rounded-16 shadow-sm">
+							<li className="list-group-item d-flex flex-wrap align-items-center">
+								<GrArticle className="me-1" />
+								<span>{singleUser.data?.total_posts} ผลงาน</span>
+							</li>
+							<li className="list-group-item d-flex flex-wrap align-items-center">
+								<GrArticle className="me-1" />
+								<span>0 EXP (ค่าประสบการณ์)</span>
+							</li>
+							<li className="list-group-item d-flex flex-wrap align-items-center">
+								<FaRegComment className="me-1" />
+								<span>{singleUser.data?.total_comments} แสดงความคิดเห็น</span>
+							</li>
+							<li className="list-group-item d-flex flex-wrap align-items-center">
+								<FaRegHeart className="me-1" />
+								<span>{singleUser.data?.total_favorited} โพสต์ที่ชื่นชอบ</span>
+							</li>
+							<li className="list-group-item d-flex flex-wrap align-items-center">
+								<FaHashtag className="me-1" />
+								<span>{singleUser.data?.total_tags_followed} Hashtag ที่ติดตาม</span>
+							</li>
+						</ul>
+					)}
+					{activeTab === 2 && (<ListPostUserComponent listPostUser={listPostUser} />)}
+					{activeTab === 3 && (<>
+						<ul className="wapper__card list-group rounded-16 shadow-sm">
+							<li className="list-group-item d-flex flex-wrap align-items-center">
+								<CustomImage
+									src={`/images/nft-rank-01.png`}
+									className="rounded-circle h-100 w-100 badge-profile"
+									width={64}
+									height={64}
+									layout="fixed"
 								/>
-				</div>
-				<div className="col-lg-4 col-md-4 mb-4 mb-md-0">
-								{/*<div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="a1" role="tabpanel" aria-labelledby="home-tab">1</div>
-  <div class="tab-pane fade" id="a2" role="tabpanel" aria-labelledby="profile-tab">2</div>
-  <div class="tab-pane fade" id="a3" role="tabpanel" aria-labelledby="contact-tab">3</div>
-</div>*/}
+								<span className='ms-3 fw-bold'>เข้าเรียนอย่างต่อเนื่อง 1 สัปดาห์</span>
+								<div className="col-lg-12 mt-2">
+									<ProgressBar striped variant="primary" now={100} key={1} animated label="1/10" />
+								</div>
+							</li>
+							<li className="list-group-item d-flex flex-wrap align-items-center">
+								<CustomImage
+									src={`/images/nft-rank-02.png`}
+									className="rounded-circle h-100 w-100 badge-profile"
+									width={64}
+									height={64}
+									layout="fixed"
+								/>
+								<span className='ms-3 fw-bold'>ผู้เริ่มต้นลงมือทำ</span>
+								<div className="col-lg-12 mt-2">
+									<ProgressBar striped variant="primary" now={100} key={1} animated label="1/10" />
+								</div>
+							</li>
+							<li className="list-group-item d-flex flex-wrap align-items-center">
 
-					{/*<h4>สถิติ</h4>*/}
-					<ul className="wapper__card list-group rounded-16 shadow-sm">
-						<li className="list-group-item d-flex flex-wrap align-items-center">
-							<GrArticle className="me-1" />
-							<span>{singleUser.data?.total_posts} ผลงาน</span>
-						</li>
-						<li className="list-group-item d-flex flex-wrap align-items-center">
-							<GrArticle className="me-1" />
-							<span>0 EXP (ค่าประสบการณ์)</span>
-						</li>
-						<li className="list-group-item d-flex flex-wrap align-items-center">
-							<FaRegComment className="me-1" />
-							<span>{singleUser.data?.total_comments} แสดงความคิดเห็น</span>
-						</li>
-						<li className="list-group-item d-flex flex-wrap align-items-center">
-							<FaRegHeart className="me-1" />
-							<span>{singleUser.data?.total_favorited} โพสต์ที่ชื่นชอบ</span>
-						</li>
-						<li className="list-group-item d-flex flex-wrap align-items-center">
-							<FaHashtag className="me-1" />
-							<span>{singleUser.data?.total_tags_followed} Hashtag ที่ติดตาม</span>
-						</li>
-					</ul>
-					<h4 className="mt-4">ความสำเร็จ</h4>
-					<ul className="wapper__card list-group rounded-16 shadow-sm">
-						<li className="list-group-item d-flex flex-wrap align-items-center">
-							<CustomImage
-								src={`/images/nft-rank-01.png`}
-								className="rounded-circle h-100 w-100 badge-profile"
-								width={64}
-								height={64}
-								layout="fixed"
-							/>
-							<span className='ms-3'>เข้าเรียนอย่างต่อเนื่อง 1 สัปดาห์</span>
-							<div className="col-lg-12 mt-2">
-							<ProgressBar striped variant="success" now={100} key={1} animated label="1/10" />
-							</div>
-						</li>
-						<li className="list-group-item d-flex flex-wrap align-items-center">
-							<CustomImage
-								src={`/images/nft-rank-02.png`}
-								className="rounded-circle h-100 w-100 badge-profile"
-								width={64}
-								height={64}
-								layout="fixed"
-							/>
-							<span className='ms-3'>ผู้เริ่มต้นลงมือทำ</span>
-							<div className="col-lg-12 mt-2">
-								<ProgressBar striped variant="success" now={100} key={1} animated label="1/10" />
-							</div>
-						</li>
-						<li className="list-group-item d-flex flex-wrap align-items-center">
-						
-							<CustomImage
-								src={`/images/nft-rank-03.png`}
-								className="rounded-circle h-100 w-100 badge-profile"
-								width={64}
-								height={64}
-								layout="fixed"
-							/>
-							<span className='ms-3'>ผู้บรรลุเป้าหมายขั้นต้น (ชิม)</span>
-							<div className="col-lg-12 mt-2">
-								<ProgressBar striped variant="success" now={100} key={1} animated label="1/10" />
-							</div>
-						</li>
+								<CustomImage
+									src={`/images/nft-rank-03.png`}
+									className="rounded-circle h-100 w-100 badge-profile"
+									width={64}
+									height={64}
+									layout="fixed"
+								/>
+								<span className='ms-3 fw-bold'>ผู้บรรลุเป้าหมายขั้นต้น (ชิม)</span>
+								<div className="col-lg-12 mt-2">
+									<ProgressBar striped variant="primary" now={100} key={1} animated label="1/10" />
+								</div>
+							</li>
 
-					</ul>
-				</div>
-				<div className="col-lg-8 col-md-8">
-					<ListPostUserComponent listPostUser={listPostUser} />
+						</ul>
+					</>)}
 				</div>
 			</div>
 		</div>

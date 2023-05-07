@@ -63,7 +63,7 @@ const SideBarRightUserComponent = ({ postUser, listPostUser }) => {
 				{!isEmpty(listPostUser?.data) && (
 					<ul className="list-group">
 						{listPostUser?.data?.map((post) => (
-							<li className={`bg-light border-bottom px-3 py-2 ${style.list_group_item_custom}`} key={post.id}>
+							<li className={`bg-white border-bottom px-3 py-2 ${style.list_group_item_custom}`} key={post.id}>
 								<CustomLink href={`/u/${post.user.user_name}/${post.slug}`} className="text-decoration-none text-dark">
 									{post.title}
 								</CustomLink>

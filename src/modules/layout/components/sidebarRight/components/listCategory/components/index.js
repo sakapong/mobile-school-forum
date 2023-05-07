@@ -28,7 +28,7 @@ const ListCategoryComponent = () => {
 						</div>
 						<ul className="list-group">
 							{listCategory?.data?.map((category) => (
-								<li className={`bg-light border-bottom px-3 py-2 ${style.list_group_item_custom}`} key={category.id}>
+								<li className={`bg-white border-bottom px-3 py-2 ${style.list_group_item_custom}`} key={category.id}>
 									<CustomLink href={`/c/${category.slug}/latest`} className="text-decoration-none text-dark me-2">
 										{category.title}
 									</CustomLink>

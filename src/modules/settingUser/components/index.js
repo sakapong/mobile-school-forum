@@ -16,7 +16,7 @@ const SettingUserComponent = ({ settingUser, pid }) => {
 			) : (
 				<>
 					<h3 className="mb-4 fw-bold">
-						การตั้งค่าสำหรับ for{' '}
+						การตั้งค่าสำหรับ{' '}
 						<CustomLink href={`/u/${user.user_name}`} className="text-decoration-none">
 							@{user.user_name}
 						</CustomLink>
@@ -40,7 +40,7 @@ const SettingUserComponent = ({ settingUser, pid }) => {
 							/>
 						</div>*/}
 						<div className="col-lg-9">
-							<div className="bg-light p-4 rounded-16 shadow-sm">
+							<div className="bg-white p-4 rounded-16 shadow-sm">
 							{(!pid[0] || pid[0] === 'profile') && <EditProfileFormComponent editProfile={settingUser} />}
 								{/*{(!pid[0] || pid[0] === 'profile') && <EditProfileFormComponent editProfile={settingUser} />}*/}
 								{/*{pid[0] === 'customization' && <EditCustomizationComponent />}*/}

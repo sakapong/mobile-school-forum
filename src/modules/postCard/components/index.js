@@ -21,7 +21,7 @@ import { useWeb3Context } from '@/common/context'
 
 const PostCardComponent = ({ post }) => {
 	function rand(min, max) { // min and max included 
-	  return Math.floor(Math.random() * (max - min + 1) + min)
+		return Math.floor(Math.random() * (max - min + 1) + min)
 	}
 
 	return (
@@ -45,100 +45,100 @@ const PostCardComponent = ({ post }) => {
 							</CustomLink>
 						</div>
 						{post.category.id == 3 && (
-						<div className="d-flex position-absolute action-2">
-							<div className="me-1">
-								<div
-								
-									className="text-decoration-none d-inline-block d-flex align-items-center"
-								>
-									
-									<span className="badge" style={{backgroundColor: "#D78920"}}>โชคโชน (Enjoy)</span>
+							<div className="d-flex position-absolute action-2">
+								<div className="me-1">
+									<div
+
+										className="text-decoration-none d-inline-block d-flex align-items-center"
+									>
+
+										<span className="badge" style={{ backgroundColor: "#D78920" }}>โชคโชน (Enjoy)</span>
+									</div>
 								</div>
 							</div>
-						</div>
 						)}
 						{post.category.id == 5 && (
-						<div className="d-flex position-absolute action-2">
-							<div className="me-1">
-								<div
-								
-									className="text-decoration-none d-inline-block d-flex align-items-center"
-								>
-									
-									<span className="badge bg-secondary">ความรู้ (Knowledge)</span>
+							<div className="d-flex position-absolute action-2">
+								<div className="me-1">
+									<div
+
+										className="text-decoration-none d-inline-block d-flex align-items-center"
+									>
+
+										<span className="badge bg-secondary">ความรู้ (Knowledge)</span>
+									</div>
 								</div>
 							</div>
-						</div>
 						)}
 						{post.category.id == 1 && (
-						<div className="d-flex position-absolute action-2">
-							<div className="me-1">
-								<div
-								
-									className="text-decoration-none d-inline-block d-flex align-items-center"
-								>
-									
-									<span className="badge" style={{backgroundColor: "#92D236"}}>ชิม (Taste)</span>
+							<div className="d-flex position-absolute action-2">
+								<div className="me-1">
+									<div
+
+										className="text-decoration-none d-inline-block d-flex align-items-center"
+									>
+
+										<span className="badge" style={{ backgroundColor: "#92D236" }}>ชิม (Taste)</span>
+									</div>
 								</div>
 							</div>
-						</div>
 						)}
 						{post.category.id == 2 && (
-						<div className="d-flex position-absolute action-2">
-							<div className="me-1">
-								<div
-								
-									className="text-decoration-none d-inline-block d-flex align-items-center"
-								>
-									
-									<span className="badge" style={{backgroundColor: "#FC1FA4"}}>ชอบ (Like)</span>
+							<div className="d-flex position-absolute action-2">
+								<div className="me-1">
+									<div
+
+										className="text-decoration-none d-inline-block d-flex align-items-center"
+									>
+
+										<span className="badge" style={{ backgroundColor: "#FC1FA4" }}>ชอบ (Like)</span>
+									</div>
 								</div>
 							</div>
-						</div>
 						)}
-						
+
 						{post.category.id == 4 && (
-						<div className="d-flex position-absolute action-2">
-						<div className="me-1">
-							<div
-							
-								className="text-decoration-none d-inline-block d-flex align-items-center"
-							>
-								<span className="badge" style={{backgroundColor: "#1EBD43"}}>เชียวชาญ (Expertise)</span>
+							<div className="d-flex position-absolute action-2">
+								<div className="me-1">
+									<div
+
+										className="text-decoration-none d-inline-block d-flex align-items-center"
+									>
+										<span className="badge" style={{ backgroundColor: "#1EBD43" }}>เชียวชาญ (Expertise)</span>
+									</div>
+								</div>
 							</div>
-						</div>
-						</div>
 						)}
 						<div className={`d-flex position-absolute action`}>
-									<OverlayTrigger
-										trigger="click"
-										key="options-single-user"
-										placement="left"
-										rootClose
-										overlay={
-											<Popover id={`popover-positioned-options-single-user`}>
-												<Popover.Header as="h3" className="text-center">
-													Mentor
-												</Popover.Header>
-												<Popover.Body className="p-0">
-													<CustomLink href="#" className="d-flex align-items-center dropdown-item">
-														✅ ผ่าน
-													</CustomLink>
-													<CustomLink href="#" className="d-flex align-items-center dropdown-item">
-														❌ ไม่ผ่าน
-													</CustomLink>
-													<CustomLink href="#" className="d-flex align-items-center dropdown-item">
-														📝 รายงาน
-													</CustomLink>
-												</Popover.Body>
-											</Popover>
-										}
-									>
-										<button type="button" className="d-flex align-items-center p-0 border-0 bg-transparent">
-											<FaBolt className="me-1" />
-										</button>
-									</OverlayTrigger>
-								</div>
+							<OverlayTrigger
+								trigger="click"
+								key="options-single-user"
+								placement="left"
+								rootClose
+								overlay={
+									<Popover id={`popover-positioned-options-single-user`}>
+										<Popover.Header as="h3" className="text-center">
+											Mentor
+										</Popover.Header>
+										<Popover.Body className="p-0">
+											<CustomLink href="#" className="d-flex align-items-center dropdown-item">
+												✅ ผ่าน
+											</CustomLink>
+											<CustomLink href="#" className="d-flex align-items-center dropdown-item">
+												❌ ไม่ผ่าน
+											</CustomLink>
+											<CustomLink href="#" className="d-flex align-items-center dropdown-item">
+												📝 รายงาน
+											</CustomLink>
+										</Popover.Body>
+									</Popover>
+								}
+							>
+								<button type="button" className="d-flex align-items-center p-0 border-0 bg-transparent">
+									<FaBolt className="me-1" />
+								</button>
+							</OverlayTrigger>
+						</div>
 						<div className="lh-1">
 							<div className="d-flex align-items-center">
 								<CustomLink href={`/u/${post.user.user_name}`} className="text-decoration-none text-dark">
@@ -168,7 +168,7 @@ const PostCardComponent = ({ post }) => {
 								className="p-1 text-decoration-none d-inline-block tag"
 							>
 								<span className="tag">#
-								{tag.title}</span>
+									{tag.title}</span>
 							</CustomLink>
 						))}
 					</div>
@@ -187,26 +187,16 @@ const PostCardComponent = ({ post }) => {
 							slug={post.slug}
 						/>
 						{post.category.id == 1 && (
-						<CustomLink
-							href={`#`}
-							className="d-flex align-items-center text-decoration-none text-secondary me-2"
-						>
 							<Link href="#" passHref>
-									<Nav.Link className="btn btn-primary text-white fw-bold"><span className=" d-sm-block">ให้กำลังใจ</span></Nav.Link>
+								<Nav.Link className="btn btn-primary text-white fw-bold ms-3"><span className=" d-sm-block">ให้กำลังใจ</span></Nav.Link>
 							</Link>
-						</CustomLink>
 						)}
 						{post.category.id == 2 && (
-						<CustomLink
-							href={`#`}
-							className="d-flex align-items-center text-decoration-none text-secondary me-2"
-						>
 							<Link href="#" passHref>
-									<Nav.Link className="btn btn-success text-white fw-bold"><span className=" d-sm-block">ทำต่อไป</span></Nav.Link>
+								<Nav.Link className="btn btn-success text-white fw-bold ms-3"><span className=" d-sm-block">ทำต่อไป</span></Nav.Link>
 							</Link>
-						</CustomLink>
 						)}
-						
+
 					</div>
 				</div>
 			</div>
