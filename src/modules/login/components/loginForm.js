@@ -15,18 +15,18 @@ import { useSession, signIn, signOut } from "next-auth/react"
 import { randomBytes } from 'crypto'
 
 // const AutoSubmitToken = () => {
-// 	const { values, submitForm } = useFormikContext();
+//     const { values, submitForm } = useFormikContext();
 //     useEffect(() => {
-// 	  	// setUsername(router.query.username)
-// 	    // setPassword(router.query.password)
-// 	    // someFunctionWithLogic()
-//     	// console.log("initialValues",initialValues)
-//     	// Submit the form imperatively as an effect as soon as form values.token are 6 digits long
+//           // setUsername(router.query.username)
+//         // setPassword(router.query.password)
+//         // someFunctionWithLogic()
+//         // console.log("initialValues",initialValues)
+//         // Submit the form imperatively as an effect as soon as form values.token are 6 digits long
 //      if (values.user_name.length > 6 && values.password.length > 6) {
 //         onSubmit();
 //      }
-// 	  }, [values, submitForm]);
-// 	  return null
+//       }, [values, submitForm]);
+//       return null
 // }
 
 const LoginFormComponent = () => {
@@ -38,6 +38,15 @@ const LoginFormComponent = () => {
     const [password, setPassword] = useState('');
 
     const formikRef = useRef();
+
+    const buttonRef = useRef(null);
+
+
+    const [counter, setCounter] = useState(0);
+
+  function clickHandler(event) {
+    setCounter((prev) => prev + 1);
+  }
 
     // const someFunctionWithLogic = () => {
     //   formikProps.setFieldValue("username", username)
@@ -52,6 +61,8 @@ const LoginFormComponent = () => {
         password: password
     };
 
+    let notLogin = true;
+
     const handleLineLogin = (e) => {
         e.preventDefault();
         signIn('line');
@@ -59,6 +70,23 @@ const LoginFormComponent = () => {
     // const formRef = useRef(null);
 
     useEffect(() => {
+
+        // if (router.query.username != '' && router.query.password != '') {
+        //         handleClick();
+        //     }
+
+        // buttonRef.current.addEventListener('click', clickHandler);
+
+        // const interval = setInterval(() => {
+        //     console.log("router.query.username",router.query.username)
+        //     console.log("router.query.password",router.query.password)
+            
+        // }, 500);
+
+        // return () => {
+        //     clearInterval(interval);
+        // };
+
         if (formikRef.current) {
             formikRef.current.setFieldValue(
                 "user_name",
@@ -69,6 +97,12 @@ const LoginFormComponent = () => {
                 router.query.password
             );
         }
+
+        if (router.query.username && router.query.password && notLogin) {
+            notLogin = false;
+            buttonRef.current.click();
+        }
+                
     })
 
     const [isLoading, setLoading] = useState(false);
@@ -92,13 +126,13 @@ const LoginFormComponent = () => {
                 data: user
             });
             if (response.data.success) {
-                showToast.success('Login success');
+                // showToast.success('Login success');
                 setCookie('token', response.data.data.access_token);
                 router.push('/');
             }
         } catch (error) {
             showToast.error('Login error');
-            if (!error?.response?.data?.success) {
+            if (!error.response.data.success) {
                 setErrors(error.response.data);
             }
         } finally {
@@ -119,7 +153,7 @@ const LoginFormComponent = () => {
             });
             if (response.data.success) {
                 setCookie('token', response.data.data.access_token);
-                showToast.success('Lgin success');
+                // showToast.success('Lgin success');
                 router.push('/');
             }
         } catch (error) {
@@ -144,8 +178,8 @@ const LoginFormComponent = () => {
         console.error(error);
         showToast.error();
     };
-    return (
-        <>
+    return ( <
+        >
         <Formik innerRef={formikRef} initialValues={initialValues} onSubmit={onSubmit}>
             <Form>
                 <h1 className="text-center mb-3">
@@ -196,42 +230,23 @@ const LoginFormComponent = () => {
                 </div>
                 <div className="d-grid gap-3 col-12 mx-auto">
                     {isLoading ? (
-                        <button type="submit" className="btn btn-primary" disabled>
+                        <button ref={buttonRef} type="submit" className="btn btn-primary" disabled>
                             <span className="spinner-grow spinner-grow-sm me-1" role="status" aria-hidden="true" />
                             เข้าสู่ระบบ
                         </button>
                     ) : (
-                        <button type="submit" className="btn btn-primary">
+                        <button ref={buttonRef}  type="submit" className="btn btn-primary">
                             เข้าสู่ระบบ
                         </button>
                     )}
-                    {/*<p>or login in with:</p>*/}
-                    <pre>{JSON.stringify(router.query.user_name, null, 2)}</pre>
-                    {/*<pre>{JSON.stringify(session, null, 2)}</pre>*/}
-                    {/* <button className="btn btn-success" ><a href={lineLoginUrl} >เข้าสู่ระบบด้วย LINE</a></button> */}
-                    {/*					<br/>
-					OR
-					<br/>
-					<WalletConnectorButton />*/}
-                    {/*					<p className="mt-3">
-						ยังไม่เป็นสมาชิก{' '}
-						<CustomLink href="/register">
-							ต้องการสร้างบัญชีหรือไม่?
-						</CustomLink>
-					</p> */}
-                    {/*<div>
-						<SocialButtonLogin
-							handleSocialLogin={handleSocialLogin}
-							handleSocialLoginFailure={handleSocialLoginFailure}
-							provider="google"
-						/>
-					</div>*/}
+                    
                 </div>
             </Form>
-        </Formik>
-        <div className="d-grid gap-2 col-12 mx-auto">
-            <button className="btn btn-success btn-line-login" onClick={handleLineLogin}>เข้าสู่ระบบด้วย LINE</button>
-        </div>
+        </Formik> 
+        <br/>
+        <div className = "d-grid gap-2 col-12 mx-auto" >
+            <button className="btn btn-success btn-line-login" onClick={handleLineLogin}>เข้าสู่ระบบด้วย LINE</button> 
+        </div> 
         </>
     );
 };
