@@ -87,7 +87,7 @@ const SingleUserComponent = ({ singleUser, listPostUser }) => {
 							{user && singleUser.data?.user_name === user?.user_name && (
 								<div>
 									<CustomLink className="link-secondary" href={`/settings`}>
-										<FaRegEdit size={24}/>
+										<FaRegEdit size={24} />
 									</CustomLink>
 								</div>
 							)}
@@ -100,7 +100,7 @@ const SingleUserComponent = ({ singleUser, listPostUser }) => {
 								</div>
 							)}
 						</div>
-						<div className="mt-1" style={{ clear: "both"}}>
+						<div className="mt-1" style={{ clear: "both" }}>
 							<h3 className='fw-bold mb-3'>ระดับชั้นปัจจุบัน</h3>
 							<ProgressBar>
 								<ProgressBar striped variant="primary" now={35} key={1} animated label="ม.1" />
@@ -115,7 +115,7 @@ const SingleUserComponent = ({ singleUser, listPostUser }) => {
 						<ul className="nav nav-pills">
 							<li className="nav-item">
 								<a
-									className={`btn btn-outline-primary ${activeTab == 1 ? 'active' : ''}`}
+									className={`btn btn-outline-primary ${activeTab == 1 ? 'active' : ''} me-2`}
 									aria-current="page"
 									onClick={() => handleChangeTab(1)}
 								>
@@ -124,7 +124,7 @@ const SingleUserComponent = ({ singleUser, listPostUser }) => {
 							</li>
 							<li className="nav-item">
 								<a
-									className={`btn btn-outline-primary ${activeTab == 2 ? 'active' : ''}`}
+									className={`btn btn-outline-primary ${activeTab == 2 ? 'active' : ''} me-2`}
 									onClick={() => handleChangeTab(2)}
 								>
 									ผลงาน
@@ -132,7 +132,7 @@ const SingleUserComponent = ({ singleUser, listPostUser }) => {
 							</li>
 							<li className="nav-item">
 								<a
-									className={`btn btn-outline-primary ${activeTab == 3 ? 'active' : ''}`}
+									className={`btn btn-outline-primary ${activeTab == 3 ? 'active' : ''} me-2`}
 									onClick={() => handleChangeTab(3)}
 								>
 									ความสำเร็จ
@@ -170,43 +170,54 @@ const SingleUserComponent = ({ singleUser, listPostUser }) => {
 					{activeTab === 3 && (<>
 						<ul className="wapper__card list-group rounded-16 shadow-sm">
 							<li className="list-group-item d-flex flex-wrap align-items-center">
-								<CustomImage
-									src={`/images/nft-rank-01.png`}
-									className="rounded-circle h-100 w-100 badge-profile"
-									width={64}
-									height={64}
-									layout="fixed"
-								/>
-								<span className='ms-3 fw-bold'>เข้าเรียนอย่างต่อเนื่อง 1 สัปดาห์</span>
-								<div className="col-lg-12 mt-2">
-									<ProgressBar striped variant="primary" now={100} key={1} animated label="1/10" />
+								<div>
+									<CustomImage
+										src={`/images/nft-rank-01.png`}
+										className="rounded-circle h-100 w-100 badge-profile"
+										width={64}
+										height={64}
+										layout="fixed"
+									/>
+								</div>
+								<div className='flex-1'>
+									<h3 className='ms-3 mb-3 fw-bold'>เข้าเรียนอย่างต่อเนื่อง 1 สัปดาห์</h3>
+									<div className="ms-3">
+										<ProgressBar striped variant="primary" now={100} key={1} animated label="1/10" />
+									</div>
 								</div>
 							</li>
 							<li className="list-group-item d-flex flex-wrap align-items-center">
-								<CustomImage
-									src={`/images/nft-rank-02.png`}
-									className="rounded-circle h-100 w-100 badge-profile"
-									width={64}
-									height={64}
-									layout="fixed"
-								/>
-								<span className='ms-3 fw-bold'>ผู้เริ่มต้นลงมือทำ</span>
-								<div className="col-lg-12 mt-2">
-									<ProgressBar striped variant="primary" now={100} key={1} animated label="1/10" />
+								<div>
+									<CustomImage
+										src={`/images/nft-rank-02.png`}
+										className="rounded-circle h-100 w-100 badge-profile"
+										width={64}
+										height={64}
+										layout="fixed"
+									/>
+								</div>
+								<div className='flex-1'>
+									<h3 className='ms-3 mb-3 fw-bold'>ผู้เริ่มต้นลงมือทำ</h3>
+									<div className="ms-3">
+										<ProgressBar striped variant="primary" now={100} key={1} animated label="1/10" />
+									</div>
 								</div>
 							</li>
 							<li className="list-group-item d-flex flex-wrap align-items-center">
-
-								<CustomImage
-									src={`/images/nft-rank-03.png`}
-									className="rounded-circle h-100 w-100 badge-profile"
-									width={64}
-									height={64}
-									layout="fixed"
-								/>
-								<span className='ms-3 fw-bold'>ผู้บรรลุเป้าหมายขั้นต้น (ชิม)</span>
-								<div className="col-lg-12 mt-2">
-									<ProgressBar striped variant="primary" now={100} key={1} animated label="1/10" />
+								<div>
+									<CustomImage
+										src={`/images/nft-rank-03.png`}
+										className="rounded-circle h-100 w-100 badge-profile"
+										width={64}
+										height={64}
+										layout="fixed"
+									/>
+								</div>
+								<div className='flex-1'>
+									<span className='ms-3 mb-3 fw-bold'>ผู้บรรลุเป้าหมายขั้นต้น (ชิม)</span>
+									<div className="ms-3">
+										<ProgressBar striped variant="primary" now={100} key={1} animated label="1/10" />
+									</div>
 								</div>
 							</li>
 
