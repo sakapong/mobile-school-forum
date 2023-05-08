@@ -32,8 +32,8 @@ const MetaWebsite = ({
 						<meta property="og:title" content={title ? title : process.env.META.TITLE} />
 						<meta property="og:description" content={description} />
 						<meta property="og:site_name" content={process.env.META.TITLE} />
-						<meta property="og:image" content={`${process.env.IMAGES_URL}/${image ? image : process.env.META.IMAGE}`} />
-
+						<meta property="og:image" content={`/images/meta-mobile-school.jpg`} />
+ 
 						<meta name="twitter:card" content="summary_large_image" />
 						<meta name="twitter:url" content={canonical} />
 						<meta name="twitter:title" content={title ? title : process.env.META.TITLE} />
