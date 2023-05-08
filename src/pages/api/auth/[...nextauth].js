@@ -45,9 +45,9 @@ export default async function auth(req,res) {
         },
         redirect: async (url, baseUrl) => {
           console.log("url",url);
-          console.log("baseUrl",baseUrl);
-          baseUrl = "https://play.mobileschool.online";
-          return baseUrl;
+          console.log("baseUrl",url.baseUrl);
+          url.baseUrl = "https://play.mobileschool.online";
+          return url.baseUrl;
         },
         session: async (session, token) => {
           console.log("session",session);
