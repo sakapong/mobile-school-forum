@@ -61,7 +61,6 @@ const LoginFormComponent = () => {
         password: password
     };
 
-    let notLogin = true;
 
     const handleLineLogin = (e) => {
         e.preventDefault();
@@ -86,7 +85,6 @@ const LoginFormComponent = () => {
         // return () => {
         //     clearInterval(interval);
         // };
-
         if (formikRef.current) {
             formikRef.current.setFieldValue(
                 "user_name",
@@ -128,7 +126,7 @@ const LoginFormComponent = () => {
             if (response.data.success) {
                 // showToast.success('Login success');
                 setCookie('token', response.data.data.access_token);
-                router.push('/');
+                router.push(`/u/${response.data.data.user_name}`);
             }
         } catch (error) {
             showToast.error('Login error');
