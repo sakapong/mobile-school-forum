@@ -91,18 +91,18 @@ const CheckinUserComponent = () => {
         }
     ]
     return (
-        <div className="container-xl py-4">
+        <div className="container-xl py-2">
             <div className="row">
                 <div className="col-sm-8 col-md-6 mx-auto">
                     <img
                         className="mx-auto mt-2"
                         src={`/images/Owl_Score.gif`}
-                        width={200}
-                        height={200}
+                        width={90}
+                        height={90}
                     />
                     <h2 className='text-center fs-2 fw-bold'>ความรู้สึกวันนี้ของคุณเป็นอย่างไร</h2>
-                    <p className='text-center mb-5'>{formattedDate}</p>
-                    <div className="d-grid gap-4 col-12 mx-auto">
+                    <p className='text-center mb-2'>{formattedDate}</p>
+                    <div className="d-grid gap-1 col-12 mx-auto">
                         {feelingChoices.map((feeling, index) => {
                             return (
                                 <div key={index}>

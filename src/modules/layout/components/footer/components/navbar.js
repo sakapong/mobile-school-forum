@@ -64,7 +64,7 @@ const FooterNavigation = (props) => {
 							{
 								tabs.map((tab, index) => (
 									<NavItem key={`tab-${index}`}>
-										<NavLink to={tab.route} className={`nav-link bottom-nav-link ${tab.className}`} activeClassName="active">
+										<NavLink href={tab.route} to={tab.route} className={`nav-link bottom-nav-link ${tab.className}`} activeClassName="active">
 											<div className="row d-flex flex-column justify-content-center align-items-center">
 												{/*<FontAwesomeIcon size="lg" icon={tab.icon}/>*/}
 
@@ -76,7 +76,7 @@ const FooterNavigation = (props) => {
 															return <CustomImage className="" src={`${tab.imageSrc}`} width={32} height={32} />;
 														case 3:
 															return (
-																<CustomImage className="" src={`${tab.imageSrc}`} width={70} height={70} />
+																<CustomImage className="" src={`${tab.imageSrc}`} width={60} height={60} />
 															);
 														case 4:
 															return (<CustomImage className="" src={`${tab.imageSrc}`} width={32} height={32} />);
