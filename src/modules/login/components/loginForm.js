@@ -36,17 +36,11 @@ const LoginFormComponent = () => {
     const router = useRouter();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [isLogin, setIsLogin] = useState(false);
 
     const formikRef = useRef();
-
     const buttonRef = useRef(null);
 
-
-    const [counter, setCounter] = useState(0);
-
-  function clickHandler(event) {
-    setCounter((prev) => prev + 1);
-  }
 
     // const someFunctionWithLogic = () => {
     //   formikProps.setFieldValue("username", username)
@@ -66,25 +60,11 @@ const LoginFormComponent = () => {
         e.preventDefault();
         signIn('line');
     };
-    // const formRef = useRef(null);
+
 
     useEffect(() => {
 
-        // if (router.query.username != '' && router.query.password != '') {
-        //         handleClick();
-        //     }
-
-        // buttonRef.current.addEventListener('click', clickHandler);
-
-        // const interval = setInterval(() => {
-        //     console.log("router.query.username",router.query.username)
-        //     console.log("router.query.password",router.query.password)
-            
-        // }, 500);
-
-        // return () => {
-        //     clearInterval(interval);
-        // };
+     
         if (formikRef.current) {
             formikRef.current.setFieldValue(
                 "user_name",
@@ -96,9 +76,9 @@ const LoginFormComponent = () => {
             );
         }
 
-        if (router.query.username && router.query.password && notLogin) {
-            notLogin = false;
+        if (router.query.username && router.query.password && isLogin) {
             buttonRef.current.click();
+            setIsLogin(true);
         }
                 
     })

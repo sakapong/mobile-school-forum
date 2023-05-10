@@ -201,7 +201,7 @@ const NavBarComponent = () => {
 				<Link href="/new" passHref>
 					<Dropdown.Item>เพิ่มผลงาน</Dropdown.Item>
 				</Link>
-				<Link href="/new" passHref>
+				<Link href="/checkin" passHref>
 					<Dropdown.Item>เช็คอิน</Dropdown.Item>
 				</Link>
 				<Link href={`/settings/`} passHref target="_blank">

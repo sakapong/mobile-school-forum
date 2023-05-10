@@ -75,19 +75,19 @@ const SingleUserComponent = ({ singleUser, listPostUser }) => {
 								)}
 							</div>
 							<h4 className="text-break mb-1 fw-bold" style={{ fontSize: "24px" }}>
-								@{singleUser.data?.user_name}
-							</h4>
-							<h6 className="text-break mb-3">
 								{singleUser.data?.first_name} {singleUser.data?.last_name}
+							</h4>
+							<h6 className="text-break mb-3 d-none">
+								@{singleUser.data?.user_name}
 							</h6>
 							<div className="mt-1">
 								{singleUser.data?.total_user_followers} <span className="text-secondary">followers</span> ·{' '}
 								{singleUser.data?.total_following_users} <span className="text-secondary">following</span>
 							</div>
 							{user && singleUser.data?.user_name === user?.user_name && (
-								<div>
+								<div className="mt-2">
 									<CustomLink className="link-secondary" href={`/settings`}>
-										<FaRegEdit size={24} />
+										<button class="btn btn-success"><FaRegEdit size={18} /> แก้ไขโปรไฟล์</button>
 									</CustomLink>
 								</div>
 							)}
@@ -182,7 +182,7 @@ const SingleUserComponent = ({ singleUser, listPostUser }) => {
 								<div className='flex-1'>
 									<h3 className='ms-3 mb-3 fw-bold'>เข้าเรียนอย่างต่อเนื่อง 1 สัปดาห์</h3>
 									<div className="ms-3">
-										<ProgressBar striped variant="primary" now={100} key={1} animated label="1/10" />
+										<ProgressBar striped variant="primary" now={10} key={1} animated label="1/10" />
 									</div>
 								</div>
 							</li>
@@ -199,7 +199,7 @@ const SingleUserComponent = ({ singleUser, listPostUser }) => {
 								<div className='flex-1'>
 									<h3 className='ms-3 mb-3 fw-bold'>ผู้เริ่มต้นลงมือทำ</h3>
 									<div className="ms-3">
-										<ProgressBar striped variant="primary" now={100} key={1} animated label="1/10" />
+										<ProgressBar striped variant="primary" now={20} key={1} animated label="2/10" />
 									</div>
 								</div>
 							</li>
@@ -216,7 +216,7 @@ const SingleUserComponent = ({ singleUser, listPostUser }) => {
 								<div className='flex-1'>
 									<span className='ms-3 mb-3 fw-bold'>ผู้บรรลุเป้าหมายขั้นต้น (ชิม)</span>
 									<div className="ms-3">
-										<ProgressBar striped variant="primary" now={100} key={1} animated label="1/10" />
+										<ProgressBar striped variant="primary" now={80} key={1} animated label="8/10" />
 									</div>
 								</div>
 							</li>
