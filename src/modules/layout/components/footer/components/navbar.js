@@ -16,7 +16,7 @@ import CustomImage from '@/common/components/CustomImage/components';
 
 const tabs = [{
 	index: 1,
-	route: "/home",
+	route: "/",
 	className: "nav-footer-home",
 	// icon: faHome,
 	label: "หน้าหลัก"
@@ -73,13 +73,13 @@ const FooterNavigation = (props) => {
 														case 1:
 															return <FcHome className="h1 mb-0 me-1" />;
 														case 2:
-															return <CustomImage className="" src={`${tab.imageSrc}`} width={32} height={32} />;
+															return <CustomImage className="" src={`${tab.imageSrc}`} width={28} height={28} />;
 														case 3:
 															return (
-																<CustomImage className="" src={`${tab.imageSrc}`} width={60} height={60} />
+																<CustomImage className="" src={`${tab.imageSrc}`} width={52} height={52} />
 															);
 														case 4:
-															return (<CustomImage className="" src={`${tab.imageSrc}`} width={32} height={32} />);
+															return (<CustomImage className="" src={`${tab.imageSrc}`} width={28} height={28} />);
 														case 5:
 															return <FcSearch className="h1 mb-0 me-1" />;
 														default:
