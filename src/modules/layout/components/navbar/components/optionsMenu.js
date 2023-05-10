@@ -31,7 +31,7 @@ const optionsMenu = [
 		icon: <FcPrivacy className="h4 mb-0 me-1" />,
 		name: 'นโยบายความเป็นส่วนตัว',
 		href: '/',
-		hidden: true
+		// hidden: true
 	}
 ];
 

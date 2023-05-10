@@ -39,22 +39,22 @@ const HomeComponent = ({ listPostPinned, listPost, pid }) => {
 								{
 									title: 'ชิม',
 									slug: 'latest',
-									href: '/latest'
+									href: `/c/taste/latest`
 								},
 								{
 									title: 'ชอบ',
 									slug: 'feed',
-									href: '/feed'
+									href: '/c/like/latest'
 								},
 								{
 									title: 'โชคโชน',
 									slug: 'feed',
-									href: '#'
+									href: '/c/enjoy/latest'
 								},
 								{
 									title: 'เชี่ยวชาญ',
 									slug: 'feed',
-									href: '#'
+									href: '/c/expertise/latest'
 								},
 								// {
 								// 	title: 'ฟีด',

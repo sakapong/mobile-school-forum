@@ -17,7 +17,7 @@ import { getCookie, removeCookie } from '@/common/utils/session';
 import showToast from '@/common/utils/showToast';
 import ListOptionsMenu from '@/modules/layout/components/navbar/components/listOptionsMenu';
 import style from '@/modules/layout/components/navbar/styles/style.module.scss';
-
+import SideBarRightComponent from '@/modules/layout/components/sidebarRight/components';
 
 import { KnockFeedProvider } from "@knocklabs/react-notification-feed";
 import useIdentify from "@/common/hooks/useIdentify";
@@ -313,7 +313,7 @@ const NavBarComponent = () => {
 			</Navbar>
 			<Offcanvas show={show} onHide={handleClose} scroll backdrop className={style.offcanvas__custom}>
 				<Offcanvas.Header closeButton className="border-bottom">
-					<Offcanvas.Title>โรงเรียนมือถือ</Offcanvas.Title>
+					<Offcanvas.Title>โรงเรียนมือถือ Ver.2</Offcanvas.Title>
 				</Offcanvas.Header>
 				<Offcanvas.Body className="d-flex flex-column">
 					<form className="form-inline mb-3" onSubmit={onSearchSubmit}>
@@ -342,6 +342,8 @@ const NavBarComponent = () => {
 					<nav className="mb-auto">
 						<ListOptionsMenu />
 					</nav>
+
+					<SideBarRightComponent />
 
 					<Nav className="align-items-md-center ms-auto">
 						<Nav.Item className="d-md-block px-2">

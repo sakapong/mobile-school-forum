@@ -19,6 +19,16 @@ import { FcAssistant } from 'react-icons/fc';
 
 import { useWeb3Context } from '@/common/context'
 
+const getShortenUsername = (account) => {
+	if(account.length > 12)
+	  return `${account.slice(0, 4)}....${account.slice(
+	    account.length - 5,
+	    account.length - 1
+	  )}`;
+	else
+		return account;
+};
+
 const PostCardComponent = ({ post }) => {
 	function rand(min, max) { // min and max included 
 		return Math.floor(Math.random() * (max - min + 1) + min)
@@ -142,7 +152,7 @@ const PostCardComponent = ({ post }) => {
 						<div className="lh-1">
 							<div className="d-flex align-items-center">
 								<CustomLink href={`/u/${post.user.user_name}`} className="text-decoration-none text-dark">
-									{post.user.user_name}
+									{getShortenUsername(post.user.user_name)}
 								</CustomLink>
 							</div>
 							<span className="text-muted small">{timeAgo(post.created_at)}</span>
@@ -194,6 +204,18 @@ const PostCardComponent = ({ post }) => {
 						{post.category.id == 2 && (
 							<Link href="#" passHref>
 								<Nav.Link className="btn btn-success text-white fw-bold ms-3"><span className=" d-sm-block">ทำต่อไป</span></Nav.Link>
+							</Link>
+						)}
+
+						{post.category.id == 3 && (
+							<Link href="#" passHref>
+								<Nav.Link className="btn btn-warning text-white fw-bold ms-3"><span className=" d-sm-block">สุดยอด</span></Nav.Link>
+							</Link>
+						)}
+
+						{post.category.id == 4 && (
+							<Link href="#" passHref>
+								<Nav.Link className="btn btn-danger text-white fw-bold ms-3"><span className=" d-sm-block">คารวะ</span></Nav.Link>
 							</Link>
 						)}
 
