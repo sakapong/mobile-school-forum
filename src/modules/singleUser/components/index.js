@@ -87,7 +87,7 @@ const SingleUserComponent = ({ singleUser, listPostUser }) => {
 							{user && singleUser.data?.user_name === user?.user_name && (
 								<div className="mt-2">
 									<CustomLink className="link-secondary" href={`/settings`}>
-										<button class="btn btn-success"><FaRegEdit size={18} /> แก้ไขโปรไฟล์</button>
+										<button className="btn btn-success"><FaRegEdit size={18} /> แก้ไขโปรไฟล์</button>
 									</CustomLink>
 								</div>
 							)}
