@@ -207,6 +207,9 @@ const NavBarComponent = () => {
 				<Link href={`/settings/`} passHref target="_blank">
 					<Dropdown.Item>แก้ไขโปรไฟล์</Dropdown.Item>
 				</Link>
+				<Link href={`/register/student/`} passHref target="_blank">
+					<Dropdown.Item>อัพเดทข้อมูลการศึกษา</Dropdown.Item>
+				</Link>
 
 				<Dropdown.Divider className="m-0" />
 				<Dropdown.Item onClick={onLogoutClick}>ออกจากระบบ</Dropdown.Item>

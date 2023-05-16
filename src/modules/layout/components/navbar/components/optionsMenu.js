@@ -12,11 +12,11 @@ const optionsMenu = [
 		name: 'แท็ค',
 		href: '/tags'
 	},
-	// {
-	// 	icon: <FcAbout className="h4 mb-0 me-1" />,
-	// 	name: 'About',
-	// 	href: '/'
-	// },
+	{
+		icon: <FcContacts className="h4 mb-0 me-1" />,
+		name: 'อัพเดทข้อมูลการศึกษา',
+		href: '/register/student'
+	},
 	// {
 	// 	icon: <FcFaq className="h4 mb-0 me-1" />,
 	// 	name: 'FAQ',
