@@ -1,7 +1,6 @@
 import { Form, Formik, useFormikContext } from 'formik';
 import { useRouter } from 'next/router';
 import React, { useState, useRef, useEffect } from 'react';
-import InputAddress from 'react-thailand-address-autocomplete'
 import * as Yup from 'yup';
 
 import InputForm from '@/common/components/InputForm/components';
