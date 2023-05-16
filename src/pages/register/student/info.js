@@ -8,7 +8,7 @@ const StudentInfo = ({ verifyUser }) => {
 
     return (
         <>
-            <MetaWebsite title="Thank you for Checkin" isNoneMeta />
+            <MetaWebsite title="ใบสมัครโรงเรียนมือถือ" isNoneMeta />
             <LayoutComponent>
                 <div className="container-xl py-4">
                     <div className="row">

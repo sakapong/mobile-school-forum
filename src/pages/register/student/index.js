@@ -8,7 +8,7 @@ const StudentRegisterOverview = ({ verifyUser }) => {
 
     return (
         <>
-            <MetaWebsite title="Thank you for Checkin" isNoneMeta />
+            <MetaWebsite title="ใบสมัครโรงเรียนมือถือ" isNoneMeta />
             <LayoutComponent>
                 <div className="container-xl py-4">
                     <div className="row">
@@ -18,32 +18,37 @@ const StudentRegisterOverview = ({ verifyUser }) => {
                                 <div className="d-grid gap-3 col-12 mx-auto">
                                     <CustomLink
                                         href={`/register/student/info`}
-                                        className={`btn btn-outline-secondary`}
+                                        className={`btn-list btn-outline-secondary`}
                                     >
+                                        <span className='btn-status done'></span>
                                         ข้อมูลนักเรียน
                                     </CustomLink>
                                     <CustomLink
                                         href={`/register/student/education`}
-                                        className={`btn btn-outline-secondary`}
+                                        className={`btn btn-list btn-outline-secondary`}
                                     >
+                                        <span className='btn-status done'></span>
                                         ข้อมูลการศึกษา
                                     </CustomLink>
                                     <CustomLink
                                         href={`/register/student/family`}
-                                        className={`btn btn-outline-secondary`}
+                                        className={`btn-list btn-outline-secondary`}
                                     >
+                                        <span className='btn-status'></span>
                                         ข้อมูลบิดา-มารดา
                                     </CustomLink>
                                     <CustomLink
                                         href={`/register/student/parent`}
-                                        className={`btn btn-outline-secondary`}
+                                        className={`btn-list btn-outline-secondary`}
                                     >
+                                        <span className='btn-status'></span>
                                         ข้อมูลผู้ปกครอง
                                     </CustomLink>
                                     {/* <CustomLink
                                         href={`/register/student/document`}
-                                        className={`btn btn-outline-secondary`}
+                                        className={`btn-list btn-outline-secondary`}
                                     >
+                                        <span className='btn-status'></span>
                                         หลักฐานการสมัคร
                                     </CustomLink> */}
                                 </div>

@@ -2,9 +2,9 @@ import React from 'react';
 
 import MetaWebsite from '@/common/meta/MetaWebsite';
 import LayoutComponent from '@/modules/layout/components';
-import StudentFamilyFormComponent from '@/modules/student/components/StudentFamilyForm';
+import StudentDocumentFormComponent from '@/modules/student/components/StudentDocumentForm';
 
-const StudentFamily = ({ verifyUser }) => {
+const StudentDocument = ({ verifyUser }) => {
 
     return (
         <>
@@ -13,7 +13,7 @@ const StudentFamily = ({ verifyUser }) => {
                 <div className="container-xl py-4">
                     <div className="row">
                         <div className="col-lg-4 col-md-8 mx-auto">
-                            <StudentFamilyFormComponent />
+                            <StudentDocumentFormComponent />
                         </div>
                     </div>
                 </div>
@@ -22,4 +22,4 @@ const StudentFamily = ({ verifyUser }) => {
     );
 };
 
-export default StudentFamily;
+export default StudentDocument;
