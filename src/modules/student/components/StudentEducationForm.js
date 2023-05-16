@@ -159,8 +159,8 @@ const StudentEducationFormComponent = () => {
                     </div>
 
                 </div>
-                <div className='bg-white rounded-16 shadow-sm p-4 mt-4'>
-                    <div className="d-grid gap-3 col-12 mx-auto">
+                <div className='bg-white fixed-bottom shadow-sm py-4 mt-4'>
+                    <div className="d-grid gap-3 col-lg-4 col-md-8 mx-auto px-4">
                         {isLoading ? (
                             <button ref={buttonRef} type="submit" className="btn btn-primary" disabled>
                                 <span className="spinner-grow spinner-grow-sm me-1" role="status" aria-hidden="true" />

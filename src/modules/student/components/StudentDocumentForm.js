@@ -71,34 +71,34 @@ const StudentDocumentFormComponent = () => {
         }
     };
 
-	const onChangeAvatar = (e, setFieldValue) => {
-		try {
-			console.log(e.target.files);
-			let file = e.target.files[0];
-			let reader = new FileReader();
-			if (file) {
-				reader.onloadend = () => {
-					setLoadImg(reader.result);
-				};
-				reader.readAsDataURL(file);
-				setFieldValue('image', file);
-				e.target.value = null;
-				showToast.info(`Load file success "${file.name}"`);
-			}
-		} catch (error) {
-			console.log(error);
-			showToast.error();
-		}
-	};
+    const onChangeAvatar = (e, setFieldValue) => {
+        try {
+            console.log(e.target.files);
+            let file = e.target.files[0];
+            let reader = new FileReader();
+            if (file) {
+                reader.onloadend = () => {
+                    setLoadImg(reader.result);
+                };
+                reader.readAsDataURL(file);
+                setFieldValue('image', file);
+                e.target.value = null;
+                showToast.info(`Load file success "${file.name}"`);
+            }
+        } catch (error) {
+            console.log(error);
+            showToast.error();
+        }
+    };
 
-	const onBlurAvatar = (e, setFieldTouched) => {
-		setFieldTouched('image', e.target.files[0] || null);
-	};
+    const onBlurAvatar = (e, setFieldTouched) => {
+        setFieldTouched('image', e.target.files[0] || null);
+    };
 
-	const onChangeRemoveImage = (setFieldValue) => {
-		setFieldValue('image', null);
-		setLoadImg(null);
-	};
+    const onChangeRemoveImage = (setFieldValue) => {
+        setFieldValue('image', null);
+        setLoadImg(null);
+    };
 
 
     return (<
@@ -116,10 +116,10 @@ const StudentDocumentFormComponent = () => {
                 <div className="bg-white rounded-16 shadow-sm p-4 mb-4">
                     <h3 className='fw-bold mb-3'>หลักฐานการสมัคร</h3>
                     <div className="mb-3 col-md-12">
+                    </div>
                 </div>
-                </div>
-                <div className='bg-white rounded-16 shadow-sm p-4 mt-4'>
-                    <div className="d-grid gap-3 col-12 mx-auto">
+                <div className='bg-white fixed-bottom shadow-sm py-4 mt-4'>
+                    <div className="d-grid gap-3 col-lg-4 col-md-8 mx-auto px-4">
                         {isLoading ? (
                             <button ref={buttonRef} type="submit" className="btn btn-primary" disabled>
                                 <span className="spinner-grow spinner-grow-sm me-1" role="status" aria-hidden="true" />

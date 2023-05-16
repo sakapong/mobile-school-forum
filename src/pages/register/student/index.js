@@ -44,21 +44,21 @@ const StudentRegisterOverview = ({ verifyUser }) => {
                                         <span className='btn-status'></span>
                                         ข้อมูลผู้ปกครอง
                                     </CustomLink>
-                                    {/* <CustomLink
+                                    <CustomLink
                                         href={`/register/student/document`}
                                         className={`btn-list btn-outline-secondary`}
                                     >
                                         <span className='btn-status'></span>
                                         หลักฐานการสมัคร
-                                    </CustomLink> */}
+                                    </CustomLink>
                                 </div>
                             </div>
-                            <div className='bg-white rounded-16 shadow-sm p-4 mt-4'>
-                                <div className="d-grid gap-3 col-12 mx-auto">
-                                    <button className="btn btn-primary">
-                                        ส่งข้อมูลใบสมัคร
-                                    </button>
-                                </div>
+                            <div className='bg-white fixed-bottom shadow-sm py-4 mt-4'>
+                                    <div className="d-grid gap-3 col-lg-4 col-md-8 mx-auto px-4">
+                                        <button className="btn btn-primary">
+                                            ส่งข้อมูลใบสมัคร
+                                        </button>
+                                    </div>
                             </div>
                         </div>
                     </div>
