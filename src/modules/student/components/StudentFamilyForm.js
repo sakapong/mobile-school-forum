@@ -4,8 +4,11 @@ import React, { useState, useRef, useEffect } from 'react';
 import * as Yup from 'yup';
 
 import InputForm from '@/common/components/InputForm/components';
+import CheckBoxForm from '@/common/components/CheckboxForm/components';
 import RadioForm from '@/common/components/RadioForm/components';
+import SelectForm from '@/common/components/SelectForm/components';
 import TextForm from '@/common/components/TextForm/components';
+
 import CustomLink from '@/common/components/CustomLink/components'
 import httpRequest from '@/common/utils/httpRequest';
 import { setCookie } from '@/common/utils/session';
@@ -20,17 +23,124 @@ const StudentFamilyFormComponent = () => {
     const router = useRouter();
     const [isLoading, setLoading] = useState(false);
     const [errors, setErrors] = useState({});
-    const [province, setProvince] = useState({
-        subdistrict: "", // tambon
-        district: "", // amphoe
-        province: "", // jangwat
-        zipcode: "", // postal code
-    });
 
     const formikRef = useRef();
     const buttonRef = useRef(null);
 
-
+    const sections = [
+        {
+            label: 'ข้อมูลบิดา',
+            fields: [
+                {
+                    name: 'father_first_name',
+                    label: 'ชื่อบิดา',
+                    required: false,
+                    type: 'text'
+                },
+                {
+                    name: 'father_last_name',
+                    label: 'นามสกุลบิดา',
+                    required: false,
+                    type: 'text'
+                },
+                {
+                    name: 'father_salary',
+                    label: 'รายได้ของบิดา (บาท/ต่อปี)',
+                    required: false,
+                    type: 'number'
+                },
+                {
+                    name: 'father_date_birth',
+                    label: 'วัน-เดือน-ปี เกิดบิดา',
+                    required: false,
+                    type: 'date'
+                },
+                {
+                    name: 'father_job',
+                    label: 'อาชีพของบิดา',
+                    required: false,
+                    type: 'text'
+                },
+                {
+                    name: 'father_id_number',
+                    label: 'เลขประจำตัวประชาชนบิดา',
+                    required: false,
+                    type: 'text'
+                }
+            ],
+        },
+        {
+            label: 'ข้อมูลมารดา',
+            fields: [
+                {
+                    name: 'mother_first_name',
+                    label: 'ชื่อมารดา',
+                    required: false,
+                    type: 'text'
+                },
+                {
+                    name: 'mother_last_name',
+                    label: 'นามสกุลมารดา',
+                    required: false,
+                    type: 'text'
+                },
+                {
+                    name: 'mother_salary',
+                    label: 'รายได้ของมารดา (บาท/ต่อปี)',
+                    required: false,
+                    type: 'number'
+                },
+                {
+                    name: 'mother_date_birth',
+                    label: 'วัน-เดือน-ปี เกิดมารดา',
+                    required: false,
+                    type: 'date'
+                },
+                {
+                    name: 'mother_job',
+                    label: 'อาชีพของมารดา',
+                    required: false,
+                    type: 'text'
+                },
+                {
+                    name: 'mother_id_number',
+                    label: 'เลขประจำตัวประชาชนมารดา',
+                    required: false,
+                    type: 'text'
+                }
+            ],
+        },
+        {
+            label: 'สถานภาพครอบครัว',
+            fields: [
+                {
+                    name: 'famity_status',
+                    label: 'สถานภาพบิดา-มารดา',
+                    required: false,
+                    type: 'select',
+                    options: [
+                        { label: 'อยู่ร่วมกัน', value: 'normal' },
+                        { label: 'หย่าร้าง', value: 'divorce' },
+                        { label: 'แยกกันอยู่', value: 'seperate' },
+                        { label: 'บิดาเสียชีวิต', value: 'father-die' },
+                        { label: 'มารดาเสียชีวิต', value: 'mother-die' },
+                    ],
+                },
+                {
+                    name: 'sibling',
+                    label: 'จำนวนพี่น้องร่วมบิดา-มารดาทั้งหมด',
+                    required: false,
+                    type: 'number'
+                },
+                {
+                    name: 'sibling_studying',
+                    label: 'กำลังศึกษาอยู่',
+                    required: false,
+                    type: 'number'
+                },
+            ],
+        },
+    ]
 
     const initialValues = {
         father_first_name: "",
@@ -90,184 +200,65 @@ const StudentFamilyFormComponent = () => {
                         ย้อนกลับ
                     </CustomLink>
                 </div>
-                <div className="bg-white rounded-16 shadow-sm p-4 mb-4">
-                    <h3 className='fw-bold mb-3'>ข้อมูลบิดา-มารดา</h3>
-                    <div>
-                        <h4 className='fw-bold mb-3'>ข้อมูลบิดา</h4>
-                        <div className="mb-3">
-                            <InputForm
-                                label="ชื่อบิดา"
-                                placeholder="ชื่อบิดา"
-                                id="father_first_name"
-                                name="father_first_name"
-                                type="text"
+                {sections.map((section, key) => (
+                    <div className="bg-white rounded-16 shadow-sm p-4 mb-4" key={key}>
+                        <h3 className='fw-bold mb-3'>{section.label}</h3>
+                        {section.fields.map((field, key) => (
+                            <div className="mb-3" key={key}>
+                                {field.type === 'checkbox' ? (
+                                    <>
+                                        <div>{field.label}</div>
+                                        <CheckBoxForm
+                                            label={field.label}
+                                            placeholder={field.label}
+                                            id={`form_${field.name}`}
+                                            name={field.name}
+                                            type="text"
 
-                                errors={errors.error?.message}
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <InputForm
-                                label="นามสกุลบิดา"
-                                placeholder="นามสกุลบิดา"
-                                id="father_last_name"
-                                name="father_last_name"
-                                type="text"
+                                            errors={errors.error?.message}
+                                        />
+                                    </>
+                                ) : field.type === 'select' ? (
+                                    <>
+                                        <SelectForm label={field.label} name={field.name}>
+                                            <option value="">ระบุ{field.label}</option>
+                                            {field.options.map((option) => (
+                                                <option value={option.value} key={option.value}>
+                                                    {option.label}
+                                                </option>
+                                            ))}
+                                        </SelectForm>
+                                    </>
+                                ) : field.type === 'radio' ? (
+                                    <>
+                                        <div>{field.label}</div>
+                                        {field.options.map((option) => (
+                                            <div key={option.value}>
+                                                <RadioForm
+                                                    label={option.label}
+                                                    id={`${field.name}_${option.value}`}
+                                                    name={field.name}
+                                                    value={option.value}
+                                                    errors={errors.error?.message}
+                                                />
+                                            </div>
+                                        ))}
+                                    </>
+                                ) : (
+                                    <InputForm
+                                        label={field.label}
+                                        placeholder={field.label}
+                                        id={`form_${field.name}`}
+                                        name={field.name}
+                                        type={field.type}
 
-                                errors={errors.error?.message}
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <InputForm
-                                label="รายได้ของบิดา (บาท/ต่อปี)"
-                                placeholder="รายได้ของบิดา (บาท/ต่อปี)"
-                                id="father_salary"
-                                name="father_salary"
-                                type="number"
-
-                                errors={errors.error?.message}
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <InputForm
-                                label="วัน-เดือน-ปี เกิดบิดา"
-                                placeholder="วัน-เดือน-ปี เกิดบิดา"
-                                id="father_date_birth"
-                                name="father_date_birth"
-                                type="date"
-
-                                errors={errors.error?.message}
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <InputForm
-                                label="อาชีพของบิดา"
-                                placeholder="อาชีพของบิดา"
-                                id="father_job"
-                                name="father_job"
-                                type="text"
-
-                                errors={errors.error?.message}
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <InputForm
-                                label="เลขประจำตัวประชาชนบิดา"
-                                placeholder="เลขประจำตัวประชาชนบิดา"
-                                id="father_id_number"
-                                name="father_id_number"
-                                type="text"
-
-                                errors={errors.error?.message}
-                            />
-                        </div>
+                                        errors={errors.error?.message}
+                                    />
+                                )}
+                            </div>
+                        ))}
                     </div>
-                    <div>
-                        <h4 className='fw-bold mb-3'>ข้อมูลมารดา</h4>
-                        <div className="mb-3">
-                            <InputForm
-                                label="ชื่อมารดา"
-                                placeholder="ชื่อมารดา"
-                                id="mother_first_name"
-                                name="mother_first_name"
-                                type="text"
-
-                                errors={errors.error?.message}
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <InputForm
-                                label="นามสกุลมารดา"
-                                placeholder="นามสกุลมารดา"
-                                id="mother_last_name"
-                                name="mother_last_name"
-                                type="text"
-
-                                errors={errors.error?.message}
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <InputForm
-                                label="รายได้ของมารดา (บาท/ต่อปี)"
-                                placeholder="รายได้ของมารดา (บาท/ต่อปี)"
-                                id="mother_salary"
-                                name="mother_salary"
-                                type="number"
-
-                                errors={errors.error?.message}
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <InputForm
-                                label="วัน-เดือน-ปี เกิดมารดา"
-                                placeholder="วัน-เดือน-ปี เกิดมารดา"
-                                id="mother_date_birth"
-                                name="mother_date_birth"
-                                type="date"
-
-                                errors={errors.error?.message}
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <InputForm
-                                label="อาชีพของมารดา"
-                                placeholder="อาชีพของมารดา"
-                                id="mother_job"
-                                name="mother_job"
-                                type="text"
-
-                                errors={errors.error?.message}
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <InputForm
-                                label="เลขประจำตัวประชาชนมารดา"
-                                placeholder="เลขประจำตัวประชาชนมารดา"
-                                id="mother_id_number"
-                                name="mother_id_number"
-                                type="text"
-
-                                errors={errors.error?.message}
-                            />
-                        </div>
-                    </div>
-                </div>
-
-                <div className="bg-white rounded-16 shadow-sm p-4">
-                    <div className="mb-3">
-                        <InputForm
-                            label="สถานภาพบิดา-มารดา"
-                            placeholder="สถานภาพบิดา-มารดา"
-                            id="famity_status"
-                            name="famity_status"
-                            type="text"
-
-                            errors={errors.error?.message}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <InputForm
-                            label="จำนวนพี่น้องร่วมบิดา-มารดาทั้งหมด"
-                            placeholder="จำนวนพี่น้องร่วมบิดา-มารดาทั้งหมด"
-                            id="sibling"
-                            name="sibling"
-                            type="text"
-
-                            errors={errors.error?.message}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <InputForm
-                            label="กำลังศึกษาอยู่"
-                            placeholder="กำลังศึกษาอยู่"
-                            id="sibling_studying"
-                            name="sibling_studying"
-                            type="number"
-
-                            errors={errors.error?.message}
-                        />
-                    </div>
-
-                </div>
+                ))}
                 <div className='bg-white fixed-bottom shadow-sm py-4 mt-4'>
                     <div className="d-grid gap-3 col-lg-4 col-md-8 mx-auto px-4">
                         {isLoading ? (

@@ -4,9 +4,12 @@ import React, { useState, useRef, useEffect } from 'react';
 import * as Yup from 'yup';
 
 import InputForm from '@/common/components/InputForm/components';
+import CheckBoxForm from '@/common/components/CheckboxForm/components';
 import RadioForm from '@/common/components/RadioForm/components';
-import CustomLink from '@/common/components/CustomLink/components'
+import SelectForm from '@/common/components/SelectForm/components';
 import TextForm from '@/common/components/TextForm/components';
+
+import CustomLink from '@/common/components/CustomLink/components'
 import httpRequest from '@/common/utils/httpRequest';
 import { setCookie } from '@/common/utils/session';
 import showToast from '@/common/utils/showToast';
@@ -20,17 +23,53 @@ const StudentEducationFormComponent = () => {
     const router = useRouter();
     const [isLoading, setLoading] = useState(false);
     const [errors, setErrors] = useState({});
-    const [province, setProvince] = useState({
-        subdistrict: "", // tambon
-        district: "", // amphoe
-        province: "", // jangwat
-        zipcode: "", // postal code
-    });
 
     const formikRef = useRef();
     const buttonRef = useRef(null);
 
-
+    const sections = [
+        {
+            label: 'ข้อมูลการศึกษา',
+            fields: [
+                {
+                    name: 'school_name',
+                    label: 'จากโรงเรียน',
+                    required: true,
+                    type: 'text'
+                },
+                {
+                    name: 'school_province',
+                    label: 'จังหวัด',
+                    required: true,
+                    type: 'text'
+                },
+                {
+                    name: 'school_district',
+                    label: 'อำเภอ',
+                    required: true,
+                    type: 'text'
+                },
+                {
+                    name: 'school_tumbol',
+                    label: 'ตำบล',
+                    required: true,
+                    type: 'text'
+                },
+                {
+                    name: 'school_type',
+                    label: 'สังกัด',
+                    required: true,
+                    type: 'radio',
+                    options: [
+                        { label: 'สพฐ', value: 'public' },
+                        { label: 'เอกชน', value: 'private' },
+                        { label: 'กทม.', value: 'bkk' },
+                        { label: 'อื่นๆ', value: 'other' },
+                    ],
+                }
+            ]
+        }
+    ]
 
     const initialValues = {
         school_name: "",
@@ -80,85 +119,65 @@ const StudentEducationFormComponent = () => {
                         ย้อนกลับ
                     </CustomLink>
                 </div>
-                <div className="bg-white rounded-16 shadow-sm p-4 mb-4">
-                    <h3 className='fw-bold mb-3'>ข้อมูลการศึกษา</h3>
-                    <div className="mb-3">
-                        <InputForm
-                            label="จากโรงเรียน"
-                            placeholder="จากโรงเรียน"
-                            id="school_name"
-                            name="school_name"
-                            type="text"
+                {sections.map((section, key) => (
+                    <div className="bg-white rounded-16 shadow-sm p-4 mb-4" key={key}>
+                        <h3 className='fw-bold mb-3'>{section.label}</h3>
+                        {section.fields.map((field, key) => (
+                            <div className="mb-3" key={key}>
+                                {field.type === 'checkbox' ? (
+                                    <>
+                                        <div>{field.label}</div>
+                                        <CheckBoxForm
+                                            label={field.label}
+                                            placeholder={field.label}
+                                            id={`form_${field.name}`}
+                                            name={field.name}
+                                            type="text"
 
-                            errors={errors.error?.message}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <InputForm
-                            label="จังหวัด"
-                            placeholder="จังหวัด"
-                            id="school_province"
-                            name="school_province"
-                            type="text"
+                                            errors={errors.error?.message}
+                                        />
+                                    </>
+                                ) : field.type === 'select' ? (
+                                    <>
+                                        <SelectForm label={field.label} name={field.name}>
+                                            <option value="">ระบุ{field.label}</option>
+                                            {field.options.map((option) => (
+                                                <option value={option.value} key={option.value}>
+                                                    {option.label}
+                                                </option>
+                                            ))}
+                                        </SelectForm>
+                                    </>
+                                ) : field.type === 'radio' ? (
+                                    <>
+                                        <div>{field.label}</div>
+                                        {field.options.map((option) => (
+                                            <div key={option.value}>
+                                                <RadioForm
+                                                    label={option.label}
+                                                    id={`${field.name}_${option.value}`}
+                                                    name={field.name}
+                                                    value={option.value}
+                                                    errors={errors.error?.message}
+                                                />
+                                            </div>
+                                        ))}
+                                    </>
+                                ) : (
+                                    <InputForm
+                                        label={field.label}
+                                        placeholder={field.label}
+                                        id={`form_${field.name}`}
+                                        name={field.name}
+                                        type={field.type}
 
-                            errors={errors.error?.message}
-                        />
+                                        errors={errors.error?.message}
+                                    />
+                                )}
+                            </div>
+                        ))}
                     </div>
-                    <div className="mb-3">
-                        <InputForm
-                            label="อำเภอ"
-                            placeholder="อำเภอ"
-                            id="school_district"
-                            name="school_district"
-                            type="text"
-
-                            errors={errors.error?.message}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <InputForm
-                            label="ตำบล"
-                            placeholder="ตำบล"
-                            id="school_tumbol"
-                            name="school_tumbol"
-                            type="text"
-
-                            errors={errors.error?.message}
-                        />
-                    </div>
-                    สังกัด
-                    <div className="mb-3">
-                        <RadioForm
-                            label="สพฐ"
-                            id="school_type_public"
-                            name="school_type"
-                            value="สพฐ"
-                            errors={errors.error?.message}
-                        />
-                        <RadioForm
-                            label="เอกชน"
-                            id="school_type_private"
-                            name="school_type"
-                            value="เอกชน"
-                            errors={errors.error?.message}
-                        />
-                        <RadioForm
-                            label="กทม"
-                            id="school_type_bkk"
-                            name="school_type"
-                            value="กทม"
-                            errors={errors.error?.message}
-                        />
-                        <RadioForm
-                            label="อื่นๆ"
-                            id="school_type_other"
-                            name="school_type"
-                            value="อื่นๆ"
-                            errors={errors.error?.message}
-                        />
-                    </div>
-
-                </div>
+                ))}
                 <div className='bg-white fixed-bottom shadow-sm py-4 mt-4'>
                     <div className="d-grid gap-3 col-lg-4 col-md-8 mx-auto px-4">
                         {isLoading ? (

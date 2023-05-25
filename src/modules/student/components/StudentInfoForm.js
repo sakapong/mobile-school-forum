@@ -5,7 +5,10 @@ import * as Yup from 'yup';
 
 import InputForm from '@/common/components/InputForm/components';
 import RadioForm from '@/common/components/RadioForm/components';
+import SelectForm from '@/common/components/SelectForm/components';
+import CheckBoxForm from '@/common/components/CheckboxForm/components';
 import TextForm from '@/common/components/TextForm/components';
+
 import CustomLink from '@/common/components/CustomLink/components'
 import httpRequest from '@/common/utils/httpRequest';
 import { setCookie } from '@/common/utils/session';
@@ -20,17 +23,128 @@ const StudentInfoFormComponent = () => {
     const router = useRouter();
     const [isLoading, setLoading] = useState(false);
     const [errors, setErrors] = useState({});
-    const [province, setProvince] = useState({
-        subdistrict: "", // tambon
-        district: "", // amphoe
-        province: "", // jangwat
-        zipcode: "", // postal code
-    });
 
     const formikRef = useRef();
     const buttonRef = useRef(null);
 
-
+    const sections = [
+        {
+            label: 'ข้อมูลนักเรียน',
+            fields : [
+                {
+                    name: 'id_number',
+                    label: 'เลขประจำตัวประชาชน',
+                    required: true,
+                    type: 'text'
+                },
+                {
+                    name: 'race',
+                    label: 'เชื้อชาติ',
+                    required: true,
+                    type: 'text'
+                },
+                {
+                    name: 'nationality',
+                    label: 'สัญชาติ',
+                    required: true,
+                    type: 'number'
+                },
+                {
+                    name: 'religion',
+                    label: 'ศาสนา',
+                    required: true,
+                    type: 'text'
+                },
+                {
+                    name: 'dathOfBirth',
+                    label: 'วัน-เดือน-ปี เกิด',
+                    required: true,
+                    type: 'date'
+                },
+                {
+                    name: 'weight',
+                    label: 'น้ำหนัก',
+                    required: true,
+                    type: 'number'
+                },
+                {
+                    name: 'height',
+                    label: 'ส่วนสูง',
+                    required: true,
+                    type: 'number'
+                },
+                {
+                    name: 'blood_type',
+                    label: 'หมู่เลือด',
+                    required: true,
+                    type: 'text'
+                },
+                {
+                    name: 'disability',
+                    label: 'ความพิการ',
+                    required: true,
+                    type: 'radio',
+                    options : [
+                        {label: 'ไม่พิการ', name: 'false'},
+                        {label: 'พิการ', name: 'true'}
+                    ]
+                },
+                {
+                    name: 'disability_description',
+                    label: 'กรณีพิการ โปรดระบุความพิการ',
+                    required: false,
+                    type: 'text'
+                }
+            ]
+        },
+        {
+            label: 'ที่อยู่นักเรียน',
+            fields : [
+                {
+                    name: 'housing_code',
+                    label: 'รหัสประจำบ้าน',
+                    required: true,
+                    type: 'text'
+                },
+                {
+                    name: 'housing_no',
+                    label: 'เลขที่',
+                    required: true,
+                    type: 'text'
+                },
+                {
+                    name: 'housing_moo',
+                    label: 'หมู่ที่',
+                    required: true,
+                    type: 'text'
+                },
+                {
+                    name: 'housing_road',
+                    label: 'ถนน',
+                    required: true,
+                    type: 'text'
+                },
+                {
+                    name: 'housing_province',
+                    label: 'จังหวัด',
+                    required: true,
+                    type: 'text'
+                },
+                {
+                    name: 'housing_district',
+                    label: 'อำเภอ',
+                    required: true,
+                    type: 'text'
+                },
+                {
+                    name: 'housing_tumbol',
+                    label: 'ตำบล',
+                    required: true,
+                    type: 'text'
+                },
+            ]
+        },
+    ]
 
     const initialValues = {
         id_number: "",
@@ -91,203 +205,66 @@ const StudentInfoFormComponent = () => {
                         ย้อนกลับ
                     </CustomLink>
                 </div>
-                <div className="bg-white rounded-16 shadow-sm p-4 mb-4">
-                    <h3 className='fw-bold mb-3'>ข้อมูลนักเรียน</h3>
-                    <div className="mb-3">
-                        <InputForm
-                            label="เลขประจำตัวประชาชน"
-                            placeholder="เลขประจำตัวประชาชน"
-                            id="id_number"
-                            name="id_number"
-                            type="text"
+                {sections.map((section, key) => (
+                    <div className="bg-white rounded-16 shadow-sm p-4 mb-4" key={key}>
+                        <h3 className='fw-bold mb-3'>{section.label}</h3>
+                        {section.fields.map((field, key) => (
+                            <div className="mb-3" key={key}>
+                                {field.type === 'checkbox' ? (
+                                    <>
+                                        <div>{field.label}</div>
+                                        <CheckBoxForm
+                                            label={field.label}
+                                            placeholder={field.label}
+                                            id={`form_${field.name}`}
+                                            name={field.name}
+                                            type="text"
 
-                            errors={errors.error?.message}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <InputForm
-                            label="เชื้อชาติ"
-                            placeholder="เชื้อชาติ"
-                            id="race"
-                            name="race"
-                            type="text"
+                                            errors={errors.error?.message}
+                                        />
+                                    </>
+                                ) : field.type === 'select' ? (
+                                    <>
+                                        <SelectForm label={field.label} name={field.name}>
+                                            <option value="">ระบุ{field.label}</option>
+                                            {field.options.map((option) => (
+                                                <option value={option.value} key={option.value}>
+                                                    {option.label}
+                                                </option>
+                                            ))}
+                                        </SelectForm>
+                                    </>
+                                ) : field.type === 'radio' ? (
+                                    <>
+                                        <div>{field.label}</div>
+                                        {field.options.map((option) => (
+                                            <div key={option.value}>
+                                                <RadioForm
+                                                    label={option.label}
+                                                    id={`${field.name}_${option.value}`}
+                                                    name={field.name}
+                                                    value={option.value}
+                                                    errors={errors.error?.message}
+                                                />
+                                            </div>
+                                        ))}
+                                    </>
+                                ) : (
+                                    <InputForm
+                                        label={field.label}
+                                        placeholder={field.label}
+                                        id={`form_${field.name}`}
+                                        name={field.name}
+                                        type={field.type}
 
-                            errors={errors.error?.message}
-                        />
+                                        errors={errors.error?.message}
+                                    />
+                                )}
+                            </div>
+                        ))}
                     </div>
-                    <div className="mb-3">
-                        <InputForm
-                            label="สัญชาติ"
-                            placeholder="สัญชาติ"
-                            id="nationality"
-                            name="nationality"
-                            type="text"
+                ))}
 
-                            errors={errors.error?.message}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <InputForm
-                            label="ศาสนา"
-                            placeholder="ศาสนา"
-                            id="religion"
-                            name="religion"
-                            type="text"
-
-                            errors={errors.error?.message}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <InputForm
-                            label="วัน-เดือน-ปี เกิด"
-                            placeholder="วัน-เดือน-ปี เกิด"
-                            id="dathOfBirth"
-                            name="dathOfBirth"
-                            type="date"
-
-                            errors={errors.error?.message}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <InputForm
-                            label="น้ำหนัก"
-                            placeholder="น้ำหนัก"
-                            id="weight"
-                            name="weight"
-                            type="number"
-
-                            errors={errors.error?.message}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <InputForm
-                            label="ส่วนสูง"
-                            placeholder="ส่วนสูง"
-                            id="height"
-                            name="height"
-                            type="number"
-
-                            errors={errors.error?.message}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <InputForm
-                            label="หมู่เลือด"
-                            placeholder="หมู่เลือด"
-                            id="blood_type"
-                            name="blood_type"
-                            type="text"
-
-                            errors={errors.error?.message}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <RadioForm
-                            label="ไม่พิการ"
-                            id="disability_true"
-                            name="disability"
-                            value="false"
-                            errors={errors.error?.message}
-                        />
-                        <RadioForm
-                            label="พิการ"
-                            id="disability_false"
-                            name="disability"
-                            value="true"
-                            errors={errors.error?.message}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <TextForm
-                            rows={5}
-                            placeholder="กรณีพิการ โปรดระบุความพิการ"
-                            id="disability_description"
-                            name="disability_description"
-                            disabled={isLoading ? true : false}
-                        />
-                    </div>
-                </div>
-                <div className="bg-white rounded-16 shadow-sm p-4">
-                    <h3 className='fw-bold mb-3'>ที่อยู่นักเรียน</h3>
-                    <div className="mb-3">
-                        <InputForm
-                            label="รหัสประจำบ้าน"
-                            placeholder="รหัสประจำบ้าน"
-                            id="housing_code"
-                            name="housing_code"
-                            type="text"
-
-                            errors={errors.error?.message}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <InputForm
-                            label="เลขที่"
-                            placeholder="เลขที่"
-                            id="housing_no"
-                            name="housing_no"
-                            type="text"
-
-                            errors={errors.error?.message}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <InputForm
-                            label="หมู่ที่"
-                            placeholder="หมู่ที่"
-                            id="housing_moo"
-                            name="housing_moo"
-                            type="text"
-
-                            errors={errors.error?.message}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <InputForm
-                            label="ถนน"
-                            placeholder="ถนน"
-                            id="housing_road"
-                            name="housing_road"
-                            type="text"
-
-                            errors={errors.error?.message}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <InputForm
-                            label="จังหวัด"
-                            placeholder="จังหวัด"
-                            id="housing_province"
-                            name="housing_province"
-                            type="text"
-
-                            errors={errors.error?.message}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <InputForm
-                            label="อำเภอ"
-                            placeholder="อำเภอ"
-                            id="housing_district"
-                            name="housing_district"
-                            type="text"
-
-                            errors={errors.error?.message}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <InputForm
-                            label="ตำบล"
-                            placeholder="ตำบล"
-                            id="housing_tumbol"
-                            name="housing_tumbol"
-                            type="text"
-
-                            errors={errors.error?.message}
-                        />
-                    </div>
-
-                </div>
                 <div className='bg-white fixed-bottom shadow-sm py-4 mt-4'>
                     <div className="d-grid gap-3 col-lg-4 col-md-8 mx-auto px-4">
                         {isLoading ? (
