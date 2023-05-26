@@ -112,14 +112,21 @@ const StudentParentFormComponent = () => {
 
     const onSubmit = async (values) => {
         try {
-            const user = {
-                user_name: values.user_name,
-                password: values.password
+            const student = {
+                student_under: values.student_under,
+                parent_first_name: values.parent_first_name,
+                parent_last_name: values.parent_last_name,
+                parent_relation: values.parent_relation,
+                parent_telephone: values.parent_telephone,
+                parent_date_birth: values.parent_date_birth,
+                parent_id_number: values.parent_id_number,
+                parent_job: values.parent_job,
+                parent_salary: values.parent_salary,
             };
             setLoading(true);
             const response = await httpRequest.post({
                 url: `/users/login`,
-                data: user
+                data: student
             });
             if (response.data.success) {
                 // showToast.success('Login success');
@@ -172,7 +179,7 @@ const StudentParentFormComponent = () => {
                                         <SelectForm label={field.label} name={field.name}>
                                             <option value="">ระบุ{field.label}</option>
                                             {field.options.map((option) => (
-                                                <option value={option.value} key={option.value}>
+                                                <option value={option.name} key={option.name}>
                                                     {option.label}
                                                 </option>
                                             ))}
@@ -182,12 +189,12 @@ const StudentParentFormComponent = () => {
                                     <>
                                         <div>{field.label}</div>
                                         {field.options.map((option) => (
-                                            <div key={option.value}>
+                                            <div key={option.name}>
                                                 <RadioForm
                                                     label={option.label}
-                                                    id={`${field.name}_${option.value}`}
+                                                    id={`${field.name}_${option.name}`}
                                                     name={field.name}
-                                                    value={option.value}
+                                                    value={option.name}
                                                     errors={errors.error?.message}
                                                 />
                                             </div>

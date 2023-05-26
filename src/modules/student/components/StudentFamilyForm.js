@@ -164,14 +164,27 @@ const StudentFamilyFormComponent = () => {
 
     const onSubmit = async (values) => {
         try {
-            const user = {
-                user_name: values.user_name,
-                password: values.password
+            const student = {
+                father_first_name: values.father_first_name,
+                father_last_name: values.father_last_name,
+                father_salary: values.father_salary,
+                father_date_birth: values.father_date_birth,
+                father_job: values.father_job,
+                father_id_number: values.father_id_number,
+                mother_first_name: values.mother_first_name,
+                mother_last_name: values.mother_last_name,
+                mother_salary: values.mother_salary,
+                mother_date_birth: values.mother_date_birth,
+                mother_job: values.mother_job,
+                mother_id_number: values.mother_id_number,
+                famity_status: values,famity_status,
+                sibling: values.sibling,
+                sibling_studying: values.sibling_studying
             };
             setLoading(true);
             const response = await httpRequest.post({
                 url: `/users/login`,
-                data: user
+                data: student
             });
             if (response.data.success) {
                 // showToast.success('Login success');
@@ -223,7 +236,7 @@ const StudentFamilyFormComponent = () => {
                                         <SelectForm label={field.label} name={field.name}>
                                             <option value="">ระบุ{field.label}</option>
                                             {field.options.map((option) => (
-                                                <option value={option.value} key={option.value}>
+                                                <option value={option.name} key={option.name}>
                                                     {option.label}
                                                 </option>
                                             ))}
@@ -233,12 +246,12 @@ const StudentFamilyFormComponent = () => {
                                     <>
                                         <div>{field.label}</div>
                                         {field.options.map((option) => (
-                                            <div key={option.value}>
+                                            <div key={option.name}>
                                                 <RadioForm
                                                     label={option.label}
-                                                    id={`${field.name}_${option.value}`}
+                                                    id={`${field.name}_${option.name}`}
                                                     name={field.name}
-                                                    value={option.value}
+                                                    value={option.name}
                                                     errors={errors.error?.message}
                                                 />
                                             </div>

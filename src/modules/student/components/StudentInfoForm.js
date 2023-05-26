@@ -169,14 +169,29 @@ const StudentInfoFormComponent = () => {
 
     const onSubmit = async (values) => {
         try {
-            const user = {
-                user_name: values.user_name,
-                password: values.password
+            const student = {
+                id_number: values.id_number,
+                race: values.race,
+                nationality: values.nationality,
+                religion: values.religion,
+                dathOfBirth: values.dathOfBirth,
+                weight: values.weight,
+                height: values.height,
+                blood_type: values.blood_type,
+                disability: values.disability,
+                disability_description: values.disability_description,
+                housing_code: values.housing_code,
+                housing_no: values.housing_no,
+                housing_moo: values.housing_moo,
+                housing_road: values.housing_road,
+                housing_province: values.housing_province,
+                housing_district: values.housing_district,
+                housing_tumbol: values.housing_tumbol,
             };
             setLoading(true);
             const response = await httpRequest.post({
                 url: `/users/login`,
-                data: user
+                data: student
             });
             if (response.data.success) {
                 // showToast.success('Login success');
@@ -228,7 +243,7 @@ const StudentInfoFormComponent = () => {
                                         <SelectForm label={field.label} name={field.name}>
                                             <option value="">ระบุ{field.label}</option>
                                             {field.options.map((option) => (
-                                                <option value={option.value} key={option.value}>
+                                                <option value={option.name} key={option.name}>
                                                     {option.label}
                                                 </option>
                                             ))}
@@ -238,12 +253,12 @@ const StudentInfoFormComponent = () => {
                                     <>
                                         <div>{field.label}</div>
                                         {field.options.map((option) => (
-                                            <div key={option.value}>
+                                            <div key={option.name}>
                                                 <RadioForm
                                                     label={option.label}
-                                                    id={`${field.name}_${option.value}`}
+                                                    id={`${field.name}_${option.name}`}
                                                     name={field.name}
-                                                    value={option.value}
+                                                    value={option.name}
                                                     errors={errors.error?.message}
                                                 />
                                             </div>

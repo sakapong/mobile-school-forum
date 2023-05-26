@@ -83,14 +83,17 @@ const StudentEducationFormComponent = () => {
 
     const onSubmit = async (values) => {
         try {
-            const user = {
-                user_name: values.user_name,
-                password: values.password
+            const student = {
+                school_name: values.school_name,
+                school_province: values.school_province,
+                school_district: values.school_district,
+                school_tumbol: values.school_tumbol,
+                school_type: values.school_type
             };
             setLoading(true);
             const response = await httpRequest.post({
                 url: `/users/login`,
-                data: user
+                data: student
             });
             if (response.data.success) {
                 // showToast.success('Login success');
@@ -142,7 +145,7 @@ const StudentEducationFormComponent = () => {
                                         <SelectForm label={field.label} name={field.name}>
                                             <option value="">ระบุ{field.label}</option>
                                             {field.options.map((option) => (
-                                                <option value={option.value} key={option.value}>
+                                                <option value={option.name} key={option.name}>
                                                     {option.label}
                                                 </option>
                                             ))}
@@ -152,12 +155,12 @@ const StudentEducationFormComponent = () => {
                                     <>
                                         <div>{field.label}</div>
                                         {field.options.map((option) => (
-                                            <div key={option.value}>
+                                            <div key={option.name}>
                                                 <RadioForm
                                                     label={option.label}
-                                                    id={`${field.name}_${option.value}`}
+                                                    id={`${field.name}_${option.name}`}
                                                     name={field.name}
-                                                    value={option.value}
+                                                    value={option.name}
                                                     errors={errors.error?.message}
                                                 />
                                             </div>
