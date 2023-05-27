@@ -40,43 +40,7 @@ const StudentDocumentFormComponent = () => {
         { name: 'housing_mother', label: 'สำเนาทะเบียนบ้านของมารดา', required: false },
     ]
 
-    const initialValues = {
-        id_card_student: "",
-        housing_student: "",
-        transcript: "",
-        photograph: "",
-        id_card_father: "",
-        housing_father: "",
-        id_card_mother: "",
-        housing_mother: "",
-    };
 
-
-
-    const onSubmit = async (values) => {
-        try {
-            const user = {
-                user_name: values.user_name,
-                password: values.password
-            };
-            setLoading(true);
-            const response = await httpRequest.post({
-                url: `/users/login`,
-                data: user
-            });
-            if (response.data.success) {
-                // showToast.success('Login success');
-                router.push(`/register/student`);
-            }
-        } catch (error) {
-            showToast.error('Login error');
-            if (!error.response.data.success) {
-                setErrors(error.response.data);
-            }
-        } finally {
-            setLoading(false);
-        }
-    };
 
     const onChangeAvatar = (e, setFieldValue) => {
         try {
@@ -110,57 +74,51 @@ const StudentDocumentFormComponent = () => {
 
     return (<
         >
-        <Formik innerRef={formikRef} initialValues={initialValues} onSubmit={onSubmit}>
-            {({ setFieldValue, setFieldTouched, errors: error, touched }) => (
-                <Form>
-                    <div>
-                        <CustomLink
-                            href={`/register/student/`}
-                            className={`btn btn-link`}
-                        >
-                            ย้อนกลับ
-                        </CustomLink>
-                    </div>
-                    <div className="bg-white rounded-16 shadow-sm p-4 mb-4">
-                        <h3 className='fw-bold mb-3'>หลักฐานการสมัคร</h3>
-                        <div className="mb-3 col-md-12">
-                            {fields.map((field, key) => (
-                                <FileUploadForm
-                                    key={key}
-                                    label={field.label}
-                                    id={`id_${field.name}`}
-                                    name={field.name}
-                                    type="file"
-                                    accept=".png, .jpg, .jpeg, .pdf"
-                                    onChange={(e) => onChangeAvatar(e, setFieldValue)}
-                                    onBlur={(e) => onBlurAvatar(e, setFieldTouched)}
-                                    error={error.image}
-                                    touched={touched.image}
-                                    imageSrc={loadImg}
-                                    imagAlt={`Image`}
-                                    removeImage={() => onChangeRemoveImage(setFieldValue)}
-                                />
-                            ))}
-                        </div>
-                    </div>
-                    <div className='bg-white fixed-bottom shadow-sm py-4 mt-4'>
-                        <div className="d-grid gap-3 col-lg-4 col-md-8 mx-auto px-4">
-                            {isLoading ? (
-                                <button ref={buttonRef} type="submit" className="btn btn-primary" disabled>
-                                    <span className="spinner-grow spinner-grow-sm me-1" role="status" aria-hidden="true" />
-                                    บันทึกข้อมูล
-                                </button>
-                            ) : (
-                                <button ref={buttonRef} type="submit" className="btn btn-primary">
-                                    บันทึกข้อมูล
-                                </button>
-                            )}
+        <div>
+            <CustomLink
+                href={`/register/student/`}
+                className={`btn btn-link`}
+            >
+                ย้อนกลับ
+            </CustomLink>
+        </div>
+        <div className="bg-white rounded-16 shadow-sm p-4 mb-4">
+            <h3 className='fw-bold mb-3'>หลักฐานการสมัคร</h3>
+            <div className="mb-3 col-md-12">
+                {fields.map((field, key) => (
+                    <FileUploadForm
+                        key={key}
+                        label={field.label}
+                        id={`id_${field.name}`}
+                        name={field.name}
+                        type="file"
+                        accept=".png, .jpg, .jpeg, .pdf"
+                        onChange={(e) => onChangeAvatar(e, setFieldValue)}
+                        onBlur={(e) => onBlurAvatar(e, setFieldTouched)}
+                        error={error.image}
+                        touched={touched.image}
+                        imageSrc={loadImg}
+                        imagAlt={`Image`}
+                        removeImage={() => onChangeRemoveImage(setFieldValue)}
+                    />
+                ))}
+            </div>
+        </div>
+        <div className='bg-white fixed-bottom shadow-sm py-4 mt-4'>
+            <div className="d-grid gap-3 col-lg-4 col-md-8 mx-auto px-4">
+                {isLoading ? (
+                    <button ref={buttonRef} type="submit" className="btn btn-primary" disabled>
+                        <span className="spinner-grow spinner-grow-sm me-1" role="status" aria-hidden="true" />
+                        บันทึกข้อมูล
+                    </button>
+                ) : (
+                    <button ref={buttonRef} type="submit" className="btn btn-primary">
+                        บันทึกข้อมูล
+                    </button>
+                )}
 
-                        </div>
-                    </div>
-                </Form>
-            )}
-        </Formik>
+            </div>
+        </div>
     </>
     );
 };

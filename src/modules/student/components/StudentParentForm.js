@@ -91,62 +91,9 @@ const StudentParentFormComponent = () => {
     const buttonRef = useRef(null);
 
 
-
-    const initialValues = {
-        student_under: "",
-        parent_first_name: "",
-        parent_last_name: "",
-        parent_relation: "",
-        parent_telephone: "",
-        parent_date_birth: "",
-        parent_id_number: "",
-        parent_job: "",
-        parent_salary: 0,
-    };
-
-
-
-    const onSubmit = async (values) => {
-        try {
-            const student = {
-                student_under: values.student_under,
-                parent_first_name: values.parent_first_name,
-                parent_last_name: values.parent_last_name,
-                parent_relation: values.parent_relation,
-                parent_telephone: values.parent_telephone,
-                parent_date_birth: values.parent_date_birth,
-                parent_id_number: values.parent_id_number,
-                parent_job: values.parent_job,
-                parent_salary: values.parent_salary,
-            };
-            setLoading(true);
-            const response = await httpRequest.post({
-                url: `/users/login`,
-                data: student
-            });
-            if (response.data.success) {
-                // showToast.success('Login success');
-                setCookie('token', response.data.data.access_token);
-                router.push(`/register/student`);
-            }
-        } catch (error) {
-            showToast.error('Login error');
-            if (!error.response.data.success) {
-                setErrors(error.response.data);
-            }
-        } finally {
-            setLoading(false);
-        }
-    };
-
-
     return (<
         >
-        <Formik innerRef={formikRef} initialValues={initialValues} onSubmit={onSubmit}>
-            <Form>
-                <StudentFormBase sections={sections} errors={errors} isLoading={isLoading} buttonRef={buttonRef}/>
-            </Form>
-        </Formik>
+        <StudentFormBase sections={sections} errors={errors} isLoading={isLoading} buttonRef={buttonRef}/>
     </>
     );
 };

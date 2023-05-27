@@ -67,52 +67,10 @@ const StudentEducationFormComponent = () => {
         }
     ]
 
-    const initialValues = {
-        school_name: "",
-        school_province: "",
-        school_district: "",
-        school_tumbol: "",
-        school_type: ""
-    };
-
-
-
-    const onSubmit = async (values) => {
-        try {
-            const student = {
-                school_name: values.school_name,
-                school_province: values.school_province,
-                school_district: values.school_district,
-                school_tumbol: values.school_tumbol,
-                school_type: values.school_type
-            };
-            setLoading(true);
-            const response = await httpRequest.post({
-                url: `/users/login`,
-                data: student
-            });
-            if (response.data.success) {
-                // showToast.success('Login success');
-                router.push(`/register/student`);
-            }
-        } catch (error) {
-            showToast.error('Login error');
-            if (!error.response.data.success) {
-                setErrors(error.response.data);
-            }
-        } finally {
-            setLoading(false);
-        }
-    };
-
 
     return (<
         >
-        <Formik innerRef={formikRef} initialValues={initialValues} onSubmit={onSubmit}>
-            <Form>
-                <StudentFormBase sections={sections} errors={errors} isLoading={isLoading} buttonRef={buttonRef}/>
-            </Form>
-        </Formik>
+        <StudentFormBase sections={sections} errors={errors} isLoading={isLoading} buttonRef={buttonRef} />
     </>
     );
 };

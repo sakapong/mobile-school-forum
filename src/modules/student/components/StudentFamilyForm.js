@@ -138,72 +138,10 @@ const StudentFamilyFormComponent = () => {
         },
     ]
 
-    const initialValues = {
-        father_first_name: "",
-        father_last_name: "",
-        father_salary: 0,
-        father_date_birth: "",
-        father_job: "",
-        father_id_number: "",
-        mother_first_name: "",
-        mother_last_name: "",
-        mother_salary: 0,
-        mother_date_birth: "",
-        mother_job: "",
-        mother_id_number: "",
-        famity_status: "",
-        sibling: 0,
-        sibling_studying: 0
-    };
-
-
-
-    const onSubmit = async (values) => {
-        try {
-            const student = {
-                father_first_name: values.father_first_name,
-                father_last_name: values.father_last_name,
-                father_salary: values.father_salary,
-                father_date_birth: values.father_date_birth,
-                father_job: values.father_job,
-                father_id_number: values.father_id_number,
-                mother_first_name: values.mother_first_name,
-                mother_last_name: values.mother_last_name,
-                mother_salary: values.mother_salary,
-                mother_date_birth: values.mother_date_birth,
-                mother_job: values.mother_job,
-                mother_id_number: values.mother_id_number,
-                famity_status: values,famity_status,
-                sibling: values.sibling,
-                sibling_studying: values.sibling_studying
-            };
-            setLoading(true);
-            const response = await httpRequest.post({
-                url: `/users/login`,
-                data: student
-            });
-            if (response.data.success) {
-                // showToast.success('Login success');
-                router.push(`/register/student`);
-            }
-        } catch (error) {
-            showToast.error('Login error');
-            if (!error.response.data.success) {
-                setErrors(error.response.data);
-            }
-        } finally {
-            setLoading(false);
-        }
-    };
-
 
     return (<
         >
-        <Formik innerRef={formikRef} initialValues={initialValues} onSubmit={onSubmit}>
-            <Form>
-                <StudentFormBase sections={sections} errors={errors} isLoading={isLoading} buttonRef={buttonRef}/>
-            </Form>
-        </Formik>
+        <StudentFormBase sections={sections} errors={errors} isLoading={isLoading} buttonRef={buttonRef} />
     </>
     );
 };

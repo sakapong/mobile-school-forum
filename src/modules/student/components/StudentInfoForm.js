@@ -26,7 +26,7 @@ const StudentInfoFormComponent = () => {
     const sections = [
         {
             label: 'ข้อมูลนักเรียน',
-            fields : [
+            fields: [
                 {
                     name: 'id_number',
                     label: 'เลขประจำตัวประชาชน',
@@ -81,8 +81,8 @@ const StudentInfoFormComponent = () => {
                     required: true,
                     type: 'radio',
                     options: [
-                        {label: 'ไม่พิการ', name: 'false'},
-                        {label: 'พิการ', name: 'true'}
+                        { label: 'ไม่พิการ', name: 'false' },
+                        { label: 'พิการ', name: 'true' }
                     ]
                 },
                 {
@@ -95,7 +95,7 @@ const StudentInfoFormComponent = () => {
         },
         {
             label: 'ที่อยู่นักเรียน',
-            fields : [
+            fields: [
                 {
                     name: 'housing_code',
                     label: 'รหัสประจำบ้าน',
@@ -142,75 +142,9 @@ const StudentInfoFormComponent = () => {
         },
     ]
 
-    const initialValues = {
-        id_number: "",
-        race: "",
-        nationality: "",
-        religion: "",
-        dathOfBirth: "",
-        weight: 0,
-        height: 0,
-        blood_type: "",
-        disability: false,
-        disability_description: "",
-        housing_code: "",
-        housing_no: "",
-        housing_moo: "",
-        housing_road: "",
-        housing_province: "",
-        housing_district: "",
-        housing_tumbol: "",
-    };
-
-
-    const onSubmit = async (values) => {
-        try {
-            const student = {
-                id_number: values.id_number,
-                race: values.race,
-                nationality: values.nationality,
-                religion: values.religion,
-                dathOfBirth: values.dathOfBirth,
-                weight: values.weight,
-                height: values.height,
-                blood_type: values.blood_type,
-                disability: values.disability,
-                disability_description: values.disability_description,
-                housing_code: values.housing_code,
-                housing_no: values.housing_no,
-                housing_moo: values.housing_moo,
-                housing_road: values.housing_road,
-                housing_province: values.housing_province,
-                housing_district: values.housing_district,
-                housing_tumbol: values.housing_tumbol,
-            };
-            setLoading(true);
-            const response = await httpRequest.post({
-                url: `/users/login`,
-                data: student
-            });
-            if (response.data.success) {
-                // showToast.success('Login success');
-                router.push(`/register/student`);
-            }
-        } catch (error) {
-            showToast.error('Login error');
-            if (!error.response.data.success) {
-                setErrors(error.response.data);
-            }
-        } finally {
-            setLoading(false);
-        }
-    };
-
-
     return (<
         >
-        <Formik innerRef={formikRef} initialValues={initialValues} onSubmit={onSubmit}>
-            <Form>
-                <StudentFormBase sections={sections} errors={errors} isLoading={isLoading} buttonRef={buttonRef}/>
-            </Form>
-        </Formik>
+        <StudentFormBase sections={sections} errors={errors} isLoading={isLoading} buttonRef={buttonRef} />
     </>
     );
 };

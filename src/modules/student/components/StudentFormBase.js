@@ -17,16 +17,20 @@ import showToast from '@/common/utils/showToast';
 import { useSession, signIn, signOut } from "next-auth/react"
 
 const StudentFormBaseComponent = ({ sections, errors, isLoading, buttonRef }) => {
-
-
+    const router = useRouter();
+    
+    function saveStepForm() {
+        // Change step view
+        router.push(`/register/student/`)
+    }
     return (<>
         <div>
-            <CustomLink
-                href={`/register/student/`}
+            <button
+                onClick={() => saveStepForm()}
                 className={`btn btn-link`}
             >
                 ย้อนกลับ
-            </CustomLink>
+            </button>
         </div>
         {sections.map((section, key) => (
             <div className="bg-white rounded-16 shadow-sm p-4 mb-4" key={key}>
