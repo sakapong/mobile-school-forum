@@ -5,14 +5,10 @@ import * as Yup from 'yup';
 
 import StudentFormBase from './StudentFormBase';
 
-import CustomLink from '@/common/components/CustomLink/components'
-import httpRequest from '@/common/utils/httpRequest';
-import { setCookie } from '@/common/utils/session';
-import showToast from '@/common/utils/showToast';
 
 import { useSession, signIn, signOut } from "next-auth/react"
 
-const StudentEducationFormComponent = () => {
+const StudentEducationFormComponent = ({setCurrentStep}) => {
 
     const { data: session } = useSession()
 
@@ -70,7 +66,7 @@ const StudentEducationFormComponent = () => {
 
     return (<
         >
-        <StudentFormBase sections={sections} errors={errors} isLoading={isLoading} buttonRef={buttonRef} />
+        <StudentFormBase sections={sections} errors={errors} isLoading={isLoading} buttonRef={buttonRef} setCurrentStep={setCurrentStep}/>
     </>
     );
 };

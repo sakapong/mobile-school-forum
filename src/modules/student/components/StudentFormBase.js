@@ -8,6 +8,7 @@ import RadioForm from '@/common/components/RadioForm/components';
 import SelectForm from '@/common/components/SelectForm/components';
 import CheckBoxForm from '@/common/components/CheckboxForm/components';
 import TextForm from '@/common/components/TextForm/components';
+import FileUploadForm from '@/common/components/fileUploadForm/components';
 
 import CustomLink from '@/common/components/CustomLink/components'
 import httpRequest from '@/common/utils/httpRequest';
@@ -16,17 +17,41 @@ import showToast from '@/common/utils/showToast';
 
 import { useSession, signIn, signOut } from "next-auth/react"
 
-const StudentFormBaseComponent = ({ sections, errors, isLoading, buttonRef }) => {
-    const router = useRouter();
-    
-    function saveStepForm() {
-        // Change step view
-        router.push(`/register/student/`)
-    }
+const StudentFormBaseComponent = ({ sections, errors, isLoading, buttonRef, setCurrentStep }) => {
+    const [loadImg, setLoadImg] = useState(``);
+
+    const onChangeAvatar = (e, setFieldValue) => {
+        try {
+            console.log(e.target.files);
+            let file = e.target.files[0];
+            let reader = new FileReader();
+            if (file) {
+                reader.onloadend = () => {
+                    setLoadImg(reader.result);
+                };
+                reader.readAsDataURL(file);
+                setFieldValue('image', file);
+                e.target.value = null;
+                showToast.info(`Load file success "${file.name}"`);
+            }
+        } catch (error) {
+            console.log(error);
+            showToast.error();
+        }
+    };
+
+    const onBlurAvatar = (e, setFieldTouched) => {
+        setFieldTouched('image', e.target.files[0] || null);
+    };
+
+    const onChangeRemoveImage = (setFieldValue) => {
+        setFieldValue('image', null);
+        setLoadImg(null);
+    };
     return (<>
         <div>
             <button
-                onClick={() => saveStepForm()}
+                onClick={() => setCurrentStep(0)}
                 className={`btn btn-link`}
             >
                 ย้อนกลับ
@@ -76,16 +101,33 @@ const StudentFormBaseComponent = ({ sections, errors, isLoading, buttonRef }) =>
                                     </div>
                                 ))}
                             </>
+                        ) : field.type === 'file' ? (
+                            <>
+                                <FileUploadForm
+                                    label={field.label}
+                                    id={`id_${field.name}`}
+                                    name={field.name}
+                                    type="file"
+                                    accept=".png, .jpg, .jpeg, .pdf"
+                                    onChange={(e) => onChangeAvatar(e, setFieldValue)}
+                                    onBlur={(e) => onBlurAvatar(e, setFieldTouched)}
+                                    error={error.image}
+                                    touched={touched.image}
+                                    imageSrc={loadImg}
+                                    imagAlt={`Image`}
+                                    removeImage={() => onChangeRemoveImage(setFieldValue)}
+                                />
+                            </>
                         ) : (
-                            <InputForm
-                                label={field.label}
-                                placeholder={field.label}
-                                id={`form_${field.name}`}
-                                name={field.name}
-                                type={field.type}
+                        <InputForm
+                            label={field.label}
+                            placeholder={field.label}
+                            id={`form_${field.name}`}
+                            name={field.name}
+                            type={field.type}
 
-                                errors={errors.error?.message}
-                            />
+                            errors={errors.error?.message}
+                        />
                         )}
                     </div>
                 ))}
@@ -94,12 +136,12 @@ const StudentFormBaseComponent = ({ sections, errors, isLoading, buttonRef }) =>
         <div className='bg-white fixed-bottom shadow-sm py-4 mt-4'>
             <div className="d-grid gap-3 col-lg-4 col-md-8 mx-auto px-4">
                 {isLoading ? (
-                    <button ref={buttonRef} type="submit" className="btn btn-primary" disabled>
+                    <button ref={buttonRef} onClick={() => setCurrentStep(0)} className="btn btn-primary" disabled>
                         <span className="spinner-grow spinner-grow-sm me-1" role="status" aria-hidden="true" />
                         บันทึกข้อมูล
                     </button>
                 ) : (
-                    <button ref={buttonRef} type="submit" className="btn btn-primary">
+                    <button ref={buttonRef} onClick={() => setCurrentStep(0)} className="btn btn-primary">
                         บันทึกข้อมูล
                     </button>
                 )}
