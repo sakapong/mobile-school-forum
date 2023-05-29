@@ -3,20 +3,56 @@ import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import Layout from "@/modules/layout/components"
+import showToast from '@/common/utils/showToast';
+import httpRequest from '@/common/utils/httpRequest';
+import { setCookie } from '@/common/utils/session';
 
 export default function MePage() {
-  const { data: session } = useSession()
-  const [profile, setProfile] = useState({})
+    const { data: session } = useSession()
+    const [profile, setProfile] = useState({})
+    const [accessToken, setAccessToken] = useState("")
+    const [isLoading, setLoading] = useState(false);
+    const [errors, setErrors] = useState({});
 
-  useEffect(async () => {
-    const liff = (await import('@line/liff')).default
-    await liff.ready
-    const profile = await liff.getProfile()
-    setProfile(profile)
-  }, [profile.userId])
+    useEffect(async () => {
+        const liff = (await import('@line/liff')).default
+        await liff.ready
+        const profile = await liff.getProfile()
+        const accessToken = await liff.getAccessToken()
+        setProfile(profile)
+        setAccessToken(accessToken)
 
-  return (
-    <Layout>
+        const user = {
+            line_access_token: accessToken,
+            provider: 'line'
+        };
+        await handleSocialLogin(user)
+
+    }, [profile.userId])
+
+    const handleSocialLogin = async (user) => {
+        try {
+
+            setLoading(true);
+            const response = await httpRequest.post({
+                url: `/users/login`,
+                data: user
+            });
+            if (response.data) {
+                setCookie('token', response.data.data.access_token);
+                showToast.success('Lgin success');
+                router.push('/');
+            }
+        } catch (error) {
+            showToast.error('Login failed');
+            console.log("error",error)
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return (
+        <Layout>
      <div className="container-xl py-4">
                     <div className="row">
                         <div className="col-lg-4 col-md-8 mx-auto">
@@ -32,11 +68,12 @@ export default function MePage() {
           height={500}
         />}
         <div>Name: {profile.displayName}</div>
+        <div>accessToken: {accessToken}</div>
       </div>
       <pre>{JSON.stringify(profile, null, 2)}</pre>
       </div>
       </div>
       </div>
     </Layout>
-  )
+    )
 }
