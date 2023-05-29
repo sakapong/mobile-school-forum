@@ -204,7 +204,7 @@ const StudentRegisterOverview = ({ verifyUser }) => {
                                                     }
                                                 </div>
                                             </div>
-                                            <div className='bg-white fixed-bottom shadow-sm py-4 mt-4'>
+                                            <div className='bg-white fixed-bottom shadow-sm py-4 mt-4' style={{ "zIndex" : 1050 }}>
                                                 <div className="d-grid gap-3 col-lg-4 col-md-8 mx-auto px-4">
                                                     <button type="submit" onClick={onSubmit} className="btn btn-primary">
                                                         ส่งข้อมูลใบสมัคร
