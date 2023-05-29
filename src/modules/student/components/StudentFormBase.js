@@ -189,7 +189,7 @@ const StudentFormBaseComponent = ({ sections, errors, isLoading, buttonRef, setC
      
   
        
-        <div className='bg-white fixed-bottom shadow-sm py-4 mt-4'>
+        <div className='bg-white fixed-bottom shadow-sm py-4 mt-4' style={{ "zIndex" : 1050 }}>
             <div className="d-grid gap-3 col-lg-4 col-md-8 mx-auto px-4">
                 {isLoading ? (
                     <button ref={buttonRef} onClick={() => setCurrentStep(0)} className="btn btn-primary" disabled>
