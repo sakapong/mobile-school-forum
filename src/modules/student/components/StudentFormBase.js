@@ -110,9 +110,9 @@ const StudentFormBaseComponent = ({ sections, errors, isLoading, buttonRef, setC
                                     type="file"
                                     accept=".png, .jpg, .jpeg, .pdf"
                                     onChange={(e) => onChangeAvatar(e, setFieldValue)}
-                                    onBlur={(e) => onBlurAvatar(e, setFieldTouched)}
-                                    error={error.image}
-                                    touched={touched.image}
+                             
+                        
+                              
                                     imageSrc={loadImg}
                                     imagAlt={`Image`}
                                     removeImage={() => onChangeRemoveImage(setFieldValue)}
