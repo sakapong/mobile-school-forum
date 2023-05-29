@@ -144,7 +144,7 @@ const LoginFormComponent = () => {
     const params = new URLSearchParams({
         response_type: 'code',
         client_id: process.env.NEXT_PUBLIC_LINE_CLIENT_ID,
-        redirect_uri: `${process.env.WEBSITE_URL}/redirect`,
+        redirect_uri: `${process.env.WEBSITE_URL}/me`,
         state: randomBytes(32).toString('hex'),
         scope: 'openid profile email',
     });
