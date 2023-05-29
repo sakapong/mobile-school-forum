@@ -76,8 +76,8 @@ const App = ({ Component, pageProps: { session, ...pageProps } }) => {
 
         await liff.ready
           if (!liff.isLoggedIn()) {
-          	console.log("islogingin")
-			      liff.login();
+          	console.log("isloginginWithLiff")
+			      await liff.login({ redirectUri: `${process.env.WEBSITE_URL}/me` });
 			    }
      
 
