@@ -58,7 +58,7 @@ const LoginFormComponent = () => {
 
     const handleLineLogin = (e) => {
         e.preventDefault();
-        signIn('line');
+        // signIn('line');
     };
 
 
@@ -223,7 +223,9 @@ const LoginFormComponent = () => {
         </Formik> 
         <br/>
         <div className = "d-grid gap-2 col-12 mx-auto" >
-            <button className="btn btn-success btn-line-login" onClick={handleLineLogin}>เข้าสู่ระบบด้วย LINE</button> 
+            <a className="mx-auto"  href={lineLoginUrl} target="_blank" rel="noopener noreferrer">
+                <button className="btn btn-success btn-line-login btn-block">เข้าสู่ระบบด้วย LINE</button> 
+            </a>
         </div> 
         </>
     );
