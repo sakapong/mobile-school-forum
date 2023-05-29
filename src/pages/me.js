@@ -1,5 +1,6 @@
 import { useSession } from "next-auth/react"
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router';
 import Head from 'next/head'
 import Image from 'next/image'
 import Layout from "@/modules/layout/components"
@@ -13,6 +14,7 @@ export default function MePage() {
     const [accessToken, setAccessToken] = useState("")
     const [isLoading, setLoading] = useState(false);
     const [errors, setErrors] = useState({});
+    const router = useRouter();
 
     useEffect(async () => {
         const liff = (await import('@line/liff')).default
@@ -40,11 +42,11 @@ export default function MePage() {
             });
             if (response.data) {
                 setCookie('token', response.data.data.access_token);
-                showToast.success('Lgin success');
+                showToast.success('Login success');
                 router.push('/');
             }
         } catch (error) {
-            showToast.error('Login failed');
+            // showToast.error('Login failed');
             console.log("error",error)
         } finally {
             setLoading(false);
