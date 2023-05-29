@@ -228,7 +228,7 @@ const EditProfileFormComponent = ({ editProfile }) => {
 						<div className="mb-3 col-md-6">
 							<InputForm
 								label="เบอร์มือถือ"
-								placeholder="84 336 077 131"
+								placeholder="0826539264"
 								id="phone_number"
 								name="phone_number"
 								type="text"
@@ -236,17 +236,17 @@ const EditProfileFormComponent = ({ editProfile }) => {
 						</div>
 						<div className="mb-3 col-md-6">
 							<SelectForm label="เพศ" name="gender">
-								<option value={gender[0]}>Select gender</option>
-								<option value={gender[1]}>Male</option>
-								<option value={gender[2]}>Female</option>
-								<option value={gender[3]}>Unknown</option>
+								<option value={gender[0]}>ไม่ระบุ</option>
+								<option value={gender[1]}>ชาย</option>
+								<option value={gender[2]}>หญิง</option>
+								<option value={gender[3]}>อื่นๆ</option>
 							</SelectForm>
 						</div>
 						<div className="mb-3 col-md-12">
-							<TextForm rows="2" label="ที่อยู่" placeholder="Address" id="address" name="address" />
+							<TextForm rows="2" label="ที่อยู่" placeholder="11/1 หมู่ 1" id="address" name="address" />
 						</div>
 						<div className="mb-3 col-md-12">
-							<TextForm rows="3" label="แนะนำตัวเอง" placeholder="Biography" id="biography" name="biography" />
+							<TextForm rows="3" label="แนะนำตัวเอง" placeholder="ประวัติโดยย่อเกี่ยวกับฉัน" id="biography" name="biography" />
 						</div>
 						<div className="mb-3 col-md-12">
 							<ImageUserForm

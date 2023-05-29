@@ -19,6 +19,57 @@ import { useSession, signIn, signOut } from "next-auth/react"
 
 const StudentFormBaseComponent = ({ sections, errors, isLoading, buttonRef, setCurrentStep }) => {
     const [loadImg, setLoadImg] = useState(``);
+    const { setFieldValue, setFieldTouched, errors: error, touched, values } = useFormikContext()
+
+    const initialValues = {
+        title: '',
+        content: '',
+        category_id: '',
+        image: null
+    };
+
+    const validationSchema = Yup.object({
+        title: Yup.string().required('Title is required').max(150, 'Title is maximum 128 characters'),
+        content: Yup.string().required('Content is required').max(60000, 'Excerpt is maximum 60000 characters'),
+        category_id: Yup.number().integer('Invaild category').required('Select category'),
+        image: Yup.mixed()
+            .test('fileSize', 'File too large', (value) => value === null || (value && value.size <= FILE_SIZE))
+            .test(
+                'fileFormat',
+                'Unsupported Format',
+                (value) => value === null || (value && SUPPORTED_FORMATS.includes(value.type))
+            )
+    });
+
+    const onSubmit = async (values) => {
+        try {
+            setLoading(true);
+            const response = await httpRequest.upload({
+                url: `/posts`,
+                token: getCookie('token'),
+                data: {
+                    title: values.title,
+                    content: values.content,
+                    category_id: values.category_id,
+                    tags: JSON.stringify(tags)
+                },
+                files: {
+                    image: values.image
+                }
+            });
+            if (response.data.success) {
+                showToast.success('Create post success');
+            }
+        } catch (error) {
+            console.log(error);
+            showToast.error('Create post error');
+            if (!error?.response?.data?.success && error?.response?.data?.error?.status === 422) {
+                setErrors(error.response.data);
+            }
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const onChangeAvatar = (e, setFieldValue) => {
         try {
@@ -57,6 +108,8 @@ const StudentFormBaseComponent = ({ sections, errors, isLoading, buttonRef, setC
                 ย้อนกลับ
             </button>
         </div>
+          
+
         {sections.map((section, key) => (
             <div className="bg-white rounded-16 shadow-sm p-4 mb-4" key={key}>
                 <h3 className='fw-bold mb-3'>{section.label}</h3>
@@ -110,9 +163,9 @@ const StudentFormBaseComponent = ({ sections, errors, isLoading, buttonRef, setC
                                     type="file"
                                     accept=".png, .jpg, .jpeg, .pdf"
                                     onChange={(e) => onChangeAvatar(e, setFieldValue)}
-                             
-                        
-                              
+                                    onBlur={(e) => onBlurAvatar(e, setFieldTouched)}
+                                    error={error.image}
+                                    touched={touched.image}
                                     imageSrc={loadImg}
                                     imagAlt={`Image`}
                                     removeImage={() => onChangeRemoveImage(setFieldValue)}
@@ -133,6 +186,9 @@ const StudentFormBaseComponent = ({ sections, errors, isLoading, buttonRef, setC
                 ))}
             </div>
         ))}
+     
+  
+       
         <div className='bg-white fixed-bottom shadow-sm py-4 mt-4'>
             <div className="d-grid gap-3 col-lg-4 col-md-8 mx-auto px-4">
                 {isLoading ? (

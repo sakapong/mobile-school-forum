@@ -23,35 +23,7 @@ import { Toaster } from 'react-hot-toast'
 import "@knocklabs/react-notification-feed/dist/index.css";
 import useIdentify from "@/common/hooks/useIdentify";
 
-// const DynamicComponentWithNoSSR = dynamic(
-//   () => import('package'),
-//   { ssr: false }
-// )
-// import * as PusherPushNotifications from "@pusher/push-notifications-web";
-
-// window.navigator.serviceWorker.ready.then((serviceWorkerRegistration) => {
-//   console.log(serviceWorkerRegistration);
-//   const beamsClient = new PusherPushNotifications.Client({
-//     instanceId: "36674458-c456-44a3-823b-616088fa88e1",
-//     serviceWorkerRegistration: serviceWorkerRegistration,
-//   });
-//   beamsClient
-//     .start()
-//     .then((beamsClient2) => beamsClient2.getDeviceId())
-//     .then((deviceId) =>
-//       console.log("Successfully registered with Beams. Device ID:", deviceId)
-//     )
-//     .then(() => beamsClient.addDeviceInterest("order"))
-//     .then(() => beamsClient.getDeviceInterests())
-//     .then((interests) => console.log("Current interests:", interests))
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// });
-
-// const PusherPushNotifications = require("next-transpile-modules")([
-// 	"@pusher/push-notifications-web",
-// ]); // pass the modules you would like to see transpiled
+// import liff from "@line/liff"
 
 const Tenants = {
 	TeamA: "team-a",
@@ -70,13 +42,49 @@ const TopProgressBar = dynamic(
 	{ ssr: false }
 );
 
-console.log('%cINSPECTOR AREA', 'font-size: 4rem; color: red; font-weight: 600;');
+console.log('%cPLAY AREA', 'font-size: 4rem; color: red; font-weight: 600;');
 
 const App = ({ Component, pageProps: { session, ...pageProps } }) => {
 	const router = useRouter();
 
 	const { userId, isLoading } = useIdentify();
 	const [tenant, setTenant] = useState(Tenants.TeamA);
+
+	const [liffObject, setLiffObject] = useState(null);
+  const [liffError, setLiffError] = useState(null);
+
+	// Execute liff.init() when the app is initialized
+  useEffect(async() => {
+    // to avoid `window is not defined` error
+    	const liff = (await import('@line/liff')).default
+      liff
+        .init({ liffId: process.env.LIFF_ID })
+        .then(() => {
+          console.log("liff.init() done");
+          setLiffObject(liff);
+          
+        })
+        .catch((error) => {
+          console.log(`liff.init() failed: ${error}`);
+          if (!process.env.liffId) {
+            console.info(
+              "LIFF Starter: Please make sure that you provided `LIFF_ID` as an environmental variable."
+            );
+          }
+          setLiffError(error.toString());
+        });
+
+        await liff.ready
+          if (!liff.isLoggedIn()) {
+          	console.log("islogingin")
+			      liff.login();
+			    }
+     
+
+  }, []);
+
+  pageProps.liff = liffObject;
+  pageProps.liffError = liffError;
 
 	return (
 		<>

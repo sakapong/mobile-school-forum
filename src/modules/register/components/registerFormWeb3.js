@@ -184,7 +184,7 @@ const RegisterFormComponentWeb3 = () => {
                         <div className="mb-3 col-md-6">
                             <InputForm
                                 label="เบอร์โทรศัพท์มือถือ"
-                                placeholder="84 336 077 131"
+                                placeholder="0826539264"
                                 id="phone_number"
                                 name="phone_number"
                                 type="text"

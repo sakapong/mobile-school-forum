@@ -70,7 +70,9 @@ const NavBarComponent = () => {
 			});
 
 			async () => {
-				disconnect()
+				const liff = (await import('@line/liff')).default
+    		await liff.ready
+    		liff.logout();
 			}
 
 			if (response.data.success) {

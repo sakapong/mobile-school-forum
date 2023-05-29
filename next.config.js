@@ -11,6 +11,7 @@ module.exports = (phase) => {
 	console.log(`isDev:${isDev} isProd:${isProd} isStaging:${isStaging}`);
 
 	const env = {
+		LIFF_ID: process.env.LIFF_ID,
 		WEBSITE_URL: (() => {
 			if (isDev) return 'http://localhost:3000';
 			if (isProd) {
@@ -66,7 +67,7 @@ module.exports = (phase) => {
 		env,
 		reactStrictMode: true,
 		images: {
-			domains: ['localhost', 'cdn-play.mobileschool.online', 'cdn.mobileschool.online', 'api-play.mobileschool.online'],
+			domains: ['localhost', 'cdn-play.mobileschool.online', 'cdn.mobileschool.online', 'api-play.mobileschool.online','profile.line-scdn.net'],
 			unoptimized: true,
 		},
 		i18n: {

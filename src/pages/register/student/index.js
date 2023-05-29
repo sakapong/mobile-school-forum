@@ -11,11 +11,14 @@ import StudentFamilyFormComponent from '@/modules/student/components/StudentFami
 import StudentParentFormComponent from '@/modules/student/components/StudentParentForm';
 import StudentDocumentFormComponent from '@/modules/student/components/StudentDocumentForm';
 
+import showToast from '@/common/utils/showToast';
+
 const StudentRegisterOverview = ({ verifyUser }) => {
 
     const router = useRouter();
     const formikRef = useRef();
     const [currentStep, setCurrentStep] = useState(0)
+    const [isLoading, setLoading] = useState(false);
 
     function goToStep(step) {
         setCurrentStep(step + 1)
@@ -158,7 +161,7 @@ const StudentRegisterOverview = ({ verifyUser }) => {
             });
             if (response.data.success) {
                 // showToast.success('Login success');
-                router.push(`/register/student`);
+                // router.push(`/register/student`);
             }
         } catch (error) {
             showToast.error('Login error');
@@ -178,6 +181,7 @@ const StudentRegisterOverview = ({ verifyUser }) => {
                     <div className="row">
                         <div className="col-lg-4 col-md-8 mx-auto">
                             <Formik innerRef={formikRef} initialValues={initialValues} onSubmit={onSubmit}>
+                                {({ setFieldValue, setFieldTouched, errors: error, touched, values }) => (
                                 <Form>
                                     {currentStep == 0 ? (
                                         <>
@@ -202,7 +206,7 @@ const StudentRegisterOverview = ({ verifyUser }) => {
                                             </div>
                                             <div className='bg-white fixed-bottom shadow-sm py-4 mt-4'>
                                                 <div className="d-grid gap-3 col-lg-4 col-md-8 mx-auto px-4">
-                                                    <button className="btn btn-primary">
+                                                    <button type="submit" onClick={onSubmit} className="btn btn-primary">
                                                         ส่งข้อมูลใบสมัคร
                                                     </button>
                                                 </div>
@@ -220,6 +224,7 @@ const StudentRegisterOverview = ({ verifyUser }) => {
                                         <StudentDocumentFormComponent setCurrentStep={setCurrentStep} />
                                     ) : ''}
                                 </Form>
+                                )}
                             </Formik>
                         </div>
                     </div>

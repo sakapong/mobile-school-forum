@@ -132,7 +132,7 @@ const NewPostFormComponent = ({ isPreview }) => {
 		<Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
 			{({ setFieldValue, setFieldTouched, errors: error, touched, values, handleChange }) => (
 				<Form>
-					<div className="ิshadow-sm">
+					<div className="shadow-sm">
 						{!isPreview ? (
 							<div className="bg-white rounded-16 p-3 p-sm-5">
 								<div className="row">
