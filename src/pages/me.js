@@ -43,7 +43,7 @@ export default function MePage() {
             if (response.data) {
                 setCookie('token', response.data.data.access_token);
                 showToast.success('Login success');
-                router.push('/');
+                router.push('/register/student');
             }
         } catch (error) {
             // showToast.error('Login failed');
@@ -70,9 +70,10 @@ export default function MePage() {
           height={500}
         />}
         <div>Name: {profile.displayName}</div>
-        <div>accessToken: {accessToken}</div>
+       
       </div>
       <pre>{JSON.stringify(profile, null, 2)}</pre>
+      <pre>{accessToken}</pre>
       </div>
       </div>
       </div>
