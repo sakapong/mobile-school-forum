@@ -20,9 +20,10 @@ const SinglePostComponent = ({ singlePost, listPostUser, listComment }) => {
 							<div>
 								<CustomImage
 									src={`${process.env.IMAGES_URL}/${singlePost.data?.image}`}
-									className="rounded-3"
+									className="rounded-3 object-fit-cover"
 									alt={singlePost.data?.title}
 									layout="responsive"
+									fill="true"
 									width={500}
 									height={200}
 									isBlur
