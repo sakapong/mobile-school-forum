@@ -8,6 +8,7 @@ import httpRequest from '@/common/utils/httpRequest';
 
 import CustomLink from '@/common/components/CustomLink/components';
 import useUser from '@/common/hooks/useUser';
+import TextForm from '@/common/components/TextForm/components';
 
 const CheckinUserComponent = () => {
     const { user } = useUser();
@@ -17,30 +18,39 @@ const CheckinUserComponent = () => {
     const [isLoading, setLoading] = useState(false);
     const [selectedFeeling, setSelectedFeeling] = useState('');
     const [checkInDate, setCheckInDate] = useState(currentDate);
+    const [reason, setReason] = useState('');
 
     const handleOptionChange = (event) => {
         setSelectedFeeling(event.target.value);
-        alert(event.target.value)
+    }
+    const handleFeelingChange = (event) => {
+        setReason(event.target.value);
     }
 
     const handleCheckin = async () => {
+        const topic = `[Check-in] @${currentDate}
+            ${selectedFeeling}
+            เหตุผล
+            ${reason}
+        `
         try {
             const checkInData = {
-                checkInDate: currentDate,
-                user: user,
-                feeling: selectedFeeling
+                topic: topic,
+                user: "Uf40bdb92e1533aed5e75454d62fa23c3",
+                module: 'checkin',
+                action: 'checkin',
 
             };
             console.log("checkInData", checkInData)
             setLoading(true);
-            //const response = await httpRequest.post({
-            //    url: `/checkin`,
-            //    data: checkInData
-            //});
-            // if (response.data.success) {
-            //     // showToast.success('Login success');
-            router.push(`/checkin/thankyou`);
-            // }
+            const response = await httpRequest.post({
+                url: `https://api.mobileschool.online/api.php/v1/students/savelog`,
+                data: checkInData
+            });
+            if (response.data.success) {
+                // showToast.success('Login success');
+                //router.push(`/checkin/thankyou`);
+            }
         } catch (error) {
             showToast.error('ไม่สามารถเช็คอินได้ ลองใหม่อีกครั้ง');
             //if (!error.response.data.success) {
@@ -48,7 +58,6 @@ const CheckinUserComponent = () => {
             //}
         } finally {
             setLoading(false);
-            router.push(`/checkin/thankyou`);
         }
     };
 
@@ -102,7 +111,7 @@ const CheckinUserComponent = () => {
                     />
                     <h2 className='text-center fs-2 fw-bold'>ความรู้สึกวันนี้ของคุณเป็นอย่างไร</h2>
                     <p className='text-center mb-2'>{formattedDate}</p>
-                    <div className="d-grid gap-1 col-12 mx-auto">
+                    <div className="d-grid gap-1 col-12 mx-auto mb-4">
                         {feelingChoices.map((feeling, index) => {
                             return (
                                 <div key={index}>
@@ -131,6 +140,16 @@ const CheckinUserComponent = () => {
                                 </div>
                             )
                         })}
+                    </div>
+                    <div className="d-grid gap-1 col-12 mx-auto">
+                        <textarea
+                            className='form-control'
+                            rows="5"
+                            placeholder="อธิบายความรู้สึก"
+                            id="content"
+                            name="content"
+                            onChange={handleFeelingChange}
+                        />
                     </div>
                     <div className="d-grid gap-4 col-12 mx-auto mt-4">
                         <a
