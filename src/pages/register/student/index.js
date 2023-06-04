@@ -175,7 +175,7 @@ const StudentRegisterOverview = ({ verifyUser }) => {
         console.log("response", response)
         if (response.data.submission_text === "sucess") {
             showToast.success('ใบสมัครของท่านได้ทำการส่งเรียบร้อยแล้ว');
-            // router.push(`/register/student`);
+            router.push(`/`);
         }
     } catch (error) {
         showToast.error('กรุณาลองใหม่อีกครั้ง');
