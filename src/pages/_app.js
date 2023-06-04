@@ -54,7 +54,7 @@ const App = ({ Component, pageProps: { session, ...pageProps } }) => {
   const [liffError, setLiffError] = useState(null);
 
 	// Execute liff.init() when the app is initialized
-  useEffect(async() => {
+/*   useEffect(async() => {
     // to avoid `window is not defined` error
     	const liff = (await import('@line/liff')).default
       liff
@@ -81,7 +81,7 @@ const App = ({ Component, pageProps: { session, ...pageProps } }) => {
 			    }
      
 
-  }, []);
+  }, []); */
 
   pageProps.liff = liffObject;
   pageProps.liffError = liffError;
