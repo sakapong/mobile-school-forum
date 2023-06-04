@@ -48,13 +48,13 @@ const CheckinUserComponent = () => {
                 data: checkInData
             });
             if (response.data.success) {
-                // showToast.success('Login success');
-                //router.push(`/checkin/thankyou`);
+                showToast.success('เช็คอินได้สำเร็จแล้วจ้าาาา');
+                router.push(`/checkin/thankyou`);
             }
         } catch (error) {
             showToast.error('ไม่สามารถเช็คอินได้ ลองใหม่อีกครั้ง');
             //if (!error.response.data.success) {
-            //    setErrors(error.response.data);
+            //   setErrors(error.response.data);
             //}
         } finally {
             setLoading(false);
