@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Form, Formik, useFormikContext } from 'formik';
+import httpRequest from '@/common/utils/httpRequest';
 
 import MetaWebsite from '@/common/meta/MetaWebsite';
 import LayoutComponent from '@/modules/layout/components';
@@ -24,6 +25,18 @@ const StudentRegisterOverview = ({ verifyUser }) => {
         setCurrentStep(step + 1)
     }
 
+    const nextPage = () => {
+        if (currentStep >= 0 && currentStep <= 5) {
+            setCurrentStep(currentStep + 1);
+        }
+    };
+
+    const previousPage = () => {
+        if (currentStep > 0) {
+            setCurrentStep(currentStep - 1);
+        }
+    };
+
     const formSteps = [
         {
             label: 'ข้อมูลนักเรียน',
@@ -41,10 +54,10 @@ const StudentRegisterOverview = ({ verifyUser }) => {
             label: 'ข้อมูลผู้ปกครอง',
             slug: 'parent',
         },
-        {
+/*         {
             label: 'หลักฐานการสมัคร',
             slug: 'parent',
-        },
+        }, */
     ]
 
     const initialValues = {
@@ -82,7 +95,7 @@ const StudentRegisterOverview = ({ verifyUser }) => {
         mother_date_birth: "",
         mother_job: "",
         mother_id_number: "",
-        famity_status: "",
+        family_status: "",
         sibling: 0,
         sibling_studying: 0,
         student_under: "",
@@ -106,71 +119,72 @@ const StudentRegisterOverview = ({ verifyUser }) => {
 
     const onSubmit = async (values) => {
         try {
-            const student = {
-                id_number: values.id_number,
-                race: values.race,
-                nationality: values.nationality,
-                religion: values.religion,
-                dathOfBirth: values.dathOfBirth,
-                weight: values.weight,
-                height: values.height,
-                blood_type: values.blood_type,
-                disability: values.disability,
-                disability_description: values.disability_description,
-                housing_code: values.housing_code,
-                housing_no: values.housing_no,
-                housing_moo: values.housing_moo,
-                housing_road: values.housing_road,
-                housing_province: values.housing_province,
-                housing_district: values.housing_district,
-                housing_tumbol: values.housing_tumbol,
-                school_name: values.school_name,
-                school_province: values.school_province,
-                school_district: values.school_district,
-                school_tumbol: values.school_tumbol,
-                school_type: values.school_type,
-                student_under: values.student_under,
-                father_first_name: values.father_first_name,
-                father_last_name: values.father_last_name,
-                father_salary: values.father_salary,
-                father_date_birth: values.father_date_birth,
-                father_job: values.father_job,
-                father_id_number: values.father_id_number,
-                mother_first_name: values.mother_first_name,
-                mother_last_name: values.mother_last_name,
-                mother_salary: values.mother_salary,
-                mother_date_birth: values.mother_date_birth,
-                mother_job: values.mother_job,
-                mother_id_number: values.mother_id_number,
-                famity_status: values, famity_status,
-                sibling: values.sibling,
-                sibling_studying: values.sibling_studying,
-                parent_first_name: values.parent_first_name,
-                parent_last_name: values.parent_last_name,
-                parent_relation: values.parent_relation,
-                parent_telephone: values.parent_telephone,
-                parent_date_birth: values.parent_date_birth,
-                parent_id_number: values.parent_id_number,
-                parent_job: values.parent_job,
-                parent_salary: values.parent_salary,
-            };
-            setLoading(true);
-            const response = await httpRequest.post({
-                url: `https://www.formbackend.com/f/7675a4c9ca2d5f36`,
-                data: student
-            });
-            if (response.data.success) {
-                // showToast.success('Login success');
-                // router.push(`/register/student`);
-            }
-        } catch (error) {
-            showToast.error('Login error');
-            if (!error.response.data.success) {
-                setErrors(error.response.data);
-            }
-        } finally {
-            setLoading(false);
+        const student = {
+            id_number: values.id_number,
+            race: values.race,
+            nationality: values.nationality,
+            religion: values.religion,
+            dathOfBirth: values.dathOfBirth,
+            weight: values.weight,
+            height: values.height,
+            blood_type: values.blood_type,
+            disability: values.disability,
+            disability_description: values.disability_description,
+            housing_code: values.housing_code,
+            housing_no: values.housing_no,
+            housing_moo: values.housing_moo,
+            housing_road: values.housing_road,
+            housing_province: values.housing_province,
+            housing_district: values.housing_district,
+            housing_tumbol: values.housing_tumbol,
+            school_name: values.school_name,
+            school_province: values.school_province,
+            school_district: values.school_district,
+            school_tumbol: values.school_tumbol,
+            school_type: values.school_type,
+            student_under: values.student_under,
+            father_first_name: values.father_first_name,
+            father_last_name: values.father_last_name,
+            father_salary: values.father_salary,
+            father_date_birth: values.father_date_birth,
+            father_job: values.father_job,
+            father_id_number: values.father_id_number,
+            mother_first_name: values.mother_first_name,
+            mother_last_name: values.mother_last_name,
+            mother_salary: values.mother_salary,
+            mother_date_birth: values.mother_date_birth,
+            mother_job: values.mother_job,
+            mother_id_number: values.mother_id_number,
+            family_status: values.family_status,
+            sibling: values.sibling,
+            sibling_studying: values.sibling_studying,
+            parent_first_name: values.parent_first_name,
+            parent_last_name: values.parent_last_name,
+            parent_relation: values.parent_relation,
+            parent_telephone: values.parent_telephone,
+            parent_date_birth: values.parent_date_birth,
+            parent_id_number: values.parent_id_number,
+            parent_job: values.parent_job,
+            parent_salary: values.parent_salary,
+        };
+        setLoading(true);
+        const response = await httpRequest.post({
+            url: `https://www.formbackend.com/f/9ad72bb013136b87`,
+            data: student
+        });
+        console.log("response", response)
+        if (response.data.submission_text === "sucess") {
+            showToast.success('ใบสมัครของท่านได้ทำการส่งเรียบร้อยแล้ว');
+            // router.push(`/register/student`);
         }
+    } catch (error) {
+        showToast.error('กรุณาลองใหม่อีกครั้ง');
+        if (error.response.data.submission_text !== "sucess") {
+            setErrors('กรุณาลองใหม่อีกครั้ง');
+        }
+    } finally {
+        setLoading(false);
+    }
     };
 
     return (
@@ -181,49 +195,50 @@ const StudentRegisterOverview = ({ verifyUser }) => {
                     <div className="row">
                         <div className="col-lg-4 col-md-8 mx-auto">
                             <Formik innerRef={formikRef} initialValues={initialValues} onSubmit={onSubmit}>
-                                {({ setFieldValue, setFieldTouched, errors: error, touched, values }) => (
-                                <Form>
-                                    {currentStep == 0 ? (
-                                        <>
-                                            <div className="bg-white rounded-16 shadow-sm p-4 mb-4">
-                                                <h2 className='mb-4'>กรอกข้อมูลใบสมัครตามรายการดังต่อไปนี้</h2>
-                                                <div className="d-grid gap-3 col-12 mx-auto">
-                                                    {
-                                                        formSteps.map((step, index) =>
-                                                        (
-                                                            <button
-                                                                key={index}
-                                                                onClick={() => goToStep(index)}
-                                                                className={`btn-list btn-outline-secondary`}
-                                                            >
-                                                                <span className='btn-status done'></span>
-                                                                {step.label}
-                                                            </button>
-                                                        )
-                                                        )
-                                                    }
+                                {({ values }) => (
+                                    <Form>
+                                        {currentStep == 0 ? (
+                                            <>
+                                                <div className="bg-white rounded-16 shadow-sm p-4 mb-4">
+                                                    <h2 className='mb-4'>กรอกข้อมูลใบสมัครตามรายการดังต่อไปนี้</h2>
+                                                    <div className="d-grid gap-3 col-12 mx-auto">
+                                                        {
+                                                            formSteps.map((step, index) =>
+                                                            (
+                                                                <button
+                                                                    key={index}
+                                                                    onClick={() => goToStep(index)}
+                                                                    className={`btn-list btn-outline-secondary`}
+                                                                    disabled
+                                                                >
+                                                                    <span className='btn-status'></span>
+                                                                    {step.label}
+                                                                </button>
+                                                            )
+                                                            )
+                                                        }
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div className='bg-white fixed-bottom shadow-sm py-4 mt-4' style={{ "zIndex" : 1050 }}>
+                                                                                            <div className='bg-white fixed-bottom shadow-sm py-4 mt-4' style={{ "zIndex" : 1050 }}>
                                                 <div className="d-grid gap-3 col-lg-4 col-md-8 mx-auto px-4">
-                                                    <button type="submit" onClick={onSubmit} className="btn btn-primary">
-                                                        ส่งข้อมูลใบสมัคร
+                                                    <button onClick={() => nextPage()} className="btn btn-primary">
+                                                        เริ่มทำได้เลย
                                                     </button>
                                                 </div>
                                             </div>
-                                        </>
-                                    ) : currentStep == 1 ? (
-                                        <StudentInfoFormComponent setCurrentStep={setCurrentStep} />
-                                    ) : currentStep == 2 ? (
-                                        <StudentEducationFormComponent setCurrentStep={setCurrentStep} />
-                                    ) : currentStep == 3 ? (
-                                        <StudentFamilyFormComponent setCurrentStep={setCurrentStep} />
-                                    ) : currentStep == 4 ? (
-                                        <StudentParentFormComponent setCurrentStep={setCurrentStep} />
-                                    ) : currentStep == 5 ? (
-                                        <StudentDocumentFormComponent setCurrentStep={setCurrentStep} />
-                                    ) : ''}
-                                </Form>
+                                            </>
+                                        ) : currentStep == 1 ? (
+                                            <StudentInfoFormComponent nextPage={nextPage} previousPage={previousPage} currentStep={currentStep} />
+                                        ) : currentStep == 2 ? (
+                                            <StudentEducationFormComponent nextPage={nextPage} previousPage={previousPage} currentStep={currentStep} />
+                                        ) : currentStep == 3 ? (
+                                            <StudentFamilyFormComponent nextPage={nextPage} previousPage={previousPage} currentStep={currentStep} />
+                                        ) : currentStep == 4 ? (
+                                            <StudentParentFormComponent nextPage={nextPage} previousPage={previousPage} currentStep={currentStep} />
+                                        ) : currentStep == 5 ? (
+                                            <StudentDocumentFormComponent nextPage={nextPage} previousPage={previousPage} currentStep={currentStep} />
+                                        ) : ''}
+                                    </Form>
                                 )}
                             </Formik>
                         </div>

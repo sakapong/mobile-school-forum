@@ -17,7 +17,7 @@ import showToast from '@/common/utils/showToast';
 
 import { useSession, signIn, signOut } from "next-auth/react"
 
-const StudentFormBaseComponent = ({ sections, errors, isLoading, buttonRef, setCurrentStep }) => {
+const StudentFormBaseComponent = ({ sections, errors, isLoading, buttonRef, nextPage, previousPage, currentStep }) => {
     const [loadImg, setLoadImg] = useState(``);
     const { setFieldValue, setFieldTouched, errors: error, touched, values } = useFormikContext()
 
@@ -40,36 +40,6 @@ const StudentFormBaseComponent = ({ sections, errors, isLoading, buttonRef, setC
                 (value) => value === null || (value && SUPPORTED_FORMATS.includes(value.type))
             )
     });
-
-    const onSubmit = async (values) => {
-        try {
-            setLoading(true);
-            const response = await httpRequest.upload({
-                url: `/posts`,
-                token: getCookie('token'),
-                data: {
-                    title: values.title,
-                    content: values.content,
-                    category_id: values.category_id,
-                    tags: JSON.stringify(tags)
-                },
-                files: {
-                    image: values.image
-                }
-            });
-            if (response.data.success) {
-                showToast.success('Create post success');
-            }
-        } catch (error) {
-            console.log(error);
-            showToast.error('Create post error');
-            if (!error?.response?.data?.success && error?.response?.data?.error?.status === 422) {
-                setErrors(error.response.data);
-            }
-        } finally {
-            setLoading(false);
-        }
-    };
 
     const onChangeAvatar = (e, setFieldValue) => {
         try {
@@ -100,16 +70,6 @@ const StudentFormBaseComponent = ({ sections, errors, isLoading, buttonRef, setC
         setLoadImg(null);
     };
     return (<>
-        <div>
-            <button
-                onClick={() => setCurrentStep(0)}
-                className={`btn btn-link`}
-            >
-                ย้อนกลับ
-            </button>
-        </div>
-          
-
         {sections.map((section, key) => (
             <div className="bg-white rounded-16 shadow-sm p-4 mb-4" key={key}>
                 <h3 className='fw-bold mb-3'>{section.label}</h3>
@@ -172,36 +132,43 @@ const StudentFormBaseComponent = ({ sections, errors, isLoading, buttonRef, setC
                                 />
                             </>
                         ) : (
-                        <InputForm
-                            label={field.label}
-                            placeholder={field.label}
-                            id={`form_${field.name}`}
-                            name={field.name}
-                            type={field.type}
+                            <InputForm
+                                label={field.label}
+                                placeholder={field.label}
+                                id={`form_${field.name}`}
+                                name={field.name}
+                                type={field.type}
 
-                            errors={errors.error?.message}
-                        />
+                                errors={errors.error?.message}
+                            />
                         )}
                     </div>
                 ))}
             </div>
         ))}
-     
-  
-       
-        <div className='bg-white fixed-bottom shadow-sm py-4 mt-4' style={{ "zIndex" : 1050 }}>
-            <div className="d-grid gap-3 col-lg-4 col-md-8 mx-auto px-4">
-                {isLoading ? (
-                    <button ref={buttonRef} onClick={() => setCurrentStep(0)} className="btn btn-primary" disabled>
-                        <span className="spinner-grow spinner-grow-sm me-1" role="status" aria-hidden="true" />
-                        บันทึกข้อมูล
-                    </button>
-                ) : (
-                    <button ref={buttonRef} onClick={() => setCurrentStep(0)} className="btn btn-primary">
-                        บันทึกข้อมูล
-                    </button>
-                )}
 
+
+
+        <div className='bg-white fixed-bottom shadow-sm py-4 mt-4' style={{ "zIndex": 1050 }}>
+            <div className="row col-lg-4 col-md-8 mx-auto px-4">
+                <div className='col'>
+                    <button ref={buttonRef} onClick={() => previousPage()} className="btn btn-outline-primary">
+                        ย้อนกลับ
+                    </button>
+                </div>
+                <div className='col text-end'>
+                    {currentStep < 4 ? (
+                        <button ref={buttonRef} onClick={() => nextPage()} className="btn btn-primary">
+                            ถัดไป
+                        </button>
+                    ) :
+                        (
+                            <button ref={buttonRef} type="submit" className="btn btn-primary">
+                                ส่งข้อมูลใบสมัคร
+                            </button>
+                        )
+                    }
+                </div>
             </div>
         </div>
     </>

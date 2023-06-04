@@ -12,7 +12,7 @@ import showToast from '@/common/utils/showToast';
 
 import { useSession, signIn, signOut } from "next-auth/react"
 
-const StudentFamilyFormComponent = ({setCurrentStep}) => {
+const StudentFamilyFormComponent = ({nextPage, previousPage, currentStep}) => {
 
     const { data: session } = useSession()
 
@@ -110,7 +110,7 @@ const StudentFamilyFormComponent = ({setCurrentStep}) => {
             label: 'สถานภาพครอบครัว',
             fields: [
                 {
-                    name: 'famity_status',
+                    name: 'family_status',
                     label: 'สถานภาพบิดา-มารดา',
                     required: false,
                     type: 'select',
@@ -141,7 +141,7 @@ const StudentFamilyFormComponent = ({setCurrentStep}) => {
 
     return (<
         >
-        <StudentFormBase sections={sections} errors={errors} isLoading={isLoading} buttonRef={buttonRef} setCurrentStep={setCurrentStep} />
+        <StudentFormBase sections={sections} errors={errors} isLoading={isLoading} buttonRef={buttonRef} nextPage={nextPage} previousPage={previousPage} currentStep={currentStep} />
     </>
     );
 };

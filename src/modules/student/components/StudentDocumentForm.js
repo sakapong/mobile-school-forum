@@ -11,7 +11,7 @@ import showToast from '@/common/utils/showToast';
 
 import { useSession, signIn, signOut } from "next-auth/react"
 
-const StudentDocumentFormComponent = ({ setCurrentStep }) => {
+const StudentDocumentFormComponent = ({nextPage, previousPage, currentStep}) => {
     const [isLoading, setLoading] = useState(false);
     const buttonRef = useRef(null);
     const [errors, setErrors] = useState({});
@@ -74,7 +74,7 @@ const StudentDocumentFormComponent = ({ setCurrentStep }) => {
 
     return (<
         >
-        <StudentFormBase sections={sections} errors={errors} isLoading={isLoading} buttonRef={buttonRef} setCurrentStep={setCurrentStep} />
+        <StudentFormBase sections={sections} errors={errors} isLoading={isLoading} buttonRef={buttonRef} nextPage={nextPage} previousPage={previousPage} currentStep={currentStep} />
     </>
     );
 };
