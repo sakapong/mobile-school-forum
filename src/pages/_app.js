@@ -51,40 +51,40 @@ const App = ({ Component, pageProps: { session, ...pageProps } }) => {
 	const [tenant, setTenant] = useState(Tenants.TeamA);
 
 	const [liffObject, setLiffObject] = useState(null);
-  const [liffError, setLiffError] = useState(null);
+	const [liffError, setLiffError] = useState(null);
 
 	// Execute liff.init() when the app is initialized
-/*   useEffect(async() => {
-    // to avoid `window is not defined` error
-    	const liff = (await import('@line/liff')).default
-      liff
-        .init({ liffId: process.env.LIFF_ID })
-        .then(() => {
-          console.log("liff.init() done");
-          setLiffObject(liff);
-          
-        })
-        .catch((error) => {
-          console.log(`liff.init() failed: ${error}`);
-          if (!process.env.liffId) {
-            console.info(
-              "LIFF Starter: Please make sure that you provided `LIFF_ID` as an environmental variable."
-            );
-          }
-          setLiffError(error.toString());
-        });
+	useEffect(async () => {
+		// to avoid `window is not defined` error
+		const liff = (await import('@line/liff')).default
+		liff
+			.init({ liffId: process.env.LIFF_ID })
+			.then(() => {
+				console.log("liff.init() done");
+				setLiffObject(liff);
 
-        await liff.ready
-          if (!liff.isLoggedIn()) {
-          	console.log("isloginginWithLiff")
-			      await liff.login({ redirectUri: `${process.env.WEBSITE_URL}/me` });
-			    }
-     
+			})
+			.catch((error) => {
+				console.log(`liff.init() failed: ${error}`);
+				if (!process.env.liffId) {
+					console.info(
+						"LIFF Starter: Please make sure that you provided `LIFF_ID` as an environmental variable."
+					);
+				}
+				setLiffError(error.toString());
+			});
 
-  }, []); */
+		await liff.ready
+		if (!liff.isLoggedIn()) {
+			console.log("isloginginWithLiff")
+			await liff.login({ redirectUri: `${process.env.WEBSITE_URL}/me` });
+		}
 
-  pageProps.liff = liffObject;
-  pageProps.liffError = liffError;
+
+	}, []);
+
+	pageProps.liff = liffObject;
+	pageProps.liffError = liffError;
 
 	return (
 		<>
@@ -92,7 +92,7 @@ const App = ({ Component, pageProps: { session, ...pageProps } }) => {
 			<Head>
 				<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 				<link rel="preconnect" href="https://fonts.gstatic.com" />
-        		<link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet" />
+				<link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet" />
 			</Head>
 			{/*<DynamicComponentWithNoSSR />*/}
 			<TopProgressBar />
