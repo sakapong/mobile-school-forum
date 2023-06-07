@@ -36,20 +36,23 @@ const CheckinUserComponent = () => {
         try {
             const checkInData = {
                 topic: topic,
-                user: "Uf40bdb92e1533aed5e75454d62fa23c3",
+                user: user,
                 module: 'checkin',
                 action: 'checkin',
 
             };
             console.log("checkInData", checkInData)
             setLoading(true);
-            const response = await httpRequest.post({
+            const response = await httpRequest.post_php({
                 url: `https://api.mobileschool.online/api.php/v1/students/savelog`,
                 data: checkInData
             });
-            if (response.data.success) {
+            console.log(response.data.msg)
+            if (response.data.msg === "success") {
                 showToast.success('เช็คอินได้สำเร็จแล้วจ้าาาา');
                 router.push(`/checkin/thankyou`);
+            }else{
+                showToast.error('ไม่สามารถเช็คอินได้ ลองใหม่อีกครั้ง');
             }
         } catch (error) {
             showToast.error('ไม่สามารถเช็คอินได้ ลองใหม่อีกครั้ง');

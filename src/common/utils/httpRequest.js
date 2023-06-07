@@ -63,6 +63,24 @@ const httpRequest = {
 			data: data
 		});
 	},
+	post_php: ({ url, data }) => {
+		const formData = new FormData();
+		if (data) {
+			for (let field in data) {
+				formData.set(field, data[field]);
+			}
+		}
+		return axios({
+			timeout: process.env.REQUEST.TIMEOUT,
+			method: 'post',
+			url: url,
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json',
+			},
+			data: formData
+		});
+	},
 	put: ({ baseUrl = process.env.API_URL, url, token, data }) => {
 		return axios({
 			timeout: process.env.REQUEST.TIMEOUT,
