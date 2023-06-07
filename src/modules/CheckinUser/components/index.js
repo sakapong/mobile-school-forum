@@ -32,6 +32,8 @@ const CheckinUserComponent = () => {
             ${selectedFeeling}
             เหตุผล
             ${reason}
+            by
+            ${user}
         `
         try {
             const checkInData = {
