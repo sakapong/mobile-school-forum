@@ -117,7 +117,7 @@ const EditPostFormComponent = ({ editPost, isPreview }) => {
 
 	return (
 		<Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
-			{({ setFieldValue, setFieldTouched, errors: error, touched, values }) => (
+			{({ setFieldValue, setFieldTouched, errors: error, touched, field, values }) => (
 				<Form>
 					<div className="bg-light rounded-16 shadow-sm">
 						{!isPreview ? (
@@ -147,10 +147,10 @@ const EditPostFormComponent = ({ editPost, isPreview }) => {
 									</div>
 									<div className="mb-3 col-12">
 										<CustomEditor 
-											initialValue={values.content}
+											initialValue={field.content}
 											field={{ name: "content", value: "" }} 
-											onEditorChange={(content) => {
-												setFieldValue('content', content);
+											onEditorChange={(newValue) => {
+												setFieldValue('content', newValue);
 											}}
 										/>
 									</div>
