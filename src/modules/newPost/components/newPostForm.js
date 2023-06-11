@@ -16,6 +16,8 @@ import httpRequest from '@/common/utils/httpRequest';
 import { getCookie } from '@/common/utils/session';
 import showToast from '@/common/utils/showToast';
 
+import CustomEditor from '@/modules/newPost/components/CustomEditor'
+
 const NewPostFormComponent = ({ isPreview }) => {
 	const router = useRouter();
 	const [isLoading, setLoading] = useState(false);
@@ -164,13 +166,11 @@ const NewPostFormComponent = ({ isPreview }) => {
 										/>
 									</div>
 									<div className="mb-3 col-md-12">
-										<TextForm
-											rows="16"
-											label="เนื้อหาผลงาน (Markdown)"
-											placeholder="อธิบายเนื้อหาผลงานพร้อมทั้งข้อมูลอื่นๆที่น่าสนใจ"
-											id="content"
-											name="content"
-											type="text"
+										<CustomEditor 
+											field={{ name: "content", value: "" }} 
+											onEditorChange={(content) => {
+												setFieldValue('content', content);
+											}}
 										/>
 									</div>
 									<div className="mb-3 col-md-12">
