@@ -119,28 +119,12 @@ const EditPostFormComponent = ({ editPost, isPreview }) => {
 		<Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
 			{({ setFieldValue, setFieldTouched, errors: error, touched, values }) => (
 				<Form>
-					<div className="bg-light rounded-16 shadow-sm">
+					<div className="bg-white rounded-16 p-3 p-sm-5">
 						{!isPreview ? (
 							<div className="p-3 p-sm-5">
 								<div className="row">
 									<div className="mb-3 col-md-12">
-										<ImagePostForm
-											label="Image (.png, .jpg, .jpeg .gif)"
-											id="image"
-											name="image"
-											type="file"
-											accept=".png, .jpg, .jpeg .gif"
-											onChange={(e) => onChangeAvatar(e, setFieldValue)}
-											onBlur={(e) => onBlurAvatar(e, setFieldTouched)}
-											error={error.image}
-											touched={touched.image}
-											imageSrc={loadImg}
-											imagAlt={`Post image`}
-											removeImage={() => onChangeRemoveImage(setFieldValue)}
-										/>
-									</div>
-									<div className="mb-3 col-md-12">
-										<InputForm label="Title" placeholder="Enter title" id="title" name="title" type="text" />
+										<InputForm label="Title" placeholder="หัวข้อผลงาน" id="title" name="title" type="text" />
 									</div>
 									<div className="mb-3 col-md-12">
 										<TagListForm tags={tags} setTag={setTag} errors={errors.error?.message?.tags} />
@@ -169,6 +153,22 @@ const EditPostFormComponent = ({ editPost, isPreview }) => {
 												))
 											)}
 										</SelectForm>
+									</div>
+									<div className="mb-3 col-md-12">
+										<ImagePostForm
+											label="Image (.png, .jpg, .jpeg .gif)"
+											id="image"
+											name="image"
+											type="file"
+											accept=".png, .jpg, .jpeg .gif"
+											onChange={(e) => onChangeAvatar(e, setFieldValue)}
+											onBlur={(e) => onBlurAvatar(e, setFieldTouched)}
+											error={error.image}
+											touched={touched.image}
+											imageSrc={loadImg}
+											imagAlt={`Post image`}
+											removeImage={() => onChangeRemoveImage(setFieldValue)}
+										/>
 									</div>
 								</div>
 							</div>
