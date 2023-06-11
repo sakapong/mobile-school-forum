@@ -167,6 +167,7 @@ const NewPostFormComponent = ({ isPreview }) => {
 									</div>
 									<div className="mb-3 col-md-12">
 										<CustomEditor 
+											initialValue={''}
 											field={{ name: "content", value: "" }} 
 											onEditorChange={(content) => {
 												setFieldValue('content', content);

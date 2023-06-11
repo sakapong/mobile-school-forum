@@ -5,7 +5,7 @@ import axios from 'axios'
 
 // const DynamicEditor = dynamic(() => import('@tinymce/tinymce-react'), { ssr: false });
 
-const CustomEditor = ({ field, onEditorChange, ...props }) => {
+const CustomEditor = ({ field, onEditorChange, initialValue, ...props }) => {
 
     const editorRef = useRef(null)
     const log = () => {
@@ -50,6 +50,7 @@ const CustomEditor = ({ field, onEditorChange, ...props }) => {
     return (
         <Editor
             apiKey={'nnbm03diax2qbeeh80c9o534kwn2sv18uasp8tsuq34nyc5e'}
+            initialValue={initialValue}
             tinymceScriptSrc={'/tinymce/tinymce.min.js'}
             onInit={(evt, editor) => (editorRef.current = editor)}
             init={{

@@ -147,19 +147,12 @@ const EditPostFormComponent = ({ editPost, isPreview }) => {
 									</div>
 									<div className="mb-3 col-12">
 										<CustomEditor 
+											initialValue={values.content}
 											field={{ name: "content", value: "" }} 
 											onEditorChange={(content) => {
 												setFieldValue('content', content);
 											}}
 										/>
-										{/* <TextForm
-											rows="16"
-											label="Content (Markdown)"
-											placeholder="Enter content"
-											id="content"
-											name="content"
-											type="text"
-										/> */}
 									</div>
 									<div className="mb-3 col-md-12 mb-0">
 										<SelectForm label="Category" name="category_id">
