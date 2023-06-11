@@ -6,6 +6,7 @@ import NewPostFormComponent from '@/modules/newPost/components/newPostForm';
 import SideBarRightNewPostComponent from '@/modules/newPost/components/sideBarRightNewPost';
 import style from '@/modules/newPost/styles/style.module.scss';
 
+
 const NewPostComponent = () => {
 	const { user } = useUser();
 	const [isPreview, setIsPreview] = useState(false);
