@@ -70,11 +70,11 @@ const CustomEditor = ({ field, onEditorChange, ...props }) => {
                         const file = e.target.files[0];
                         const formData = new FormData();
                         formData.append("file", file)//
-                        formData.append('upload_preset', 'ln9yi5hz');
-                        formData.append('api_key', '122818648218499');
+                        formData.append('upload_preset', 'hgkmdh14');
+                        formData.append('api_key', '938126698545117');
 
                         const response = await axios.post(
-                            'https://api.cloudinary.com/v1_1/diufjycef/image/upload',
+                            'https://api.cloudinary.com/v1_1/dvteoe7lr/image/upload',
                             formData,
                             {
                                 headers: {
