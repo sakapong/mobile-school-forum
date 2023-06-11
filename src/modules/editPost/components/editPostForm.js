@@ -16,6 +16,8 @@ import httpRequest from '@/common/utils/httpRequest';
 import { getCookie } from '@/common/utils/session';
 import showToast from '@/common/utils/showToast';
 
+import CustomEditor from '@/modules/newPost/components/CustomEditor'
+
 const EditPostFormComponent = ({ editPost, isPreview }) => {
 	const router = useRouter();
 	const [isLoading, setLoading] = useState(false);
@@ -144,14 +146,20 @@ const EditPostFormComponent = ({ editPost, isPreview }) => {
 										<TagListForm tags={tags} setTag={setTag} errors={errors.error?.message?.tags} />
 									</div>
 									<div className="mb-3 col-12">
-										<TextForm
+										<CustomEditor 
+											field={{ name: "content", value: "" }} 
+											onEditorChange={(content) => {
+												setFieldValue('content', content);
+											}}
+										/>
+										{/* <TextForm
 											rows="16"
 											label="Content (Markdown)"
 											placeholder="Enter content"
 											id="content"
 											name="content"
 											type="text"
-										/>
+										/> */}
 									</div>
 									<div className="mb-3 col-md-12 mb-0">
 										<SelectForm label="Category" name="category_id">
