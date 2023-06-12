@@ -39,7 +39,7 @@ const FavoritePostButtonComponent = ({ favorited, slug, totalFavorited }) => {
 				if (response.data.success) {
 					setFavorited(!isFavorited);
 					setSumFavorited(!isFavorited ? sumFavorited + 1 : sumFavorited - 1);
-					showToast.success(`${!isFavorited ? 'Liked' : 'Unliked '}`, slug);
+					showToast.success(`${!isFavorited ? 'ถูกใจ' : 'เลิกถูกใจ '}`, slug);
 				}
 			}
 		} catch (error) {

@@ -5,6 +5,7 @@ import CustomImage from '@/common/components/CustomImage/components';
 import CustomLink from '@/common/components/CustomLink/components';
 import timeAgo from '@/common/utils/timeAgo';
 import FavoritePostButtonComponent from '@/modules/postCard/components/favoritePostButton';
+import FeelingPostButtonComponent from '@/modules/postCard/components/feelingPostButton';
 import style from '@/modules/postCard/styles/style.module.scss';
 
 import Link from 'next/link';
@@ -20,11 +21,11 @@ import { FcAssistant } from 'react-icons/fc';
 import { useWeb3Context } from '@/common/context'
 
 const getShortenUsername = (account) => {
-	if(account.length > 12)
-	  return `${account.slice(0, 4)}....${account.slice(
-	    account.length - 5,
-	    account.length - 1
-	  )}`;
+	if (account.length > 12)
+		return `${account.slice(0, 4)}....${account.slice(
+			account.length - 5,
+			account.length - 1
+		)}`;
 	else
 		return account;
 };
@@ -197,26 +198,38 @@ const PostCardComponent = ({ post }) => {
 							slug={post.slug}
 						/>
 						{post.category.id == 1 && (
-							<Link href="#" passHref>
-								<Nav.Link className="btn btn-primary text-white fw-bold ms-3"><span className=" d-sm-block">ให้กำลังใจ</span></Nav.Link>
-							</Link>
+							<FeelingPostButtonComponent
+								className={`btn-primary`}
+								title={post.title}
+								slug={post.slug}
+								feeling={`ให้กำลังใจ`}
+							/>
 						)}
 						{post.category.id == 2 && (
-							<Link href="#" passHref>
-								<Nav.Link className="btn btn-success text-white fw-bold ms-3"><span className=" d-sm-block">ทำต่อไป</span></Nav.Link>
-							</Link>
+							<FeelingPostButtonComponent
+								className={`btn-success`}
+								title={post.title}
+								slug={post.slug}
+								feeling={`ทำต่อไป`}
+							/>
 						)}
 
 						{post.category.id == 3 && (
-							<Link href="#" passHref>
-								<Nav.Link className="btn btn-warning text-white fw-bold ms-3"><span className=" d-sm-block">สุดยอด</span></Nav.Link>
-							</Link>
+							<FeelingPostButtonComponent
+								className={`btn-warning`}
+								title={post.title}
+								slug={post.slug}
+								feeling={`สุดยอด`}
+							/>
 						)}
 
 						{post.category.id == 4 && (
-							<Link href="#" passHref>
-								<Nav.Link className="btn btn-danger text-white fw-bold ms-3"><span className=" d-sm-block">คารวะ</span></Nav.Link>
-							</Link>
+							<FeelingPostButtonComponent
+								className={`btn-danger`}
+								title={post.title}
+								slug={post.slug}
+								feeling={`คารวะ`}
+							/>
 						)}
 
 					</div>
