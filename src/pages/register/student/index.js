@@ -61,6 +61,9 @@ const StudentRegisterOverview = ({ verifyUser }) => {
     ]
 
     const initialValues = {
+        student_id : "",
+        first_name: "",
+        last_name: "",
         id_number: "",
         race: "",
         nationality: "",
@@ -120,6 +123,9 @@ const StudentRegisterOverview = ({ verifyUser }) => {
     const onSubmit = async (values) => {
         try {
         const student = {
+            student_id : 45,
+            first_name: values.first_name,
+            last_name: values.last_name,
             id_number: values.id_number,
             race: values.race,
             nationality: values.nationality,

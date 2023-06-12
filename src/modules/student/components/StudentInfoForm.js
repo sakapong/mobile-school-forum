@@ -22,11 +22,22 @@ const StudentInfoFormComponent = ({nextPage, previousPage, currentStep}) => {
 
     const formikRef = useRef();
     const buttonRef = useRef(null);
-
     const sections = [
         {
             label: 'ข้อมูลนักเรียน',
             fields: [
+                {
+                    name: 'first_name',
+                    label: 'ชื่อจริง',
+                    required: true,
+                    type: 'text'
+                },
+                {
+                    name: 'last_name',
+                    label: 'นามสกุลจริง',
+                    required: true,
+                    type: 'text'
+                },
                 {
                     name: 'id_number',
                     label: 'เลขประจำตัวประชาชน',
