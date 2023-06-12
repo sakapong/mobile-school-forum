@@ -40,7 +40,7 @@ const tabs = [{
 	className: "nav-footer-noti",
 	imageSrc: "/images/footer/ico-noti.png",
 	// icon: faSearch,
-	label: "แจ้ง"
+	label: "แจ้งเตือน"
 }, {
 	index: 5,
 	route: "/search",
@@ -59,41 +59,41 @@ const FooterNavigation = (props) => {
 				<>.</>
 			) : (
 				<nav className="navbar fixed-bottom navbar-light bg-white d-block d-lg-none fixed-bottom bottom-tab-nav" role="navigation">
-					<Nav className="w-100">
-						<div className=" d-flex flex-row justify-content-around w-100">
+					<div className="py-2">
+						<div className="row">
 							{
 								tabs.map((tab, index) => (
-									<NavItem key={`tab-${index}`}>
-										<NavLink href={tab.route} to={tab.route} className={`nav-link bottom-nav-link ${tab.className}`} activeClassName="active">
+									<NavItem className={`col px-0 text-center`} key={`tab-${index}`}>
+										<NavLink href={tab.route} to={tab.route} className={`nav-link bottom-nav-link ${tab.className} p-0`} activeClassName="active">
 											<div className="row d-flex flex-column justify-content-center align-items-center">
 												{/*<FontAwesomeIcon size="lg" icon={tab.icon}/>*/}
 
 												{(() => {
 													switch (tab.index) {
 														case 1:
-															return <FcHome className="h1 mb-0 me-1" />;
+															return <FcHome className="h1 mb-0" />;
 														case 2:
-															return <CustomImage className="" src={`${tab.imageSrc}`} width={28} height={28} />;
+															return <CustomImage className="mb-0" src={`${tab.imageSrc}`} width={28} height={28} />;
 														case 3:
 															return (
-																<CustomImage className="" src={`${tab.imageSrc}`} width={52} height={52} />
+																<CustomImage className="mb-0" src={`${tab.imageSrc}`} width={52} height={52} />
 															);
 														case 4:
-															return (<CustomImage className="" src={`${tab.imageSrc}`} width={28} height={28} />);
+															return (<CustomImage className="mb-0" src={`${tab.imageSrc}`} width={28} height={28} />);
 														case 5:
-															return <FcSearch className="h1 mb-0 me-1" />;
+															return <FcSearch className="h1 mb-0" />;
 														default:
-															return <FcHome className="h1 mb-0 me-1" />;
+															return <FcHome className="h1 mb-1" />;
 													}
 												})()}
-												<div className="bottom-tab-label">{tab.label}</div>
+												<div className="bottom-tab-label mt-2">{tab.label}</div>
 											</div>
 										</NavLink>
 									</NavItem>
 								))
 							}
 						</div>
-					</Nav>
+					</div>
 				</nav>
 			)}
 		</div>
