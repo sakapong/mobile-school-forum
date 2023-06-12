@@ -15,7 +15,7 @@ const SinglePostComponent = ({ singlePost, listPostUser, listComment }) => {
 		<div className="container-xl py-4">
 			<div className="row">
 				<div className="col-lg-9 mb-4 mb-lg-0">
-					<article className="wapper__card single-post bg-white rounded-16 shadow-sm">
+					<article className="wapper__card single-post bg-white rounded-16 shadow-sm mb-3">
 						{singlePost.data?.image && (
 							<div>
 								<CustomImage
@@ -28,7 +28,7 @@ const SinglePostComponent = ({ singlePost, listPostUser, listComment }) => {
 									height={200}
 									isBlur
 								/>
-{/*								<CustomImage
+								{/*								<CustomImage
 									src={`/images/bg-1.png`}
 									className="rounded-3"
 									alt={singlePost.data?.title}
@@ -49,21 +49,22 @@ const SinglePostComponent = ({ singlePost, listPostUser, listComment }) => {
 							<div className="my-5">
 								<ReactMarkdownComponent markdown={singlePost.data?.content} />
 							</div>
-							
-							<PostFooterComponent
-								favorited={singlePost.data.favorited}
-								totalFavorited={singlePost.data.total_favorited}
-								postSlug={singlePost.data.slug}
-								postUserName={singlePost.data.user.user_name}
-								postTitle={singlePost.data.title}
-							/>
-							<hr />
-							<CommentComponent
-								listComment={listComment}
-								postSlug={singlePost.data.slug}
-								postUserName={singlePost.data.user.user_name}
-							/>
 						</div>
+					</article>
+					<article className="wapper__card single-post bg-white rounded-16 shadow-sm p-3 p-sm-5">
+						<PostFooterComponent
+							favorited={singlePost.data.favorited}
+							totalFavorited={singlePost.data.total_favorited}
+							postSlug={singlePost.data.slug}
+							postUserName={singlePost.data.user.user_name}
+							postTitle={singlePost.data.title}
+						/>
+						<hr />
+						<CommentComponent
+							listComment={listComment}
+							postSlug={singlePost.data.slug}
+							postUserName={singlePost.data.user.user_name}
+						/>
 					</article>
 				</div>
 				<div className="col-lg-3">

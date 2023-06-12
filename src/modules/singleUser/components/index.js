@@ -32,8 +32,8 @@ const SingleUserComponent = ({ singleUser, listPostUser }) => {
 	}
 	return (
 		<div className="container-xl py-4">
-			<div className="row">
-				<div className="col-12 mb-4">
+			<div className="row justify-content-center">
+				<div className="col-md-8 mb-4">
 					<div className={`text-left bg-light rounded-16 shadow-sm px-4 pb-4 pt-4 ${style.info__user} cover-b bg-white`}>
 						<div>
 							<div className={`position-relative mb-2 ${style.avt}`}>
@@ -56,12 +56,12 @@ const SingleUserComponent = ({ singleUser, listPostUser }) => {
 											overlay={
 												<Popover id={`popover-positioned-options-single-user`}>
 													<Popover.Header as="h3" className="text-center">
-														Options
+														ตัวเลืแก
 													</Popover.Header>
 													<Popover.Body className="p-0">
 														<CustomLink href="/report_abuse" className="d-flex align-items-center dropdown-item">
 															<GoReport className="me-1" />
-															Report abuse
+															รายงานเนื้อหาไม่เหมาะสม
 														</CustomLink>
 													</Popover.Body>
 												</Popover>
@@ -81,8 +81,8 @@ const SingleUserComponent = ({ singleUser, listPostUser }) => {
 								@{singleUser.data?.user_name}
 							</h6>
 							<div className="mt-1">
-								{singleUser.data?.total_user_followers} <span className="text-secondary">followers</span> ·{' '}
-								{singleUser.data?.total_following_users} <span className="text-secondary">following</span>
+								{singleUser.data?.total_user_followers} <span className="text-secondary">ผู้ติดตาม</span> ·{' '}
+								{singleUser.data?.total_following_users} <span className="text-secondary">กำลังติดตาม</span>
 							</div>
 							{user && singleUser.data?.user_name === user?.user_name && (
 								<div className="mt-2">
@@ -110,7 +110,7 @@ const SingleUserComponent = ({ singleUser, listPostUser }) => {
 						</div>
 					</div>
 				</div>
-				<div className="col-lg-12 col-md-12 mb-10 mb-md-0">
+				<div className="col-md-8 mb-10 mb-md-0">
 					<div className='text-left bg-light rounded-16 shadow-sm px-4 pb-3 pt-3 bg-white'>
 						<ul className="nav nav-pills">
 							<li className="nav-item">
@@ -141,7 +141,7 @@ const SingleUserComponent = ({ singleUser, listPostUser }) => {
 						</ul>
 					</div>
 				</div>
-				<div className="col-lg-12 col-md-12 mt-4 mb-4 mb-md-0">
+				<div className="col-md-8 mt-4 mb-4 mb-md-0">
 					{activeTab === 1 && (
 						<ul className="wapper__card list-group rounded-16 shadow-sm">
 							<li className="list-group-item d-flex flex-wrap align-items-center">
@@ -162,7 +162,7 @@ const SingleUserComponent = ({ singleUser, listPostUser }) => {
 							</li>
 							<li className="list-group-item d-flex flex-wrap align-items-center">
 								<FaHashtag className="me-1" />
-								<span>{singleUser.data?.total_tags_followed} Hashtag ที่ติดตาม</span>
+								<span>{singleUser.data?.total_tags_followed} แท็คที่ติดตาม</span>
 							</li>
 						</ul>
 					)}

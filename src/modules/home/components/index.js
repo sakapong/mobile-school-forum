@@ -21,7 +21,7 @@ const HomeComponent = ({ listPostPinned, listPost, pid }) => {
 				<div className="col-xl-7 col-lg-7 col-md-9">
 					{!isEmpty(listPostPinned?.data) && (
 						<>
-							<h4 className="mb-3">{Language.titleListPostPinned(router.locale)}</h4>
+							<h4 className="fw-bold fs-4 mb-3">{Language.titleListPostPinned(router.locale)}</h4>
 							<div className="row row-cols-1 g-3 mb-3">
 								{listPostPinned?.data?.map((post) => (
 									<div className="col" key={post?.id}>
@@ -31,43 +31,43 @@ const HomeComponent = ({ listPostPinned, listPost, pid }) => {
 							</div>
 						</>
 					)}
-					<div className="d-flex align-items-center mb-3">
-						<h4 className="me-auto mb-0">{Language.titleListPost(router.locale)}</h4>
-						<TabHorizontal
-							pidTab={pid[1]}
-							items={[
-								{
-									title: 'ชิม',
-									slug: 'latest',
-									href: `/c/taste/latest`
-								},
-								{
-									title: 'ชอบ',
-									slug: 'feed',
-									href: '/c/like/latest'
-								},
-								{
-									title: 'โชคโชน',
-									slug: 'feed',
-									href: '/c/enjoy/latest'
-								},
-								{
-									title: 'เชี่ยวชาญ',
-									slug: 'feed',
-									href: '/c/expertise/latest'
-								},
-								// {
-								// 	title: 'ฟีด',
-								// 	slug: 'feed',
-								// 	href: '/feed'
-								// },
-								// {
-								// 	title: 'ล่าสุด',
-								// 	slug: 'latest',
-								// 	href: '/latest'
-								// },
-							]}
-						/>
+					<div className="d-md-flex align-items-center justify-content-between mb-3">
+							<h4 className="fw-bold mb-3 mb-md-0 fs-4 mb-0">{Language.titleListPost(router.locale)}</h4>
+							<TabHorizontal
+								pidTab={pid[1]}
+								items={[
+									{
+										title: 'ชิม',
+										slug: 'latest',
+										href: `/c/taste/latest`
+									},
+									{
+										title: 'ชอบ',
+										slug: 'feed',
+										href: '/c/like/latest'
+									},
+									{
+										title: 'โชคโชน',
+										slug: 'feed',
+										href: '/c/enjoy/latest'
+									},
+									{
+										title: 'เชี่ยวชาญ',
+										slug: 'feed',
+										href: '/c/expertise/latest'
+									},
+									// {
+									// 	title: 'ฟีด',
+									// 	slug: 'feed',
+									// 	href: '/feed'
+									// },
+									// {
+									// 	title: 'ล่าสุด',
+									// 	slug: 'latest',
+									// 	href: '/latest'
+									// },
+								]}
+							/>
 					</div>
 					{isEmpty(listPost?.data) ? (
 						<EmptyBox text="Empty posts" />

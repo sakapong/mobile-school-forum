@@ -87,12 +87,12 @@ const Pagination = ({ total, limit }) => {
 						{currentPage !== 1 ? (
 							<Item>
 								<NextLink href={url(currentPage - 1)} passHref scroll={false}>
-									<Link label="Previous page">&lsaquo;</Link>
+									<Link label="ก่อนหน้า">&lsaquo;</Link>
 								</NextLink>
 							</Item>
 						) : (
 							<Item disabled>
-								<Link label="No previous page available" disabled>
+								<Link label="ไม่มีก่อนหน้า" disabled>
 									&lsaquo;
 								</Link>
 							</Item>
@@ -104,14 +104,14 @@ const Pagination = ({ total, limit }) => {
 								</Item>
 							) : pageNumber === currentPage ? (
 								<Item current key={pageNumber}>
-									<Link label={`Page ${pageNumber}`} current="Page">
+									<Link label={`หน้าที่ ${pageNumber}`} current="Page">
 										{pageNumber}
 									</Link>
 								</Item>
 							) : (
 								<Item key={pageNumber}>
 									<NextLink href={url(pageNumber)} passHref scroll={false}>
-										<Link label={`Page ${pageNumber}`}>{pageNumber}</Link>
+										<Link label={`หน้าที่ ${pageNumber}`}>{pageNumber}</Link>
 									</NextLink>
 								</Item>
 							)
@@ -119,12 +119,12 @@ const Pagination = ({ total, limit }) => {
 						{!isLastPage ? (
 							<Item>
 								<NextLink href={url(currentPage + 1)} passHref scroll={false}>
-									<Link label="Next page">&rsaquo;</Link>
+									<Link label="หน้าถัดไป">&rsaquo;</Link>
 								</NextLink>
 							</Item>
 						) : (
 							<Item disabled>
-								<Link label="No next page available" disabled>
+								<Link label="ไม่มีหน้าถัดไป" disabled>
 									&rsaquo;
 								</Link>
 							</Item>

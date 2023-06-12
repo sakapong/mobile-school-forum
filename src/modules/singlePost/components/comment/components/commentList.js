@@ -39,7 +39,7 @@ const CommentList = ({ listCommentClient, setListCommentClient, meta, setMeta, p
 		<>
 			{isEmpty(listCommentClient) ? (
 				<div className="text-center fw-bold mt-4">
-					<span>Empty comments</span>
+					<span>ยังไม่มีคนแสดงความคิดเห็น เริ่มแสดงความคิดเห้นได้เลยนะ</span>
 				</div>
 			) : (
 				<>
@@ -57,11 +57,11 @@ const CommentList = ({ listCommentClient, setListCommentClient, meta, setMeta, p
 							{isLoading ? (
 								<button type="submit" className="btn btn-primary btn-sm" disabled>
 									<span className="spinner-grow spinner-grow-sm me-1" role="status" aria-hidden="true" />
-									Load more
+									ดูเพิ่มเติม
 								</button>
 							) : (
 								<button type="submit" className="btn btn-primary btn-sm" onClick={onLoadMoreCommentClicked}>
-									Load more
+									ดูเพิ่มเติม
 								</button>
 							)}
 						</div>

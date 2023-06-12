@@ -17,16 +17,16 @@ const ListOptionsMenu = () => {
 					</CustomLink>
 				</li>
 			))}
-			<li className={`align-items-center border-0 p-0 ${!hiddenMenu ? 'd-none' : 'd-flex'}`}>
+{/* 			<li className={`align-items-center border-0 p-0 ${!hiddenMenu ? 'd-none' : 'd-flex'}`}>
 				<button
 					type="button"
 					className="border-0 d-flex align-items-center text-secondary dropdown-item p-2"
 					onClick={() => setHiddenMenu(false)}
 				>
 					<FaEllipsisH className="h4 mb-0 me-1" />
-					More
+					เพิ่มเติม
 				</button>
-			</li>
+			</li> */}
 		</ul>
 	);
 };

@@ -11,9 +11,9 @@ const ListTag = ({ listTag }) => {
 		<div className="container-xl py-4">
 			<div className="row">
 				<div className="col-xl-10 col-md-9 order-md-2">
-					<h1 className="mb-3">Tags</h1>
+					<h1 className="fw-bold fs-3 mb-3">แท็ค</h1>
 					{isEmpty(listTag.data) ? (
-						<EmptyBoxComponent text="Empty tags" />
+						<EmptyBoxComponent text="ไม่มีแท็ค" />
 					) : (
 						<div className="row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-3 mb-3">
 							{listTag.data?.map((tag) => (

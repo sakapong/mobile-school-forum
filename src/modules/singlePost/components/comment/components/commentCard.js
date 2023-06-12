@@ -81,22 +81,16 @@ const CommentCard = ({
 									rootClose
 									overlay={
 										<Popover id={`popover-positioned-options-comment-${comment.slug}`}>
-											<Popover.Header as="h3">Options</Popover.Header>
+											<Popover.Header as="h3">ตัวเลือก</Popover.Header>
 											<Popover.Body className="p-0">
 												<CustomLink
 													href={`/u/${postUserName}/${comment.post.slug}/comment/${comment.slug}`}
 													className="d-flex align-items-center dropdown-item"
 												>
-													Open
+													แสดงความคิดเห้น
 												</CustomLink>
 												<CustomLink href={`/report_abuse`} className="d-flex align-items-center dropdown-item">
-													Credibility
-												</CustomLink>
-												<CustomLink href={`/report_abuse`} className="d-flex align-items-center dropdown-item">
-													Likelihood
-												</CustomLink>
-												<CustomLink href={`/report_abuse`} className="d-flex align-items-center dropdown-item">
-													Report
+													รายงานความไม่เหมาะสม
 												</CustomLink>
 												{user && user?.user_name === comment.user?.user_name && (
 													<>

@@ -323,7 +323,7 @@ const NavBarComponent = () => {
 				<Offcanvas.Body className="d-flex flex-column">
 					<form className="form-inline mb-3" onSubmit={onSearchSubmit}>
 						<input
-							placeholder="Search"
+							placeholder="ค้นหา"
 							type="text"
 							value={search}
 							onChange={handleChangeSearch}

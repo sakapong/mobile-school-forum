@@ -77,7 +77,7 @@ const SearchComponent = () => {
 							// 	href: `/search?q=${q}&type=comment`
 							// },
 							// {
-							// 	title: 'Hashtag',
+							// 	title: 'แท็ค',
 							// 	slug: 'tag',
 							// 	href: `/search?q=${q}&type=tag`
 							// },

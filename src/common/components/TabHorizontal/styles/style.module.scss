@@ -1,14 +1,15 @@
 .nav_link.active {
-	color: rgb(0, 0, 0);
+	color: #ffffff;
 	font-weight: 500;
-	box-shadow: 0 0.3rem 0rem 0px #3b49df;
-	background: rgb(59 73 223 / 10%);
-	border-radius: 0.25rem;
+	background: #00A8C9;
+	border-radius: 32px;
 }
 
 .nav_link {
 	&:hover {
-		background: rgb(59 73 223 / 10%);
-		border-radius: 0.25rem;
+		color: #ffffff;
+		background: rgb(0 168 201 / 70%);
+		border-radius: 32px;
+		cursor: pointer;
 	}
 }

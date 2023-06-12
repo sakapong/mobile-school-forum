@@ -221,10 +221,6 @@ body{
     color: #fff;
 }
 
-.table .thead {
-
-}
-
 .btn, .form-control {
 	border-radius: 32px;
 }
@@ -376,4 +372,15 @@ h1.post-title {
 
 iframe{
 	width: 100%;
+}
+
+.popover{
+	font-family: "Prompt" !important;	
+}
+.page-link{
+	color: #00A8C9;
+}
+.page-item.active .page-link{
+	background-color: #00A8C9;
+    border-color: #00A8C9;
 }

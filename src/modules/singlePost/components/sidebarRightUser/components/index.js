@@ -12,7 +12,7 @@ const SideBarRightUserComponent = ({ postUser, listPostUser }) => {
 	const { user } = useUser();
 	return (
 		<div className="sticky-top">
-			<div className={`wapper__card bg-light rounded-16 shadow-sm pt-0 pb-3 px-3 mb-4 ${style.border__top__user}`}>
+			<div className={`wapper__card bg-white rounded-16 shadow-sm pt-0 pb-3 px-3 mb-4 ${style.border__top__user}`}>
 				<div className="text-center mb-2 mt-n4">
 					<CustomLink
 						href={`/u/${postUser?.user_name}`}
@@ -35,11 +35,11 @@ const SideBarRightUserComponent = ({ postUser, listPostUser }) => {
 				</div>
 				<div>
 					<ul className="list-group list-group-flush">
-						<li className="bg-light list-group-item border-0 p-0 mb-2">
+						<li className="bg-white list-group-item border-0 p-0 mb-2">
 							<div className="text-secondary fw-bold small">บทบาท</div>
 							<div className="small">{postUser.role.title}</div>
 						</li>
-						<li className="bg-light list-group-item border-0 p-0">
+						<li className="bg-white list-group-item border-0 p-0">
 							<div className="text-secondary fw-bold small">เข้าร่วมเมื่อ</div>
 							<div className="small">
 								<time dateTime={postUser.created_at}>{timeFormat(postUser.created_at)}</time>
@@ -48,9 +48,9 @@ const SideBarRightUserComponent = ({ postUser, listPostUser }) => {
 					</ul>
 				</div>
 			</div>
-			<div className="wapper__card bg-light rounded-16 shadow-sm border">
+			<div className="wapper__card bg-white rounded-16 shadow-sm border">
 				<div className="px-3 py-2 border-bottom">
-					<h5 className="mb-0">
+					<h5 className="mb-0 overflow-hidden">
 						เพิ่มเติมจาก
 						<CustomLink
 							href={`/u/${postUser?.user_name}`}

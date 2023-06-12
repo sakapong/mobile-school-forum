@@ -15,7 +15,7 @@ const SingleTagComponent = ({ singleTag, listPostTag, pid }) => {
 				<div className="col-xl-9 col-md-8">
 					<TagCardComponent tag={singleTag.data} classNameContainer={`mb-3`} isSingle />
 					<div className="d-flex align-items-center mb-3">
-						<h4 className="me-auto mb-0">Posts</h4>
+						<h4 className="fw-bold fs-3 me-auto mb-0">ผลงาน</h4>
 						<TabHorizontal
 							pidTab={pid[1]}
 							items={[
