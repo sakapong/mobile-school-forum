@@ -28,19 +28,17 @@ const CheckinUserComponent = () => {
     }
 
     const handleCheckin = async () => {
-        const topic = `[Check-in] @${currentDate}
-            ${selectedFeeling}
-            เหตุผล
+        const topic = `[Check-in]\n
+            ${selectedFeeling}\n
+            เหตุผล\n
             ${reason}
-            by
-            ${user}
         `
         try {
             const checkInData = {
                 topic: topic,
-                user: user,
+                id: 45,
                 module: 'checkin',
-                action: 'checkin',
+                action: selectedFeeling,
 
             };
             console.log("checkInData", checkInData)
@@ -80,27 +78,27 @@ const CheckinUserComponent = () => {
     const feelingChoices = [
         {
             name: "ลัลล้า (Joy)",
-            value: "joy",
+            value: "ลัลล้า",
             icon: "/images/checkin/joy.svg"
         },
         {
             name: "เศร้าซึม (Sadness)",
-            value: "sad",
+            value: "เศร้าซึม",
             icon: "/images/checkin/sad.svg"
         },
         {
             name: "กลัว (Fear)",
-            value: "fear",
+            value: "กลัว",
             icon: "/images/checkin/fear.svg"
         },
         {
             name: "หยะแหยง (Disgust)",
-            value: "disgust",
+            value: "หยะแหยง",
             icon: "/images/checkin/disgust.svg"
         },
         {
             name: "ฉุนเฉียว (Anger)",
-            value: "anger",
+            value: "ฉุนเฉียว",
             icon: "/images/checkin/anger.svg"
         }
     ]
