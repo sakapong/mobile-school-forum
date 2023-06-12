@@ -115,11 +115,11 @@ const StudentFamilyFormComponent = ({nextPage, previousPage, currentStep}) => {
                     required: false,
                     type: 'select',
                     options: [
-                        { label: 'อยู่ร่วมกัน', name: 'normal' },
-                        { label: 'หย่าร้าง', name: 'divorce' },
-                        { label: 'แยกกันอยู่', name: 'seperate' },
-                        { label: 'บิดาเสียชีวิต', name: 'father-die' },
-                        { label: 'มารดาเสียชีวิต', name: 'mother-die' },
+                        { label: 'อยู่ร่วมกัน', name: 'อยู่ร่วมกัน' },
+                        { label: 'หย่าร้าง', name: 'หย่าร้าง' },
+                        { label: 'แยกกันอยู่', name: 'แยกกันอยู่' },
+                        { label: 'บิดาเสียชีวิต', name: 'บิดาเสียชีวิต' },
+                        { label: 'มารดาเสียชีวิต', name: 'มารดาเสียชีวิต' },
                     ],
                 },
                 {

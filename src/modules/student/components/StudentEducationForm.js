@@ -53,10 +53,10 @@ const StudentEducationFormComponent = ({nextPage, previousPage, currentStep}) =>
                     required: true,
                     type: 'radio',
                     options: [
-                        { label: 'สพฐ', name: 'public' },
-                        { label: 'เอกชน', name: 'private' },
-                        { label: 'กทม.', name: 'bkk' },
-                        { label: 'อื่นๆ', name: 'other' },
+                        { label: 'สพฐ', name: 'สพฐ' },
+                        { label: 'เอกชน', name: 'เอกชน' },
+                        { label: 'กทม.', name: 'กทม' },
+                        { label: 'อื่นๆ', name: 'อื่นๆ' },
                     ],
                 }
             ]

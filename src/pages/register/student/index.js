@@ -54,10 +54,10 @@ const StudentRegisterOverview = ({ verifyUser }) => {
             label: 'ข้อมูลผู้ปกครอง',
             slug: 'parent',
         },
-/*         {
+        {
             label: 'หลักฐานการสมัคร',
             slug: 'parent',
-        }, */
+        },
     ]
 
     const initialValues = {
@@ -166,22 +166,28 @@ const StudentRegisterOverview = ({ verifyUser }) => {
             parent_id_number: values.parent_id_number,
             parent_job: values.parent_job,
             parent_salary: values.parent_salary,
+            id_card_student: values.id_card_student,
+            housing_student: values.housing_student,
+            transcript: values.transcript,
+            photograph: values.photograph,
+            id_card_father: values.id_card_father,
+            housing_father: values.housing_father,
+            id_card_mother: values.id_card_mother,
+            housing_mother: values.housing_mother,
         };
         setLoading(true);
         const response = await httpRequest.post({
-            url: `https://www.formbackend.com/f/9ad72bb013136b87`,
+            url: `https://mbs-register.onrender.com/api/v1/student_forms/`,
             data: student
         });
         console.log("response", response)
-        if (response.data.submission_text === "sucess") {
+        if (response.data.pk) {
             showToast.success('ใบสมัครของท่านได้ทำการส่งเรียบร้อยแล้ว');
             router.push(`/`);
         }
     } catch (error) {
         showToast.error('กรุณาลองใหม่อีกครั้ง');
-        if (error.response.data.submission_text !== "sucess") {
-            setErrors('กรุณาลองใหม่อีกครั้ง');
-        }
+            setErrors(error);
     } finally {
         setLoading(false);
     }
