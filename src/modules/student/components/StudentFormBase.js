@@ -19,7 +19,6 @@ import showToast from '@/common/utils/showToast';
 import { useSession, signIn, signOut } from "next-auth/react"
 
 const StudentFormBaseComponent = ({ sections, errors, isLoading, buttonRef, nextPage, previousPage, currentStep }) => {
-    
     const [loadImg01, setLoadImg01] = useState(``);
     const [loadImg02, setLoadImg02] = useState(``);
     const [loadImg03, setLoadImg03] = useState(``);
@@ -172,6 +171,7 @@ const StudentFormBaseComponent = ({ sections, errors, isLoading, buttonRef, next
                                             id={`${field.name}_${option.name}`}
                                             name={field.name}
                                             value={option.name}
+                                            checked={option.name === values[field.name]}
                                             errors={errors.error?.message}
                                         />
                                     </div>
