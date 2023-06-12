@@ -52,7 +52,7 @@ const StudentInfoFormComponent = ({nextPage, previousPage, currentStep}) => {
                     type: 'text'
                 },
                 {
-                    name: 'dathOfBirth',
+                    name: 'dath_of_birth',
                     label: 'วัน-เดือน-ปี เกิด',
                     required: true,
                     type: 'date'
