@@ -56,6 +56,11 @@ const HomeComponent = ({ listPostPinned, listPost, pid }) => {
 										slug: 'feed',
 										href: '/c/expertise/latest'
 									},
+									{
+										title: 'ใบงาน',
+										slug: 'feed',
+										href: '/c/homework/latest'
+									},
 									// {
 									// 	title: 'ฟีด',
 									// 	slug: 'feed',

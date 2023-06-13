@@ -5,6 +5,7 @@ import '@/styles/globals.scss';
 import '@/styles/github-markdown.css';
 import 'nprogress/nprogress.css';
 import 'react-toastify/dist/ReactToastify.css';
+import "@fortawesome/fontawesome-svg-core/styles.css"; 
 
 import dynamic from 'next/dynamic';
 import Head from 'next/head';

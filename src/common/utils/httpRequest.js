@@ -30,7 +30,7 @@ const httpRequest = {
 				Accept: 'application/json',
 				'Content-Type': 'application/x-www-form-urlencoded',
 				Authorization: 'Bearer ' + token,
-				'Origin':'https://dev.socialbureau.io'
+				'Origin':'https://play.mobileschool.online'
 			},
 			data: data2
 		});
@@ -47,6 +47,15 @@ const httpRequest = {
 				Authorization: 'Bearer ' + token || ''
 			},
 			params: params
+		});
+	},
+	get_student: ({ baseUrl = 'https://api.mobileschool.online', line_uid }) => {
+		console.log("get_student")
+		return axios({
+			timeout: process.env.REQUEST.TIMEOUT,
+			method: 'post',
+			baseURL: baseUrl,
+			url: `/api.php/v1/students/student?line_uid=${line_uid}`,
 		});
 	},
 	post: ({ baseUrl = process.env.API_URL, url, token, data }) => {

@@ -104,7 +104,7 @@ const LoginFormComponent = () => {
                 data: user
             });
             if (response.data.success) {
-                // showToast.success('Login success');
+                showToast.success('Login success ' + response.data.data.access_token);
                 setCookie('token', response.data.data.access_token);
                 router.push(`/u/${response.data.data.user_name}`);
             }

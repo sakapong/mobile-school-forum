@@ -23,7 +23,10 @@ import { KnockFeedProvider } from "@knocklabs/react-notification-feed";
 import useIdentify from "@/common/hooks/useIdentify";
 import NotificationFeed from "@/common/components/Notification/components/NotificationFeed";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '@/common/components/Notification/styles/style.module.css';
+
+import { randomBytes } from 'crypto'
 
 const Tenants = {
 	TeamA: "team-a",
@@ -37,6 +40,17 @@ const TenantLabels = {
 
 
 const NavBarComponent = () => {
+
+	const params = new URLSearchParams({
+        response_type: 'code',
+        client_id: process.env.NEXT_PUBLIC_LINE_CLIENT_ID,
+        redirect_uri: `${process.env.WEBSITE_URL}/me`,
+        state: randomBytes(32).toString('hex'),
+        scope: 'openid profile email',
+    });
+
+	const lineLoginUrl = "https://access.line.me/oauth2/v2.1/authorize?" + params.toString();
+  console.log(lineLoginUrl)
 
 	const { userId, isLoading } = useIdentify();
 	const [tenant, setTenant] = useState(Tenants.TeamA);
@@ -292,7 +306,7 @@ const NavBarComponent = () => {
 
 							{!user ? (
 								<>
-									<Nav.Item>
+{/*									<Nav.Item>
 										<Link href="/register" passHref>
 											<Nav.Link>ลงทะเบียน</Nav.Link>
 										</Link>
@@ -300,6 +314,11 @@ const NavBarComponent = () => {
 									<Nav.Item>
 										<Link href="/login" passHref>
 											<Nav.Link>เข้าสู่ระบบ</Nav.Link>
+										</Link>
+									</Nav.Item>*/}
+									<Nav.Item>
+										<Link href={lineLoginUrl}  passHref>
+											<Nav.Link className="btn btn-success btn-line-login btn-block">เข้าสู่ระบบด้วย LINE</Nav.Link>
 										</Link>
 									</Nav.Item>
 								</>

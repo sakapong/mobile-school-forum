@@ -7,6 +7,8 @@ import showToast from '@/common/utils/showToast';
 import httpRequest from '@/common/utils/httpRequest';
 import { setCookie } from '@/common/utils/session';
 
+import axios from 'axios';
+
 const liffId = process.env.NEXT_PUBLIC_LIFF_ID
 
 export default function MePage() {
@@ -19,20 +21,41 @@ export default function MePage() {
     const [liffObject, setLiffObject] = useState(null);
     const [liffError, setLiffError] = useState(null);
 
-    useEffect(async () => {
-        const liff = (await import('@line/liff')).default
-        await liff.ready
-        const profile = await liff.getProfile()
-        const accessToken = await liff.getAccessToken()
-        setProfile(profile)
-        setAccessToken(accessToken)
+    const { code } = router.query
+    console.log("code", code);
 
-        const user = {
-            line_access_token: accessToken,
-            provider: 'line'
-        };
-        await handleSocialLogin(user);
-    }, [profile.userId])
+    useEffect(() => {
+
+        if (code) {
+            axios.post(
+                'https://api.line.me/oauth2/v2.1/token',
+                new URLSearchParams({
+                    'grant_type': 'authorization_code',
+                    'code': code,
+                    'redirect_uri': `${process.env.WEBSITE_URL}/me`,
+                    'client_id': process.env.NEXT_PUBLIC_LINE_CLIENT_ID,
+                    'client_secret': process.env.NEXT_PUBLIC_LINE_CLIENT_SECRET
+                })
+            ).then(async (response) => {
+                const theAccessToken = response.data.access_token;
+
+                console.log("theAccessToken", theAccessToken)
+
+                setAccessToken(theAccessToken)
+
+                const user = {
+                    line_access_token: theAccessToken,
+                    provider: 'line'
+                };
+                await handleSocialLogin(user);
+                //res.json()
+            })
+
+            
+
+        }
+
+    }, [code])
 
     const handleSocialLogin = async (user) => {
         try {

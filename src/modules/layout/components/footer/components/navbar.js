@@ -7,8 +7,8 @@ import NavLink from 'react-bootstrap/NavLink';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
 
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faSearch, faHome, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch, faHome, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
 import { FcAbout, FcContacts, FcFaq, FcHome, FcPrivacy, FcSearch } from 'react-icons/fc';
 import useUser from '@/common/hooks/useUser';

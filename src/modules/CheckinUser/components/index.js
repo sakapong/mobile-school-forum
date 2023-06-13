@@ -36,7 +36,7 @@ const CheckinUserComponent = () => {
         try {
             const checkInData = {
                 topic: topic,
-                id: 45,
+                id: (user.profile.id) ? user.profile.id : 1,
                 module: 'checkin',
                 action: selectedFeeling,
 
