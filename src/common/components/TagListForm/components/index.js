@@ -14,6 +14,7 @@ const TagListFormComponent = ({ errors, tags, setTag, ...props }) => {
 		switch (e.keyCode) {
 			case 13: // Enter
 			case 9: // Tab
+			case 32: // space
 			// case 188: // Comma
 			// 	if (e.keyCode !== 9) e.preventDefault();
 			// 	handleInputKeyDown(e);
@@ -32,6 +33,8 @@ const TagListFormComponent = ({ errors, tags, setTag, ...props }) => {
 			if (tags.find((tag) => tag.slug.toLowerCase() === value.toLowerCase())) {
 				return;
 			}
+			
+			console.log("filted_tags",tags)
 			setTag([
 				...tags,
 				{
@@ -48,18 +51,23 @@ const TagListFormComponent = ({ errors, tags, setTag, ...props }) => {
 		}
 	};
 
+
 	const handleInputOnBlur = (e) => {
 		console.log("tags",tags);
-		const value = convertTextToSlug(e.target.value);
-		if (value) {
-			if (tags.find((tag) => tag.slug.toLowerCase() === value.toLowerCase())) {
+		const slug = convertTextToSlug(e.target.value);
+		if (slug) {
+
+			if (tags.find((tag) => tag.slug.toLowerCase() === slug.toLowerCase())) {
 				return;
 			}
+
+			// 
+
 			setTag([
 				...tags,
 				{
-					value: value,
-					slug: value
+					value: e.target.value,
+					slug: slug
 				}
 			]);
 			setInput('');
@@ -71,6 +79,8 @@ const TagListFormComponent = ({ errors, tags, setTag, ...props }) => {
 		newTags.splice(index, 1);
 		setTag(newTags);
 	};
+
+	
 
 	return (
 		<>

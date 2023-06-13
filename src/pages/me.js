@@ -1,4 +1,3 @@
-import { useSession } from "next-auth/react"
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router';
 import Head from 'next/head'
@@ -8,13 +7,17 @@ import showToast from '@/common/utils/showToast';
 import httpRequest from '@/common/utils/httpRequest';
 import { setCookie } from '@/common/utils/session';
 
+const liffId = process.env.NEXT_PUBLIC_LIFF_ID
+
 export default function MePage() {
-    const { data: session } = useSession()
     const [profile, setProfile] = useState({})
     const [accessToken, setAccessToken] = useState("")
     const [isLoading, setLoading] = useState(false);
     const [errors, setErrors] = useState({});
     const router = useRouter();
+
+    const [liffObject, setLiffObject] = useState(null);
+    const [liffError, setLiffError] = useState(null);
 
     useEffect(async () => {
         const liff = (await import('@line/liff')).default
@@ -28,8 +31,7 @@ export default function MePage() {
             line_access_token: accessToken,
             provider: 'line'
         };
-        await handleSocialLogin(user)
-
+        await handleSocialLogin(user);
     }, [profile.userId])
 
     const handleSocialLogin = async (user) => {
@@ -47,7 +49,7 @@ export default function MePage() {
             }
         } catch (error) {
             // showToast.error('Login failed');
-            console.log("error",error)
+            console.log("error", error)
         } finally {
             setLoading(false);
         }

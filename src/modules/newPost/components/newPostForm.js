@@ -56,6 +56,7 @@ const NewPostFormComponent = ({ isPreview }) => {
 	const onSubmit = async (values) => {
 		try {
 			setLoading(true);
+			let filtered_tags = tags.filter(obj => obj.title !== '')
 			const response = await httpRequest.upload({
 				url: `/posts`,
 				token: getCookie('token'),
@@ -63,7 +64,7 @@ const NewPostFormComponent = ({ isPreview }) => {
 					title: values.title,
 					content: values.content,
 					category_id: values.category_id,
-					tags: JSON.stringify(tags)
+					tags: JSON.stringify(filtered_tags)
 				},
 				files: {
 					image: values.image

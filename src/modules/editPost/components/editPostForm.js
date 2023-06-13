@@ -55,6 +55,7 @@ const EditPostFormComponent = ({ editPost, isPreview }) => {
 	const onSubmit = async (values) => {
 		try {
 			setLoading(true);
+			let filtered_tags = tags.filter(obj => obj.title !== '')
 			const response = await httpRequest.upload({
 				url: `/posts/${editPost.data.slug}`,
 				token: getCookie('token'),
@@ -62,7 +63,7 @@ const EditPostFormComponent = ({ editPost, isPreview }) => {
 					title: values.title,
 					content: values.content,
 					category_id: values.category_id,
-					tags: JSON.stringify(tags),
+					tags: JSON.stringify(filtered_tags),
 					is_remove_img: isRemoveImg
 				},
 				files: {
@@ -194,7 +195,7 @@ const EditPostFormComponent = ({ editPost, isPreview }) => {
 										{tags.map((tag, index) => (
 											<span key={index} className="p-1 text-secondary">
 												<span className="text-muted">#</span>
-												{tag.slug}
+												{tag.name}
 											</span>
 										))}
 									</div>

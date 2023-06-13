@@ -44,6 +44,8 @@ const TopProgressBar = dynamic(
 
 console.log('%cPLAY AREA', 'font-size: 4rem; color: red; font-weight: 600;');
 
+const liffId = process.env.NEXT_PUBLIC_LIFF_ID
+
 const App = ({ Component, pageProps: { session, ...pageProps } }) => {
 	const router = useRouter();
 
@@ -57,8 +59,9 @@ const App = ({ Component, pageProps: { session, ...pageProps } }) => {
 	useEffect(async () => {
 		// to avoid `window is not defined` error
 		const liff = (await import('@line/liff')).default
+		console.log("LIFF_ID", process.env.NEXT_PUBLIC_LIFF_ID);
 		liff
-			.init({ liffId: process.env.LIFF_ID })
+			.init({ liffId })
 			.then(() => {
 				console.log("liff.init() done");
 				setLiffObject(liff);
@@ -75,7 +78,7 @@ const App = ({ Component, pageProps: { session, ...pageProps } }) => {
 			});
 
 		await liff.ready
-		if (!liff.isLoggedIn()) {
+		if (!liff.isLoggedIn() && liff.isInClient()) {
 			console.log("isloginginWithLiff")
 			await liff.login({ redirectUri: `${process.env.WEBSITE_URL}/me` });
 		}

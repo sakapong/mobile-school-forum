@@ -22,7 +22,7 @@
     "@faker-js/faker": "^7.1.0",
     "@knocklabs/node": "^0.4.6",
     "@knocklabs/react-notification-feed": "^0.6.1",
-    "@line/liff": "^2.22.1",
+    "@line/liff": "^2.8.1",
     "@popperjs/core": "^2.11.7",
     "@pusher/push-notifications-web": "^1.1.0",
     "@reach/dialog": "^0.18.0",
