@@ -89,13 +89,13 @@ const StudentRegisterOverview = ({ verifyUser }) => {
         father_first_name: "",
         father_last_name: "",
         father_salary: 0,
-        father_date_birth: "",
+        father_date_birth: "" || "2000-01-01",
         father_job: "",
         father_id_number: "",
         mother_first_name: "",
         mother_last_name: "",
         mother_salary: 0,
-        mother_date_birth: "",
+        mother_date_birth: "" || "2000-01-01",
         mother_job: "",
         mother_id_number: "",
         family_status: "",
@@ -106,7 +106,7 @@ const StudentRegisterOverview = ({ verifyUser }) => {
         parent_last_name: "",
         parent_relation: "",
         parent_telephone: "",
-        parent_date_birth: "",
+        parent_date_birth: "" || "2000-01-01",
         parent_id_number: "",
         parent_job: "",
         parent_salary: 0,
@@ -152,13 +152,13 @@ const StudentRegisterOverview = ({ verifyUser }) => {
             father_first_name: values.father_first_name,
             father_last_name: values.father_last_name,
             father_salary: values.father_salary,
-            father_date_birth: values.father_date_birth,
+            father_date_birth: values.father_date_birth || "2000-01-01",
             father_job: values.father_job,
             father_id_number: values.father_id_number,
             mother_first_name: values.mother_first_name,
             mother_last_name: values.mother_last_name,
             mother_salary: values.mother_salary,
-            mother_date_birth: values.mother_date_birth,
+            mother_date_birth: values.mother_date_birth || "2000-01-01",
             mother_job: values.mother_job,
             mother_id_number: values.mother_id_number,
             family_status: values.family_status,
@@ -168,7 +168,7 @@ const StudentRegisterOverview = ({ verifyUser }) => {
             parent_last_name: values.parent_last_name,
             parent_relation: values.parent_relation,
             parent_telephone: values.parent_telephone,
-            parent_date_birth: values.parent_date_birth,
+            parent_date_birth: values.parent_date_birth || "2000-01-01",
             parent_id_number: values.parent_id_number,
             parent_job: values.parent_job,
             parent_salary: values.parent_salary,
@@ -192,7 +192,7 @@ const StudentRegisterOverview = ({ verifyUser }) => {
             router.push(`/`);
         }
     } catch (error) {
-        showToast.error('กรุณาลองใหม่อีกครั้ง');
+        showToast.error(`กรุณาลองใหม่อีกครั้ง ${error.data}`);
             setErrors(error);
     } finally {
         setLoading(false);
