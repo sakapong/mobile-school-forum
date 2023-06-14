@@ -43,7 +43,7 @@ const LoginWalletComponent = () => {
 				data: user
 			});
 			if (response.data.success) {
-				showToast.success('Login success');
+				showToast.success('เข้าสู่ระบบสำเร็จแล้ว');
 				setCookie('token', response.data.data.access_token);
 				router.push('/');
 			}
@@ -71,7 +71,7 @@ const LoginWalletComponent = () => {
 			});
 			if (response.data.success) {
 				setCookie('token', response.data.data.access_token);
-				showToast.success('Login success');
+				showToast.success('เข้าสู่ระบบสำเร็จแล้ว');
 				router.push('/');
 			}
 		} catch (error) {
@@ -140,7 +140,6 @@ const LoginWalletComponent = () => {
 {/*					<br/>
 					OR
 					<br/>
-					<WalletConnectorButton />*/}
 					<p className="mt-3">
 						Not a member?{' '}
 						<CustomLink className="text-decoration-none" href="/register">

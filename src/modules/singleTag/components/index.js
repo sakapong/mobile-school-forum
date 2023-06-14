@@ -38,7 +38,7 @@ const SingleTagComponent = ({ singleTag, listPostTag, pid }) => {
 						/>
 					</div>
 					{isEmpty(listPostTag.data) ? (
-						<EmptyBox text="Empty posts" />
+						<EmptyBox text="ยังไม่มีผลงานนักเรียน" />
 					) : (
 						<div className="row row-cols-1 g-3 mb-3">
 							{listPostTag.data.map((post) => (

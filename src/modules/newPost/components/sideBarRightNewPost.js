@@ -4,7 +4,7 @@ import React from 'react';
 const SideBarRightNewPostComponent = () => {
 	return (
 		<>
-			<h5 className="fw-bold">Editor Basics</h5>
+{/* 			<h5 className="fw-bold">Editor Basics</h5>
 			<p className="text-secondary mb-0">Editor Basics Use Markdown to write and format posts.</p>
 			<details className="my-1">
 				<summary className="cursor-pointer text-secondary ">Commonly used syntax</summary>
@@ -81,7 +81,7 @@ const SideBarRightNewPostComponent = () => {
 						</tr>
 					</tbody>
 				</table>
-			</details>
+			</details> */}
 			{/* <Staking /> */}
 		</>
 	);

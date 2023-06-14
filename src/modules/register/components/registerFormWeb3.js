@@ -97,7 +97,7 @@ const RegisterFormComponentWeb3 = () => {
             });
             if (response.data.success) {
                 setCookie('token', response.data.data.access_token);
-                showToast.success('Login success');
+                showToast.success('เข้าสู่ระบบสำเร็จแล้ว');
                 router.push('/');
             }
         } catch (error) {

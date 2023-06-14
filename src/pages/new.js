@@ -9,7 +9,7 @@ import NewPostComponent from '@/modules/newPost/components';
 const NewPost = () => {
 	return (
 		<>
-			<MetaWebsite title="New Post" />
+			<MetaWebsite title="เพิ่มผลงานใหม่" />
 			<LayoutComponent>
 				<NewPostComponent />
 			</LayoutComponent>

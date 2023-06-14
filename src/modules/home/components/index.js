@@ -75,7 +75,7 @@ const HomeComponent = ({ listPostPinned, listPost, pid }) => {
 							/>
 					</div>
 					{isEmpty(listPost?.data) ? (
-						<EmptyBox text="Empty posts" />
+						<EmptyBox text="ยังไม่มีผลงานนักเรียน" />
 					) : (
 						<div className="row row-cols-1 g-3 mb-3">
 							{listPost?.data?.map((post) => (

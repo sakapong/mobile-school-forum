@@ -47,7 +47,7 @@ const ListPostUserTableComponent = ({ listPostUser }) => {
 								]}
 							/>
 			{isEmpty(listPostUser.data) ? (
-				<EmptyBoxComponent text="Empty posts ListPostUserComponent" />
+				<EmptyBoxComponent text="ยังไม่มีผลงานนักเรียน" />
 			) : (
 				<div className="">
 				<table className="table">

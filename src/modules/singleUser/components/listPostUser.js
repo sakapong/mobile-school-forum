@@ -9,7 +9,7 @@ const ListPostUserComponent = ({ listPostUser }) => {
 	return (
 		<>
 			{isEmpty(listPostUser.data) ? (
-				<EmptyBoxComponent text="Empty posts ListPostUserComponent" />
+				<EmptyBoxComponent text="ยังไม่มีผลงานนักเรียน" />
 			) : (
 				<div className="row row-cols-1 g-3 mb-3">
 					{listPostUser.data?.map((post) => (

@@ -152,11 +152,11 @@ const EditProfileFormComponent = ({ editProfile }) => {
 				}
 			});
 			if (response.data.success) {
-				showToast.success(`Resend email '${response.data.data.email}' success`);
+				showToast.success(`ส่งใหม่ไปยังอีเมล์ '${response.data.data.email}' สำเร็จแล้ว`);
 			}
 		} catch (error) {
 			console.log(error);
-			showToast.error('Resend error');
+			showToast.error('ไม่สามาถส่งใหม่ได้ กรุณาลองใหม่อีกครั้ง');
 		} finally {
 			setLoadingResend(false);
 		}
@@ -168,7 +168,7 @@ const EditProfileFormComponent = ({ editProfile }) => {
 				<Form>
 					{!editProfile.data.verified && (
 						<div className="alert alert-danger text-break d-none" role="alert">
-							<h5 className="text-dark mb-0">Confirm your email to complete your profile.</h5>
+							<h5 className="text-dark mb-0">ยืนยันการสมัตรสมาชิกผ่านทางอีเมล์เพื่อให้การสมัตรเสร็จสิ้น</h5>
 							<div className="d-flex align-items-center flex-wrap">
 								<CustomLink className="text-decoration-none me-1" href={`mailto:${editProfile.data.email}`}>
 									{editProfile.data.email}
@@ -185,7 +185,7 @@ const EditProfileFormComponent = ({ editProfile }) => {
 						</div>
 						<div className="mb-3 col-md-6 ">
 							<div className="d-flex flex-column flex-sm-row">
-								<div className="w-100">
+								<div className="flex-1">
 									<InputForm
 										label="อีเมลล์"
 										placeholder="Email"
@@ -199,7 +199,7 @@ const EditProfileFormComponent = ({ editProfile }) => {
 									(isLoadingResend ? (
 										<button
 											type="button"
-											className={`d-flex align-items-center btn btn-info ms-0 ms-sm-2 mt-2 ${style.btn__resend}`}
+											className={`d-flex align-items-center btn btn-outline-primary ms-0 ms-sm-2 mt-2 ${style.btn__resend}`}
 											disabled
 										>
 											<span className="spinner-border spinner-border-sm" role="status" aria-hidden="true" />
@@ -207,10 +207,10 @@ const EditProfileFormComponent = ({ editProfile }) => {
 									) : (
 										<button
 											type="button"
-											className={`btn btn-info ms-0 ms-sm-2 mt-2 ${style.btn__resend}`}
+											className={`btn btn-outline-primary ms-0 ms-sm-2 mt-2 ${style.btn__resend}`}
 											onClick={() => onResendClick()}
 										>
-											Resend
+											ส่งใหม่
 										</button>
 									))}
 							</div>

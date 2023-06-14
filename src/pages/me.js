@@ -67,7 +67,7 @@ export default function MePage() {
             });
             if (response.data) {
                 setCookie('token', response.data.data.access_token);
-                showToast.success('Login success');
+                showToast.success('เข้าสู่ระบบสำเร็จแล้ว');
                 router.push('/register/student');
             }
         } catch (error) {
