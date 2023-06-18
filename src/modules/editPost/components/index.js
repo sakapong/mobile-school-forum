@@ -15,8 +15,8 @@ const EditPostComponent = ({ editPost }) => {
 			{!user ? (
 				<LoadingSpinner />
 			) : (
-				<div className="row">
-					<div className="col-md-9">
+				<div className="row g-0">
+					<div className="col-lg-6 col-md-8 mx-auto">
 						<div className="d-flex align-items-center mb-3">
 							<ul className="ms-auto nav nav-pills">
 								<li className="nav-item">
@@ -42,9 +42,6 @@ const EditPostComponent = ({ editPost }) => {
 								<EditPostFormComponent editPost={editPost} isPreview={isPreview} />
 							</div>
 						</div>
-					</div>
-					<div className="col-md-3 mt-4 mt-md-0">
-						<SideBarRightNewPostComponent />
 					</div>
 				</div>
 			)}

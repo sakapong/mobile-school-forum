@@ -9,7 +9,7 @@ import LayoutComponent from '@/modules/layout/components';
 const EditPost = ({ editPost }) => {
 	return (
 		<>
-			<MetaWebsite title="Edit Post" isNoneMeta />
+			<MetaWebsite title="แก้ไขผลงาน" isNoneMeta />
 			<LayoutComponent>
 				<EditPostComponent editPost={editPost} />
 			</LayoutComponent>

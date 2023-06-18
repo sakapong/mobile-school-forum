@@ -41,9 +41,9 @@ const EditPostFormComponent = ({ editPost, isPreview }) => {
 		image: null
 	};
 	const validationSchema = Yup.object({
-		title: Yup.string().required('Title is required').max(150, 'Title is maximum 128 characters'),
-		content: Yup.string().required('Content is required').max(60000, 'Excerpt is maximum 60000 characters'),
-		category_id: Yup.number().integer('Invaild category').required('Select category'),
+		title: Yup.string().required('กรุณากรอกหัวข้อผลงาน').max(150, 'หัวข้อผลงานใส่ได้มากสุด 128 ตัวอักษร'),
+		content: Yup.string().required('กรุณากรอกเนื้อหาผลงาน').max(60000, 'ใส่เนื้อหาผลงานได้สูงสุด 60000 ตัวอักษร'),
+		category_id: Yup.number().integer('กรุณาเลือกหมวดหมู่ผลงาน').required('เลือกหมวดหมู่ผลงาน'),
 		image: Yup.mixed()
 			.test('fileSize', 'File too large', (value) => value === null || (value && value.size <= FILE_SIZE))
 			.test(
@@ -71,12 +71,12 @@ const EditPostFormComponent = ({ editPost, isPreview }) => {
 				}
 			});
 			if (response.data.success) {
-				showToast.success('Update post success');
+				showToast.success('อัพเดทผลงานสำเร็จแล้ว');
 				router.push(`/u/${response.data.data.user.user_name}/${response.data.data.slug}`);
 			}
 		} catch (error) {
 			console.log(error);
-			showToast.error('Update post error');
+			showToast.error('ไม่สามารถอัพเดทผลงานได้');
 			if (!error.response.data.success) {
 				setErrors(error.response.data);
 			}
@@ -98,7 +98,7 @@ const EditPostFormComponent = ({ editPost, isPreview }) => {
 				setFieldValue('image', file);
 				setIsRemoveImg(false);
 				e.target.value = null;
-				showToast.info(`Load file success "${file.name}"`);
+				showToast.info(`โหลดไฟล์สำเร็จ "${file.name}"`);
 			}
 		} catch (error) {
 			console.log(error);
@@ -120,57 +120,55 @@ const EditPostFormComponent = ({ editPost, isPreview }) => {
 		<Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
 			{({ setFieldValue, setFieldTouched, errors: error, touched, values }) => (
 				<Form>
-					<div className="bg-white rounded-16 p-3 p-sm-5">
+					<div className="bg-white rounded-16 p-4">
 						{!isPreview ? (
-							<div className="p-3 p-sm-5">
-								<div className="row">
-									<div className="mb-3 col-md-12">
-										<InputForm label="Title" placeholder="หัวข้อผลงาน" id="title" name="title" type="text" />
-									</div>
-									<div className="mb-3 col-md-12">
-										<TagListForm tags={tags} setTag={setTag} errors={errors.error?.message?.tags} />
-									</div>
-									<div className="mb-3 col-12">
-										<CustomEditor 
-											initialValue={values.content}
-											field={{ name: "content", value: "" }} 
-											onEditorChange={(newValue) => {
-												setFieldValue('content', newValue);
-											}}
-										/>
-									</div>
-									<div className="mb-3 col-md-12 mb-0">
-										<SelectForm label="Category" name="category_id">
-											<option value="">เลือกหมวดผลงาน</option>
-											{!listCategory ? (
-												<option value="">กำลังดาวโหลด...</option>
-											) : isEmpty(listCategory?.data) ? (
-												<option value="">ไม่มีหมวดผลงาน</option>
-											) : (
-												listCategory?.data?.map((category) => (
-													<option value={category.id} key={category.id}>
-														{category.title}
-													</option>
-												))
-											)}
-										</SelectForm>
-									</div>
-									<div className="mb-3 col-md-12">
-										<ImagePostForm
-											label="ภาพประกอบ (.png, .jpg, .jpeg .gif)"
-											id="image"
-											name="image"
-											type="file"
-											accept=".png, .jpg, .jpeg .gif"
-											onChange={(e) => onChangeAvatar(e, setFieldValue)}
-											onBlur={(e) => onBlurAvatar(e, setFieldTouched)}
-											error={error.image}
-											touched={touched.image}
-											imageSrc={loadImg}
-											imagAlt={`Post image`}
-											removeImage={() => onChangeRemoveImage(setFieldValue)}
-										/>
-									</div>
+							<div className="row">
+								<div className="mb-3 col-md-12 mb-0">
+									<SelectForm label="หมวดผลงาน" name="category_id">
+										<option value="">เลือกหมวดผลงาน</option>
+										{!listCategory ? (
+											<option value="">กำลังดาวโหลด...</option>
+										) : isEmpty(listCategory?.data) ? (
+											<option value="">ไม่มีหมวดผลงาน</option>
+										) : (
+											listCategory?.data?.map((category) => (
+												<option value={category.id} key={category.id}>
+													{category.title}
+												</option>
+											))
+										)}
+									</SelectForm>
+								</div>
+								<div className="mb-3 col-md-12">
+									<InputForm label="หัวข้อผลงาน" placeholder="หัวข้อผลงาน" id="title" name="title" type="text" />
+								</div>
+								<div className="mb-3 col-md-12">
+									<TagListForm tags={tags} setTag={setTag} errors={errors.error?.message?.tags} />
+								</div>
+								<div className="mb-3 col-12">
+									<CustomEditor
+										initialValue={values.content}
+										field={{ name: "content", value: "" }}
+										onEditorChange={(newValue) => {
+											setFieldValue('content', newValue);
+										}}
+									/>
+								</div>
+								<div className="mb-3 col-md-12">
+									<ImagePostForm
+										label="ภาพประกอบ (.png, .jpg, .jpeg .gif)"
+										id="image"
+										name="image"
+										type="file"
+										accept=".png, .jpg, .jpeg .gif"
+										onChange={(e) => onChangeAvatar(e, setFieldValue)}
+										onBlur={(e) => onBlurAvatar(e, setFieldTouched)}
+										error={error.image}
+										touched={touched.image}
+										imageSrc={loadImg}
+										imagAlt={`Post image`}
+										removeImage={() => onChangeRemoveImage(setFieldValue)}
+									/>
 								</div>
 							</div>
 						) : (
@@ -187,7 +185,7 @@ const EditPostFormComponent = ({ editPost, isPreview }) => {
 										/>
 									</div>
 								)}
-								<div className="p-3 p-sm-5">
+								<div className="p-4">
 									<div className="mb-3">
 										<h1>{values.title}</h1>
 									</div>
@@ -206,17 +204,21 @@ const EditPostFormComponent = ({ editPost, isPreview }) => {
 							</article>
 						)}
 					</div>
-					<div className="text-left mt-3">
-						{isLoading ? (
-							<button type="submit" className="btn btn-primary" disabled>
-								<span className="spinner-grow spinner-grow-sm me-1" role="status" aria-hidden="true" />
-								อัพเดทผลงาน
-							</button>
-						) : (
-							<button type="submit" className="btn btn-primary">
-								อัพเดทผลงาน
-							</button>
-						)}
+					<div className='bg-white fixed-bottom shadow-sm py-4 mt-4' style={{ "zIndex": 1050 }}>
+						<div className="row col-lg-4 col-md-8 mx-auto px-4">
+							<div className="d-grid gap-3 col-12 mx-auto">
+								{isLoading ? (
+									<button type="submit" className="btn btn-primary" disabled>
+										<span className="spinner-grow spinner-grow-sm me-1" role="status" aria-hidden="true" />
+										อัพเดทผลงาน
+									</button>
+								) : (
+									<button type="submit" className="btn btn-primary">
+										อัพเดทผลงาน
+									</button>
+								)}
+							</div>
+						</div>
 					</div>
 				</Form>
 			)}
