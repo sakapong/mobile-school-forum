@@ -197,7 +197,7 @@ const StudentRegisterOverview = ({ currentUser }) => {
             };
             setLoading(true);
             const response = await httpRequest.put({
-                url: `https://mbs-register.onrender.com/api/v1/student_forms/${user.line_uid}`,
+                url: `https://mbs-register.onrender.com/api/v1/student_forms/${user.line_uid}/`,
                 data: student
             });
             console.log("response", response)
