@@ -42,15 +42,15 @@ const TenantLabels = {
 const NavBarComponent = () => {
 
 	const params = new URLSearchParams({
-        response_type: 'code',
-        client_id: process.env.NEXT_PUBLIC_LINE_CLIENT_ID,
-        redirect_uri: `${process.env.WEBSITE_URL}/me`,
-        state: randomBytes(32).toString('hex'),
-        scope: 'openid profile email',
-    });
+		response_type: 'code',
+		client_id: process.env.NEXT_PUBLIC_LINE_CLIENT_ID,
+		redirect_uri: `${process.env.WEBSITE_URL}/me`,
+		state: randomBytes(32).toString('hex'),
+		scope: 'openid profile email',
+	});
 
 	const lineLoginUrl = "https://access.line.me/oauth2/v2.1/authorize?" + params.toString();
-  console.log(lineLoginUrl)
+	console.log(lineLoginUrl)
 
 	const { userId, isLoading } = useIdentify();
 	const [tenant, setTenant] = useState(Tenants.TeamA);
@@ -85,8 +85,8 @@ const NavBarComponent = () => {
 
 			async () => {
 				const liff = (await import('@line/liff')).default
-    		await liff.ready
-    		liff.logout();
+				await liff.ready
+				liff.logout();
 			}
 
 			if (response.data.success) {
@@ -280,6 +280,13 @@ const NavBarComponent = () => {
 							{DropdownMenuUser('')}
 						</div>
 					)}
+					{!user && (
+					<div className="order-0 d-md-none me-2" >
+						<Link href={lineLoginUrl} passHref>
+							<Nav.Link className="btn btn-success btn-line-login btn-block">LINE</Nav.Link>
+						</Link>
+					</div>
+					)}
 					<button
 						aria-controls="responsive-navbar-nav"
 						type="button"
@@ -303,33 +310,22 @@ const NavBarComponent = () => {
 						</Nav>
 						<Nav className="align-items-md-center ms-auto">
 							{/*{DropdownLocale()}*/}
-
 							{!user ? (
 								<>
-{/*									<Nav.Item>
-										<Link href="/register" passHref>
-											<Nav.Link>ลงทะเบียน</Nav.Link>
-										</Link>
-									</Nav.Item>
 									<Nav.Item>
-										<Link href="/login" passHref>
-											<Nav.Link>เข้าสู่ระบบ</Nav.Link>
-										</Link>
-									</Nav.Item>*/}
-									<Nav.Item>
-										<Link href={lineLoginUrl}  passHref>
+										<Link href={lineLoginUrl} passHref>
 											<Nav.Link className="btn btn-success btn-line-login btn-block">เข้าสู่ระบบด้วย LINE</Nav.Link>
 										</Link>
 									</Nav.Item>
 								</>
 							) : (
-							<>
-								<Nav.Item className="d-none d-md-block px-2">
-									<CustomLink href="/new" className="btn btn-outline-primary">
-										เพิ่มผลงาน
-									</CustomLink>
-								</Nav.Item>
-							</>
+								<>
+									<Nav.Item className="d-none d-md-block px-2">
+										<CustomLink href="/new" className="btn btn-outline-primary">
+											เพิ่มผลงาน
+										</CustomLink>
+									</Nav.Item>
+								</>
 							)}
 						</Nav>
 					</Navbar.Collapse>
@@ -353,11 +349,8 @@ const NavBarComponent = () => {
 						<>
 							<div className="border-top my-3" />
 							<div className="d-grid gap-3">
-								<CustomLink href="/register" className="btn btn-primary">
-									ลงทะเบียน
-								</CustomLink>
-								<CustomLink href="/login" className="text-decoration-none dropdown-item p-2 text-center">
-									เข้าสู่ระบบ
+								<CustomLink href={lineLoginUrl} passHref className="btn btn-success btn-line-login">
+									เข้าสู่ระบบด้วย LINE
 								</CustomLink>
 							</div>
 							<div className="border-top my-3" />
