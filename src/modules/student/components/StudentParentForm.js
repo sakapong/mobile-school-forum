@@ -12,27 +12,26 @@ import showToast from '@/common/utils/showToast';
 
 import { useSession, signIn, signOut } from "next-auth/react"
 
-const StudentParentFormComponent = ({nextPage, previousPage, currentStep}) => {
+const StudentParentFormComponent = ({ isLoading, previousPage, currentStep }) => {
 
     const { data: session } = useSession()
 
     const router = useRouter();
-    const [isLoading, setLoading] = useState(false);
     const [errors, setErrors] = useState({});
 
     const sections = [
         {
             label: 'ข้อมูลผู้ปกครอง',
-            fields : [
+            fields: [
                 {
                     name: 'student_under',
                     label: 'เกี่ยวข้องกับนักเรียนเป็น',
                     required: true,
                     type: 'radio',
                     options: [
-                        {label: 'บิดา', name: 'father'},
-                        {label: 'มารดา', name: 'mother'},
-                        {label: 'อื่นๆ', name: 'others'},
+                        { label: 'บิดา', name: 'father' },
+                        { label: 'มารดา', name: 'mother' },
+                        { label: 'อื่นๆ', name: 'others' },
                     ]
                 },
                 {
@@ -93,7 +92,13 @@ const StudentParentFormComponent = ({nextPage, previousPage, currentStep}) => {
 
     return (<
         >
-        <StudentFormBase sections={sections} errors={errors} isLoading={isLoading} buttonRef={buttonRef} nextPage={nextPage} previousPage={previousPage} currentStep={currentStep} />
+        <StudentFormBase
+            sections={sections}
+            errors={errors}
+            isLoading={isLoading}
+            previousPage={previousPage}
+            buttonRef={buttonRef}
+        />
     </>
     );
 };

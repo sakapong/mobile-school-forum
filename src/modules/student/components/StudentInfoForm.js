@@ -12,12 +12,11 @@ import showToast from '@/common/utils/showToast';
 
 import { useSession, signIn, signOut } from "next-auth/react"
 
-const StudentInfoFormComponent = ({nextPage, previousPage, currentStep}) => {
+const StudentInfoFormComponent = ({isLoading, previousPage, currentStep, createNew=false}) => {
 
     const { data: session } = useSession()
 
     const router = useRouter();
-    const [isLoading, setLoading] = useState(false);
     const [errors, setErrors] = useState({});
 
     const formikRef = useRef();
@@ -155,7 +154,14 @@ const StudentInfoFormComponent = ({nextPage, previousPage, currentStep}) => {
 
     return (<
         >
-        <StudentFormBase sections={sections} errors={errors} isLoading={isLoading} buttonRef={buttonRef} nextPage={nextPage} previousPage={previousPage} currentStep={currentStep} />
+        <StudentFormBase
+            sections={sections}
+            errors={errors}
+            isLoading={isLoading}
+            previousPage={previousPage}
+            buttonRef={buttonRef}
+            createNew={createNew}
+        />
     </>
     );
 };

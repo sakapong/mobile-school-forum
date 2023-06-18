@@ -4,6 +4,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import * as Yup from 'yup';
 import axios from 'axios';
 
+import { FaArrowAltCircleLeft } from 'react-icons/fa';
+
 import InputForm from '@/common/components/InputForm/components';
 import RadioForm from '@/common/components/RadioForm/components';
 import SelectForm from '@/common/components/SelectForm/components';
@@ -18,7 +20,7 @@ import showToast from '@/common/utils/showToast';
 
 import { useSession, signIn, signOut } from "next-auth/react"
 
-const StudentFormBaseComponent = ({ sections, errors, isLoading, buttonRef, nextPage, previousPage, currentStep }) => {
+const StudentFormBaseComponent = ({ sections, errors, isLoading, buttonRef, previousPage, currentStep, createNew=false }) => {
     const [loadImg01, setLoadImg01] = useState(``);
     const [loadImg02, setLoadImg02] = useState(``);
     const [loadImg03, setLoadImg03] = useState(``);
@@ -43,14 +45,14 @@ const StudentFormBaseComponent = ({ sections, errors, isLoading, buttonRef, next
     });
 
     const onChangeFile = async (e, name) => {
-		const imageFile = new FormData()
+        const imageFile = new FormData()
         const file = e.target.files[0];
         imageFile.append("file", file)
         imageFile.append('upload_preset', 'ln9yi5hz');
         imageFile.append('api_key', '122818648218499');
 
         try {
-			const response = await axios.post(
+            const response = await axios.post(
                 'https://api.cloudinary.com/v1_1/diufjycef/image/upload',
                 imageFile,
                 {
@@ -59,30 +61,30 @@ const StudentFormBaseComponent = ({ sections, errors, isLoading, buttonRef, next
                     },
                 }
             )
-			if(response.data.secure_url){
-				console.log(response.data)
-				showToast.info(`อัพโหลดสำเร็จ`);
-				console.log("imageSrc", response.data.secure_url)
-				setFieldValue(name, response.data.secure_url)
-                if(name ==='id_card_student'){
+            if (response.data.secure_url) {
+                console.log(response.data)
+                showToast.info(`อัพโหลดสำเร็จ`);
+                console.log("imageSrc", response.data.secure_url)
+                setFieldValue(name, response.data.secure_url)
+                if (name === 'id_card_student') {
                     setLoadImg01(response.data.secure_url)
-                }else if(name ==='housing_student'){
+                } else if (name === 'housing_student') {
                     setLoadImg02(response.data.secure_url)
-                }else if(name ==='transcript'){
+                } else if (name === 'transcript') {
                     setLoadImg03(response.data.secure_url)
-                }else if(name ==='photograph'){
+                } else if (name === 'photograph') {
                     setLoadImg04(response.data.secure_url)
-                }else if(name ==='id_card_father'){
+                } else if (name === 'id_card_father') {
                     setLoadImg05(response.data.secure_url)
-                }else if(name ==='housing_father'){
+                } else if (name === 'housing_father') {
                     setLoadImg06(response.data.secure_url)
-                }else if(name ==='id_card_mother'){
+                } else if (name === 'id_card_mother') {
                     setLoadImg07(response.data.secure_url)
-                }else if(name ==='housing_mother'){
+                } else if (name === 'housing_mother') {
                     setLoadImg08(response.data.secure_url)
                 }
-				
-			}
+
+            }
         } catch (error) {
             console.log(error);
             showToast.error(error);
@@ -92,46 +94,55 @@ const StudentFormBaseComponent = ({ sections, errors, isLoading, buttonRef, next
     const onBlurAvatar = (e, name) => {
         setFieldTouched(name, e.target.files[0] || null);
 
-        if(name ==='id_card_student'){
+        if (name === 'id_card_student') {
             setLoadImg01('')
-        }else if(name ==='housing_student'){
+        } else if (name === 'housing_student') {
             setLoadImg02('')
-        }else if(name ==='transcript'){
+        } else if (name === 'transcript') {
             setLoadImg03('')
-        }else if(name ==='photograph'){
+        } else if (name === 'photograph') {
             setLoadImg04('')
-        }else if(name ==='id_card_father'){
+        } else if (name === 'id_card_father') {
             setLoadImg05('')
-        }else if(name ==='housing_father'){
+        } else if (name === 'housing_father') {
             setLoadImg06('')
-        }else if(name ==='id_card_mother'){
+        } else if (name === 'id_card_mother') {
             setLoadImg07('')
-        }else if(name ==='housing_mother'){
+        } else if (name === 'housing_mother') {
             setLoadImg08('')
         }
     };
     const onChangeRemoveImage = (e, name) => {
         setFieldValue(name, null);
-        if(name ==='id_card_student'){
+        if (name === 'id_card_student') {
             setLoadImg01('')
-        }else if(name ==='housing_student'){
+        } else if (name === 'housing_student') {
             setLoadImg02('')
-        }else if(name ==='transcript'){
+        } else if (name === 'transcript') {
             setLoadImg03('')
-        }else if(name ==='photograph'){
+        } else if (name === 'photograph') {
             setLoadImg04('')
-        }else if(name ==='id_card_father'){
+        } else if (name === 'id_card_father') {
             setLoadImg05('')
-        }else if(name ==='housing_father'){
+        } else if (name === 'housing_father') {
             setLoadImg06('')
-        }else if(name ==='id_card_mother'){
+        } else if (name === 'id_card_mother') {
             setLoadImg07('')
-        }else if(name ==='housing_mother'){
+        } else if (name === 'housing_mother') {
             setLoadImg08('')
         }
     };
 
     return (<>
+        {!createNew ?(
+            <button
+                onClick={() => previousPage()}
+                className="d-flex align-items-center text-decoration-none text-primary me-2 mb-2"
+            >
+                <FaArrowAltCircleLeft className='me-1' />
+                <span>ย้อนกลับ</span>
+            </button>
+        ) : ''}
         {sections.map((section, key) => (
             <div className="bg-white rounded-16 shadow-sm p-4 mb-4" key={key}>
                 <h3 className='fw-bold mb-3'>{section.label}</h3>
@@ -177,7 +188,7 @@ const StudentFormBaseComponent = ({ sections, errors, isLoading, buttonRef, next
                                     </div>
                                 ))}
                             </>
-                        ) : field.type === 'file' && field.name ==='id_card_student' ? (
+                        ) : field.type === 'file' && field.name === 'id_card_student' ? (
                             <>
                                 <FileUploadForm
                                     label={field.label}
@@ -190,11 +201,11 @@ const StudentFormBaseComponent = ({ sections, errors, isLoading, buttonRef, next
                                     touched={touched.image}
                                     imagAlt={`Image`}
                                     onChange={(e) => onChangeFile(e, field.name)}
-                                    imageSrc={loadImg01}
+                                    imageSrc={loadImg01 || values[field.name]}
                                     removeImage={(e) => onChangeRemoveImage(e, field.name)}
                                 />
                             </>
-                        ) : field.type === 'file' && field.name ==='housing_student' ? (
+                        ) : field.type === 'file' && field.name === 'housing_student' ? (
                             <>
                                 <FileUploadForm
                                     label={field.label}
@@ -207,11 +218,11 @@ const StudentFormBaseComponent = ({ sections, errors, isLoading, buttonRef, next
                                     touched={touched.image}
                                     imagAlt={`Image`}
                                     onChange={(e) => onChangeFile(e, field.name)}
-                                    imageSrc={loadImg02}
+                                    imageSrc={loadImg02 || values[field.name]}
                                     removeImage={(e) => onChangeRemoveImage(e, field.name)}
                                 />
                             </>
-                        ) : field.type === 'file' && field.name ==='transcript' ? (
+                        ) : field.type === 'file' && field.name === 'transcript' ? (
                             <>
                                 <FileUploadForm
                                     label={field.label}
@@ -224,11 +235,11 @@ const StudentFormBaseComponent = ({ sections, errors, isLoading, buttonRef, next
                                     touched={touched.image}
                                     imagAlt={`Image`}
                                     onChange={(e) => onChangeFile(e, field.name)}
-                                    imageSrc={loadImg03}
+                                    imageSrc={loadImg03 || values[field.name]}
                                     removeImage={(e) => onChangeRemoveImage(e, field.name)}
                                 />
                             </>
-                        ) : field.type === 'file' && field.name ==='photograph' ? (
+                        ) : field.type === 'file' && field.name === 'photograph' ? (
                             <>
                                 <FileUploadForm
                                     label={field.label}
@@ -241,11 +252,11 @@ const StudentFormBaseComponent = ({ sections, errors, isLoading, buttonRef, next
                                     touched={touched.image}
                                     imagAlt={`Image`}
                                     onChange={(e) => onChangeFile(e, field.name)}
-                                    imageSrc={loadImg04}
+                                    imageSrc={loadImg04 || values[field.name]}
                                     removeImage={(e) => onChangeRemoveImage(e, field.name)}
                                 />
                             </>
-                        ) : field.type === 'file' && field.name ==='id_card_father' ? (
+                        ) : field.type === 'file' && field.name === 'id_card_father' ? (
                             <>
                                 <FileUploadForm
                                     label={field.label}
@@ -258,11 +269,11 @@ const StudentFormBaseComponent = ({ sections, errors, isLoading, buttonRef, next
                                     touched={touched.image}
                                     imagAlt={`Image`}
                                     onChange={(e) => onChangeFile(e, field.name)}
-                                    imageSrc={loadImg05}
+                                    imageSrc={loadImg05 || values[field.name]}
                                     removeImage={(e) => onChangeRemoveImage(e, field.name)}
                                 />
                             </>
-                        ) : field.type === 'file' && field.name ==='housing_father' ? (
+                        ) : field.type === 'file' && field.name === 'housing_father' ? (
                             <>
                                 <FileUploadForm
                                     label={field.label}
@@ -275,56 +286,56 @@ const StudentFormBaseComponent = ({ sections, errors, isLoading, buttonRef, next
                                     touched={touched.image}
                                     imagAlt={`Image`}
                                     onChange={(e) => onChangeFile(e, field.name)}
-                                    imageSrc={loadImg06}
+                                    imageSrc={loadImg06 || values[field.name]}
                                     removeImage={(e) => onChangeRemoveImage(e, field.name)}
                                 />
                             </>
-                        ) 
-                        : field.type === 'file' && field.name ==='id_card_mother' ? (
-                            <>
-                                <FileUploadForm
+                        )
+                            : field.type === 'file' && field.name === 'id_card_mother' ? (
+                                <>
+                                    <FileUploadForm
+                                        label={field.label}
+                                        id={`id_${field.name}`}
+                                        name={field.name}
+                                        type="file"
+                                        accept=".png, .jpg, .jpeg, .pdf"
+                                        onBlur={(e) => onBlurAvatar(e, setFieldTouched)}
+                                        error={error.image}
+                                        touched={touched.image}
+                                        imagAlt={`Image`}
+                                        onChange={(e) => onChangeFile(e, field.name)}
+                                        imageSrc={loadImg07 || values[field.name]}
+                                        removeImage={(e) => onChangeRemoveImage(e, field.name)}
+                                    />
+                                </>
+                            ) : field.type === 'file' && field.name === 'housing_mother' ? (
+                                <>
+                                    <FileUploadForm
+                                        label={field.label}
+                                        id={`id_${field.name}`}
+                                        name={field.name}
+                                        type="file"
+                                        accept=".png, .jpg, .jpeg, .pdf"
+                                        onBlur={(e) => onBlurAvatar(e, setFieldTouched)}
+                                        error={error.image}
+                                        touched={touched.image}
+                                        imagAlt={`Image`}
+                                        onChange={(e) => onChangeFile(e, field.name)}
+                                        imageSrc={loadImg08 || values[field.name]}
+                                        removeImage={(e) => onChangeRemoveImage(e, field.name)}
+                                    />
+                                </>
+                            ) : (
+                                <InputForm
                                     label={field.label}
-                                    id={`id_${field.name}`}
+                                    placeholder={field.label}
+                                    id={`form_${field.name}`}
                                     name={field.name}
-                                    type="file"
-                                    accept=".png, .jpg, .jpeg, .pdf"
-                                    onBlur={(e) => onBlurAvatar(e, setFieldTouched)}
-                                    error={error.image}
-                                    touched={touched.image}
-                                    imagAlt={`Image`}
-                                    onChange={(e) => onChangeFile(e, field.name)}
-                                    imageSrc={loadImg07}
-                                    removeImage={(e) => onChangeRemoveImage(e, field.name)}
-                                />
-                            </>
-                        ) : field.type === 'file' && field.name ==='housing_mother' ? (
-                            <>
-                                <FileUploadForm
-                                    label={field.label}
-                                    id={`id_${field.name}`}
-                                    name={field.name}
-                                    type="file"
-                                    accept=".png, .jpg, .jpeg, .pdf"
-                                    onBlur={(e) => onBlurAvatar(e, setFieldTouched)}
-                                    error={error.image}
-                                    touched={touched.image}
-                                    imagAlt={`Image`}
-                                    onChange={(e) => onChangeFile(e, field.name)}
-                                    imageSrc={loadImg08}
-                                    removeImage={(e) => onChangeRemoveImage(e, field.name)}
-                                />
-                            </>
-                        ) : (
-                            <InputForm
-                                label={field.label}
-                                placeholder={field.label}
-                                id={`form_${field.name}`}
-                                name={field.name}
-                                type={field.type}
+                                    type={field.type}
 
-                                errors={errors.error?.message}
-                            />
-                        )}
+                                    errors={errors.error?.message}
+                                />
+                            )}
                     </div>
                 ))}
             </div>
@@ -334,23 +345,17 @@ const StudentFormBaseComponent = ({ sections, errors, isLoading, buttonRef, next
 
         <div className='bg-white fixed-bottom shadow-sm py-4 mt-4' style={{ "zIndex": 1050 }}>
             <div className="row col-lg-4 col-md-8 mx-auto px-4">
-                <div className='col'>
-                    <button ref={buttonRef} onClick={() => previousPage()} className="btn btn-outline-primary">
-                        ย้อนกลับ
-                    </button>
-                </div>
-                <div className='col text-end'>
-                    {currentStep < 5 ? (
-                        <button ref={buttonRef} onClick={() => nextPage()} className="btn btn-primary">
-                            ถัดไป
+                <div className="d-grid gap-3 col-12 mx-auto">
+                    {isLoading ? (
+                        <button ref={buttonRef} type="submit" className="btn btn-primary" disabled>
+                            <span className="spinner-grow spinner-grow-sm me-1" role="status" aria-hidden="true" />
+                            ส่งข้อมูลใบสมัคร
                         </button>
-                    ) :
-                        (
-                            <button ref={buttonRef} type="submit" className="btn btn-primary">
-                                ส่งข้อมูลใบสมัคร
-                            </button>
-                        )
-                    }
+                    ) : (
+                        <button ref={buttonRef} type="submit" className="btn btn-primary">
+                            ส่งข้อมูลใบสมัคร
+                        </button>
+                    )}
                 </div>
             </div>
         </div>

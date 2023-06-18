@@ -11,11 +11,10 @@ import showToast from '@/common/utils/showToast';
 
 import { useSession, signIn, signOut } from "next-auth/react"
 
-const StudentDocumentFormComponent = ({nextPage, previousPage, currentStep}) => {
-    const [isLoading, setLoading] = useState(false);
+const StudentDocumentFormComponent = ({ isLoading, previousPage, currentStep }) => {
     const buttonRef = useRef(null);
     const [errors, setErrors] = useState({});
-    
+
     const sections = [
         {
             label: 'หลักฐานการสมัคร',
@@ -74,7 +73,13 @@ const StudentDocumentFormComponent = ({nextPage, previousPage, currentStep}) => 
 
     return (<
         >
-        <StudentFormBase sections={sections} errors={errors} isLoading={isLoading} buttonRef={buttonRef} nextPage={nextPage} previousPage={previousPage} currentStep={currentStep} />
+        <StudentFormBase
+            sections={sections}
+            errors={errors}
+            isLoading={isLoading}
+            previousPage={previousPage}
+            buttonRef={buttonRef}
+        />
     </>
     );
 };
