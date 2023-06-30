@@ -149,8 +149,10 @@ const EditPostFormComponent = ({ editPost, isPreview }) => {
 									<CustomEditor
 										initialValue={values.content}
 										field={{ name: "content", value: "" }}
-										onEditorChange={(newValue) => {
+										onEditorChange={(newValue, editor) => {
+											const bookmark = editor.selection.getBookmark(2, true, true);
 											setFieldValue('content', newValue);
+    										editor.selection.moveToBookmark(bookmark);
 										}}
 									/>
 								</div>

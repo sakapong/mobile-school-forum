@@ -247,9 +247,9 @@ const StudentRegisterOverview = ({ currentUser }) => {
                                                 </div>
                                                 <div className='bg-white fixed-bottom shadow-sm py-4 mt-4' style={{ "zIndex": 1050 }}>
                                                     <div className="d-grid gap-3 col-lg-4 col-md-8 mx-auto px-4">
-                                                        {/*                                                         <button onClick={() => nextPage()} className="btn btn-primary">
-                                                            เริ่มทำได้เลย
-                                                        </button> */}
+                                                        <button onClick={() => {}} className="btn btn-primary disabled">
+                                                            ส่งข้อมูลใบสมัคร
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </>

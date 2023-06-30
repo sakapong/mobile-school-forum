@@ -17,6 +17,11 @@ const optionsMenu = [
 		name: 'อัพเดทข้อมูลการศึกษา',
 		href: '/register/student'
 	},
+	{
+		icon: <FcContacts className="h4 mb-0 me-1" />,
+		name: 'โครงงาน',
+		href: '/project'
+	},
 	// {
 	// 	icon: <FcFaq className="h4 mb-0 me-1" />,
 	// 	name: 'FAQ',
