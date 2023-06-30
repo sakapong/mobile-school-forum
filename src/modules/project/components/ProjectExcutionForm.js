@@ -26,19 +26,29 @@ const ProjectExcutionFormComponent = ({ isLoading, previousPage, currentStep }) 
                     name: 'tools',
                     label: 'วัสดุอุปกรณ์และเครื่องมือ',
                     required: true,
-                    type: 'text'
+                    type: 'editor',
+                    initial: `<ol>
+                    <li>.........</li>
+                    <li>.........</li>
+                    <li>.........</li>
+                    </ol>`
                 },
                 {
-                    name: 'methods',
+                    name: 'procedure',
                     label: 'วิธีการดำเนินงาน',
                     required: true,
-                    type: 'text'
+                    type: 'editor',
+                    initial: `<ol>
+                    <li>.........</li>
+                    <li>.........</li>
+                    <li>.........</li>
+                    </ol>`
                 },
                 {
                     name: 'project_images',
                     label: 'แนบไฟล์ภาพ',
                     required: true,
-                    type: 'text'
+                    type: 'file'
                 },
             ]
         }

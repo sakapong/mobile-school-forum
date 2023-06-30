@@ -41,19 +41,30 @@ const ProjectInfoFormComponent = ({isLoading, previousPage, currentStep, createN
                     name: 'introduction',
                     label: 'ที่มาและความสําคัญ',
                     required: true,
-                    type: 'textarea'
+                    type: 'editor',
+                    inirial: ''
                 },
                 {
                     name: 'objectives',
                     label: 'วัตถุประสงค์',
                     required: true,
-                    type: 'textarea'
+                    type: 'editor',
+                    initial: `<ol>
+                    <li>เพื่อ.........</li>
+                    <li>เพื่อ.........</li>
+                    <li>เพื่อ.........</li>
+                    </ol>`
                 },
                 {
                     name: 'expected_outcomes',
                     label: 'ประโยชน์ที่คาดว่าจะได้รับ',
                     required: true,
-                    type: 'textarea'
+                    type: 'editor',
+                    initial: `<ol>
+                    <li>.........</li>
+                    <li>.........</li>
+                    <li>.........</li>
+                    </ol>`
                 },
             ]
         },

@@ -94,9 +94,8 @@ const CustomEditor = ({ field, onEditorChange, initialValue, ...props }) => {
                     input.click();
                 },
                 image_uploadtab: false,
-                plugins: ['image', 'link', 'lists', 'media', 'preview'],
-                toolbar: 'blocks fontsize lineheight image media link bold italic bullist numlist' +
-                    'fullscreen preview',
+                plugins: ['image', 'link', 'lists', 'media', 'table', 'preview'],
+                toolbar: 'blocks fontsize lineheight image media link bold italic bullist numlist table fullscreen preview',
                 content_style:
                     'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
             }}

@@ -38,21 +38,29 @@ const ProjectRegisterOverview = ({ currentUser }) => {
         }
     };
 
+    //const isStep01isdone = projectContent.title !== undefined
+    //const isStep02isdone = projectContent.documents !== undefined
+    //const isStep03isdone = projectContent.activities !== undefined
+////
+    //console.log("isStep01isdone", isStep01isdone)
+    //console.log("isStep02isdone", isStep02isdone)
+    //console.log("isStep03isdone", isStep03isdone)
+
     const formSteps = [
         {
             label: 'หัวข้อโครงงาน',
             slug: 'info',
         },
         {
-            label: 'เอกสารที่เกี่ยวข้อง',
+            label: 'บทที่ 2 เอกสารที่เกี่ยวข้อง',
             slug: 'document',
         },
         {
-            label: 'ตารางปฏิบัติกิจกรรม',
+            label: 'บทที่ 3 วิธีการดำเนินงาน/การทดลอง (ตารางปฏิบัติกิจกรรม)',
             slug: 'activities',
         },
         {
-            label: 'การดำเนินงาน',
+            label: 'บทที่ 3 วิธีการดำเนินงาน/การทดลอง (วัสดุอุปกรณ์และเครื่องมือ วิธีการดำเนินงาน)',
             slug: 'excution',
         },
         {
@@ -62,37 +70,47 @@ const ProjectRegisterOverview = ({ currentUser }) => {
     ]
 
     const initialValues = {
-        title : projectContent.title || '',
-        category : projectContent.category || '',
-        introduction : projectContent.introduction || '',
-        objectives : projectContent.objectives || '',
-        expected_outcomes : projectContent.expected_outcomes || '',
-        document_topic : projectContent.document_topic || '',
-        document_output : projectContent.document_output || '',
-        document_summary : projectContent.document_summary || '',
-        document_resource : projectContent.document_resource || '',
-        activity_week : projectContent.activity_week || '',
-        activity_detail : projectContent.activity_detail || '',
-        activity_place : projectContent.activity_place || '',
-        activity_by : projectContent.activity_by || '',
-        activity_start : projectContent.activity_start || '',
-        activity_end : projectContent.activity_end || '',
-        tools : projectContent.tools || '',
-        methods : projectContent.methods || '',
-        project_images : projectContent.project_images || '',
-        advisor : projectContent.advisor || '',
+        title: '',
+        category: '',
+        introduction: '',
+        objectives: '',
+        expected_outcomes: '',
+        documents : '',
+        activities: '',
+        tools: '',
+        procedure: '',
+        project_images: '',
+        advisor: '',
     };
+
+    const getSuccessClass = (step) => {
+        const isStep01isdone = projectContent.title !== null
+        const isStep02isdone = projectContent.documents !== null
+        const isStep03isdone = projectContent.activities !== null
+        const isStep04isdone = projectContent.tools !== null
+        const isStep05isdone = projectContent.advisor !== null
+        const isSuccess =
+            (step === 0 && isStep01isdone) ||
+            (step === 1 && isStep02isdone) ||
+            (step === 2 && isStep03isdone) ||
+            (step === 3 && isStep04isdone) ||
+            (step === 4 && isStep05isdone)
+
+        return isSuccess ? 'done' : null
+    }
 
     useEffect(() => {
         const getStudentForm = async () => {
             const studentForm = await httpRequest.get({
-                url: `https://mbs-register.onrender.com/api/v1/student_forms/${currentUser.data.line_uid}`,
+                url: `https://mbs-register.onrender.com/api/v1/project_forms/${currentUser.data.line_uid}`,
             });
             console.log("studentForm.data.success", studentForm.data.success)
             if (studentForm.data.success) {
                 formikRef.current.setValues(studentForm.data.data)
+                const contentValues = formikRef.current.values
+                setProjectContent(contentValues)
             } else {
-                router.push('/register/student/new')
+                router.push('/project/new')
             }
         }
         if (currentUser.data.line_uid) {
@@ -103,35 +121,28 @@ const ProjectRegisterOverview = ({ currentUser }) => {
     const onSubmit = async (values) => {
         try {
             const project = {
-                title : values.title,
-                category : values.category,
-                introduction : values.introduction,
-                objectives : values.objectives,
-                expected_outcomes : values.expected_outcomes,
-                document_topic : values.document_topic,
-                document_output : values.document_output,
-                document_summary : values.document_summary,
-                document_resource : values.document_resource,
-                activity_week : values.activity_week,
-                activity_detail : values.activity_detail,
-                activity_place : values.activity_place,
-                activity_by : values.activity_by,
-                activity_start : values.activity_start,
-                activity_end : values.activity_end,
-                tools : values.tools,
-                methods : values.methods,
-                project_images : values.project_images,
-                advisor : values.advisor,
+                title: values.title,
+                category: values.category,
+                introduction: values.introduction,
+                objectives: values.objectives,
+                expected_outcomes: values.expected_outcomes,
+                documents: values.documents,
+                activities: values.activities,
+                tools: values.tools,
+                procedure: values.procedure,
+                project_images: values.project_images,
+                advisor: values.advisor,
             };
             setLoading(true);
             const response = await httpRequest.put({
-                url: `https://mbs-register.onrender.com/api/v1/student_forms/${user.line_uid}/`,
+                url: `https://mbs-register.onrender.com/api/v1/project_forms/${user.line_uid}/`,
                 data: project
             });
             console.log("response", response)
             if (response.data.pk) {
                 showToast.success('ใบสมัครของท่านได้ทำการส่งเรียบร้อยแล้ว');
                 setCurrentStep(0)
+                router.push('/project/')
             }
         } catch (error) {
             showToast.error(`กรุณาลองใหม่อีกครั้ง ${error}`);
@@ -165,8 +176,11 @@ const ProjectRegisterOverview = ({ currentUser }) => {
                                                                     onClick={() => goToStep(index)}
                                                                     className={`btn-list btn-outline-secondary`}
                                                                 >
-                                                                    <span className='btn-status'></span>
-                                                                    {step.label}
+                                                                    
+                                                                    <span className={`btn-status ${getSuccessClass(index)} `}></span>
+                                                                    <div className='flex-1 text-start'>
+                                                                        {step.label}
+                                                                    </div>
                                                                 </button>
                                                             )
                                                             )
@@ -175,9 +189,9 @@ const ProjectRegisterOverview = ({ currentUser }) => {
                                                 </div>
                                                 <div className='bg-white fixed-bottom shadow-sm py-4 mt-4' style={{ "zIndex": 1050 }}>
                                                     <div className="d-grid gap-3 col-lg-4 col-md-8 mx-auto px-4">
-                                                        {/*                                                         <button onClick={() => nextPage()} className="btn btn-primary">
-                                                            เริ่มทำได้เลย
-                                                        </button> */}
+                                                        <button onClick={() => handleSubmit()} className="btn btn-primary disabled">
+                                                            ส่งข้อเสนอโครงงาน
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </>

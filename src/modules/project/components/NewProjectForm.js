@@ -16,29 +16,20 @@ const NewProjectFormComponent = ({line_uid}) => {
     const [isLoading, setLoading] = useState(false);
     const CREATE_NEW = true;
     const initialValues = {
+        line_uid: line_uid,
         title : '',
         category : '',
         introduction : '',
         objectives : '',
         expected_outcomes : '',
+        status: 'IN_CRE',
     };
 
     const validationSchema = Yup.object({
-		first_name: Yup.string()
-			.min(1, 'ชื่อจริงต้องมีอย่างน้อย 1 ตัวอักษร')
-			.max(30, 'ชื่อจริง สูงสุด 30 ตัวอักษร')
-			.required('ชื่อจริงต้องระบุ'),
-		last_name: Yup.string()
-			.min(1, 'นามสกุล ต้องมีอย่างน้อย 1 ตัวอักษร')
-			.max(30, 'นามสกุล สูงสุด 30 ตัวอักษร')
-			.required('นามสกุลต้องระบุ'),
-        id_number: Yup.string()
-			.min(13, 'เลขประจำตัวประชาชนต้องมีอย่างน้อย 13 หลัก')
-            .max(16, 'เลขประจำตัวประชาชนสูงสุด 13 หลัก')
-			.matches(/^[0-9]+$/, 'เลขประจำตัวประชาชน ไม่ถูกต้อง')
-            .required('เลขประจำตัวประชาชนต้องระบุ'),
-        dath_of_birth: Yup.date()
-            .required('วัน-เดือน-ปี เกิดต้องระบุ'),
+		title: Yup.string()
+			.min(1, 'ชื่อโครงงานต้องมีอย่างน้อย 1 ตัวอักษร')
+			.max(30, 'อโครงงาน สูงสุด 30 ตัวอักษร')
+			.required('ชื่อโครงงานต้องระบุ'),
 	});
 
     const onSubmit = async (values) => {
@@ -50,16 +41,17 @@ const NewProjectFormComponent = ({line_uid}) => {
                 introduction : values.introduction,
                 objectives : values.objectives,
                 expected_outcomes : values.expected_outcomes,
+                status: values.status
             };
             setLoading(true);
             const response = await httpRequest.post({
-                url: `https://mbs-register.onrender.com/api/v1/student_forms/`,
+                url: `https://mbs-register.onrender.com/api/v1/project_forms/`,
                 data: project
             });
             console.log("response", response)
             if (response.data.pk) {
                 showToast.success('บันทึกข้อมูลเบื้องต้นสำเร็จแล้ว ทำต่อในขั้นตอนถัดไปได้');
-                router.push(`/register/student/`);
+                router.push(`/project/`);
             }
         } catch (error) {
             showToast.error(`กรุณาลองใหม่อีกครั้ง ${error}`);

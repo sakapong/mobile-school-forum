@@ -226,7 +226,9 @@ const NavBarComponent = () => {
 				<Link href={`/register/student/`} passHref target="_blank">
 					<Dropdown.Item>อัพเดทข้อมูลการศึกษา</Dropdown.Item>
 				</Link>
-
+				<Link href={`/project/`} passHref target="_blank">
+					<Dropdown.Item>โครงงาน</Dropdown.Item>
+				</Link>
 				<Dropdown.Divider className="m-0" />
 				<Dropdown.Item onClick={onLogoutClick}>ออกจากระบบ</Dropdown.Item>
 			</Dropdown.Menu>

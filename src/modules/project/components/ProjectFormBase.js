@@ -18,17 +18,12 @@ import httpRequest from '@/common/utils/httpRequest';
 import { setCookie } from '@/common/utils/session';
 import showToast from '@/common/utils/showToast';
 
+import CustomEditor from '@/modules/newPost/components/CustomEditor'
+
 import { useSession, signIn, signOut } from "next-auth/react"
 
-const ProjectFormBaseComponent = ({ sections, errors, isLoading, buttonRef, previousPage, currentStep, createNew=false }) => {
+const ProjectFormBaseComponent = ({ sections, errors, isLoading, buttonRef, previousPage, currentStep, createNew = false }) => {
     const [loadImg01, setLoadImg01] = useState(``);
-    const [loadImg02, setLoadImg02] = useState(``);
-    const [loadImg03, setLoadImg03] = useState(``);
-    const [loadImg04, setLoadImg04] = useState(``);
-    const [loadImg05, setLoadImg05] = useState(``);
-    const [loadImg06, setLoadImg06] = useState(``);
-    const [loadImg07, setLoadImg07] = useState(``);
-    const [loadImg08, setLoadImg08] = useState(``);
 
     const { setFieldValue, setFieldTouched, errors: error, touched, values } = useFormikContext()
     const validationSchema = Yup.object({
@@ -43,6 +38,16 @@ const ProjectFormBaseComponent = ({ sections, errors, isLoading, buttonRef, prev
                 (value) => value === null || (value && SUPPORTED_FORMATS.includes(value.type))
             )
     });
+
+    const onBlurAvatar = (e, name) => {
+        setFieldTouched(name, e.target.files[0] || null);
+        setLoadImg01('')
+      
+    };
+    const onChangeRemoveImage = (e, name) => {
+        setFieldValue(name, null);
+        setLoadImg01('')
+    };
 
     const onChangeFile = async (e, name) => {
         const imageFile = new FormData()
@@ -62,28 +67,9 @@ const ProjectFormBaseComponent = ({ sections, errors, isLoading, buttonRef, prev
                 }
             )
             if (response.data.secure_url) {
-                console.log(response.data)
-                showToast.info(`อัพโหลดสำเร็จ`);
-                console.log("imageSrc", response.data.secure_url)
                 setFieldValue(name, response.data.secure_url)
-                if (name === 'id_card_student') {
-                    setLoadImg01(response.data.secure_url)
-                } else if (name === 'housing_student') {
-                    setLoadImg02(response.data.secure_url)
-                } else if (name === 'transcript') {
-                    setLoadImg03(response.data.secure_url)
-                } else if (name === 'photograph') {
-                    setLoadImg04(response.data.secure_url)
-                } else if (name === 'id_card_father') {
-                    setLoadImg05(response.data.secure_url)
-                } else if (name === 'housing_father') {
-                    setLoadImg06(response.data.secure_url)
-                } else if (name === 'id_card_mother') {
-                    setLoadImg07(response.data.secure_url)
-                } else if (name === 'housing_mother') {
-                    setLoadImg08(response.data.secure_url)
-                }
-
+                setLoadImg01(response.data.secure_url)
+                
             }
         } catch (error) {
             console.log(error);
@@ -91,50 +77,8 @@ const ProjectFormBaseComponent = ({ sections, errors, isLoading, buttonRef, prev
         }
     };
 
-    const onBlurAvatar = (e, name) => {
-        setFieldTouched(name, e.target.files[0] || null);
-
-        if (name === 'id_card_student') {
-            setLoadImg01('')
-        } else if (name === 'housing_student') {
-            setLoadImg02('')
-        } else if (name === 'transcript') {
-            setLoadImg03('')
-        } else if (name === 'photograph') {
-            setLoadImg04('')
-        } else if (name === 'id_card_father') {
-            setLoadImg05('')
-        } else if (name === 'housing_father') {
-            setLoadImg06('')
-        } else if (name === 'id_card_mother') {
-            setLoadImg07('')
-        } else if (name === 'housing_mother') {
-            setLoadImg08('')
-        }
-    };
-    const onChangeRemoveImage = (e, name) => {
-        setFieldValue(name, null);
-        if (name === 'id_card_student') {
-            setLoadImg01('')
-        } else if (name === 'housing_student') {
-            setLoadImg02('')
-        } else if (name === 'transcript') {
-            setLoadImg03('')
-        } else if (name === 'photograph') {
-            setLoadImg04('')
-        } else if (name === 'id_card_father') {
-            setLoadImg05('')
-        } else if (name === 'housing_father') {
-            setLoadImg06('')
-        } else if (name === 'id_card_mother') {
-            setLoadImg07('')
-        } else if (name === 'housing_mother') {
-            setLoadImg08('')
-        }
-    };
-
     return (<>
-        {!createNew ?(
+        {!createNew ? (
             <button
                 onClick={() => previousPage()}
                 className="d-flex align-items-center text-decoration-none text-primary me-2 mb-2"
@@ -188,7 +132,30 @@ const ProjectFormBaseComponent = ({ sections, errors, isLoading, buttonRef, prev
                                     </div>
                                 ))}
                             </>
-                        ) : field.type === 'file' && field.name === 'id_card_student' ? (
+                        ) : field.type === 'textarea' ? (
+                            <TextForm
+                                rows="4"
+                                label={field.label}
+                                placeholder={field.label}
+                                id={`id_${field.name}`}
+                                name={field.name}
+                                errors={errors.error?.message}
+                            />
+                        ) : field.type === 'editor' ? (
+                            <>
+                                <label className='form-label'>{field.label}</label>
+                                <CustomEditor
+                                    initialValue={values[field.name] || field.initial}
+                                    name={field.name}
+                                    //field={{ name: field.name, value: "" }}
+                                    onEditorChange={(newValue, editor) => {
+                                        const bookmark = editor.selection.getBookmark(2, true, true);
+                                        setFieldValue(field.name, newValue);
+                                        editor.selection.moveToBookmark(bookmark);
+                                    }}
+                                />
+                            </>
+                        ) : field.type === 'file' ? (
                             <>
                                 <FileUploadForm
                                     label={field.label}
@@ -205,146 +172,17 @@ const ProjectFormBaseComponent = ({ sections, errors, isLoading, buttonRef, prev
                                     removeImage={(e) => onChangeRemoveImage(e, field.name)}
                                 />
                             </>
-                        ) : field.type === 'file' && field.name === 'housing_student' ? (
-                            <>
-                                <FileUploadForm
-                                    label={field.label}
-                                    id={`id_${field.name}`}
-                                    name={field.name}
-                                    type="file"
-                                    accept=".png, .jpg, .jpeg, .pdf"
-                                    onBlur={(e) => onBlurAvatar(e, setFieldTouched)}
-                                    error={error.image}
-                                    touched={touched.image}
-                                    imagAlt={`Image`}
-                                    onChange={(e) => onChangeFile(e, field.name)}
-                                    imageSrc={loadImg02 || values[field.name]}
-                                    removeImage={(e) => onChangeRemoveImage(e, field.name)}
-                                />
-                            </>
-                        ) : field.type === 'file' && field.name === 'transcript' ? (
-                            <>
-                                <FileUploadForm
-                                    label={field.label}
-                                    id={`id_${field.name}`}
-                                    name={field.name}
-                                    type="file"
-                                    accept=".png, .jpg, .jpeg, .pdf"
-                                    onBlur={(e) => onBlurAvatar(e, setFieldTouched)}
-                                    error={error.image}
-                                    touched={touched.image}
-                                    imagAlt={`Image`}
-                                    onChange={(e) => onChangeFile(e, field.name)}
-                                    imageSrc={loadImg03 || values[field.name]}
-                                    removeImage={(e) => onChangeRemoveImage(e, field.name)}
-                                />
-                            </>
-                        ) : field.type === 'file' && field.name === 'photograph' ? (
-                            <>
-                                <FileUploadForm
-                                    label={field.label}
-                                    id={`id_${field.name}`}
-                                    name={field.name}
-                                    type="file"
-                                    accept=".png, .jpg, .jpeg, .pdf"
-                                    onBlur={(e) => onBlurAvatar(e, setFieldTouched)}
-                                    error={error.image}
-                                    touched={touched.image}
-                                    imagAlt={`Image`}
-                                    onChange={(e) => onChangeFile(e, field.name)}
-                                    imageSrc={loadImg04 || values[field.name]}
-                                    removeImage={(e) => onChangeRemoveImage(e, field.name)}
-                                />
-                            </>
-                        ) : field.type === 'file' && field.name === 'id_card_father' ? (
-                            <>
-                                <FileUploadForm
-                                    label={field.label}
-                                    id={`id_${field.name}`}
-                                    name={field.name}
-                                    type="file"
-                                    accept=".png, .jpg, .jpeg, .pdf"
-                                    onBlur={(e) => onBlurAvatar(e, setFieldTouched)}
-                                    error={error.image}
-                                    touched={touched.image}
-                                    imagAlt={`Image`}
-                                    onChange={(e) => onChangeFile(e, field.name)}
-                                    imageSrc={loadImg05 || values[field.name]}
-                                    removeImage={(e) => onChangeRemoveImage(e, field.name)}
-                                />
-                            </>
-                        ) : field.type === 'file' && field.name === 'housing_father' ? (
-                            <>
-                                <FileUploadForm
-                                    label={field.label}
-                                    id={`id_${field.name}`}
-                                    name={field.name}
-                                    type="file"
-                                    accept=".png, .jpg, .jpeg, .pdf"
-                                    onBlur={(e) => onBlurAvatar(e, setFieldTouched)}
-                                    error={error.image}
-                                    touched={touched.image}
-                                    imagAlt={`Image`}
-                                    onChange={(e) => onChangeFile(e, field.name)}
-                                    imageSrc={loadImg06 || values[field.name]}
-                                    removeImage={(e) => onChangeRemoveImage(e, field.name)}
-                                />
-                            </>
-                        )
-                            : field.type === 'file' && field.name === 'id_card_mother' ? (
-                                <>
-                                    <FileUploadForm
-                                        label={field.label}
-                                        id={`id_${field.name}`}
-                                        name={field.name}
-                                        type="file"
-                                        accept=".png, .jpg, .jpeg, .pdf"
-                                        onBlur={(e) => onBlurAvatar(e, setFieldTouched)}
-                                        error={error.image}
-                                        touched={touched.image}
-                                        imagAlt={`Image`}
-                                        onChange={(e) => onChangeFile(e, field.name)}
-                                        imageSrc={loadImg07 || values[field.name]}
-                                        removeImage={(e) => onChangeRemoveImage(e, field.name)}
-                                    />
-                                </>
-                            ) : field.type === 'file' && field.name === 'housing_mother' ? (
-                                <>
-                                    <FileUploadForm
-                                        label={field.label}
-                                        id={`id_${field.name}`}
-                                        name={field.name}
-                                        type="file"
-                                        accept=".png, .jpg, .jpeg, .pdf"
-                                        onBlur={(e) => onBlurAvatar(e, setFieldTouched)}
-                                        error={error.image}
-                                        touched={touched.image}
-                                        imagAlt={`Image`}
-                                        onChange={(e) => onChangeFile(e, field.name)}
-                                        imageSrc={loadImg08 || values[field.name]}
-                                        removeImage={(e) => onChangeRemoveImage(e, field.name)}
-                                    />
-                                </>
-                            ) : field.type === 'textarea' ? (
-                                <TextForm
-                                    rows="4"
-                                    label={field.label}
-                                    placeholder="ประวัติส่วนตัว"
-                                    id={`id_${field.name}`}
-                                    name={field.name}
-                                    errors={errors.error?.message}
-                                />
-                            ) : (
-                                <InputForm
-                                    label={field.label}
-                                    placeholder={field.label}
-                                    id={`form_${field.name}`}
-                                    name={field.name}
-                                    type={field.type}
+                        ) : (
+                            <InputForm
+                                label={field.label}
+                                placeholder={field.label}
+                                id={`form_${field.name}`}
+                                name={field.name}
+                                type={field.type}
 
-                                    errors={errors.error?.message}
-                                />
-                            )}
+                                errors={errors.error?.message}
+                            />
+                        )}
                     </div>
                 ))}
             </div>
@@ -358,11 +196,11 @@ const ProjectFormBaseComponent = ({ sections, errors, isLoading, buttonRef, prev
                     {isLoading ? (
                         <button ref={buttonRef} type="submit" className="btn btn-primary" disabled>
                             <span className="spinner-grow spinner-grow-sm me-1" role="status" aria-hidden="true" />
-                            บันทึกข้อมูล
+                            ส่งข้อมูลใบสมัคร
                         </button>
                     ) : (
                         <button ref={buttonRef} type="submit" className="btn btn-primary">
-                            บันทึกข้อมูล
+                            ส่งข้อมูลใบสมัคร
                         </button>
                     )}
                 </div>

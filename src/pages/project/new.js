@@ -11,20 +11,20 @@ import NewProjectFormComponent from '@/modules/project/components/NewProjectForm
 const NewProjectForm = ({ currentUser }) => {
 	const router = useRouter();
 	const [errors, setErrors] = useState({});
-	//useEffect(() => {
-	//	const getExistingForm = async () => {
-	//		const studentForm = await httpRequest.get({
-	//			url: `https://mbs-register.onrender.com/api/v1/student_forms/${currentUser.data.line_uid}`,
-	//		});
-//
-	//		if (studentForm.data.success) {
-	//			router.push(`/register/student`)
-	//		}
-	//	};
-	//	if (currentUser.data.line_uid) {
-	//		getExistingForm();
-	//	}
-	//}, []);
+	useEffect(() => {
+		const getExistingForm = async () => {
+			const studentForm = await httpRequest.get({
+				url: `https://mbs-register.onrender.com/api/v1/project_forms/${currentUser.data.line_uid}`,
+			});
+
+			if (studentForm.data.success) {
+				router.push(`/project`)
+			}
+		};
+		if (currentUser.data.line_uid) {
+			getExistingForm();
+		}
+	}, []);
 	return (
 		<>
 			<MetaWebsite title="โครงงานโรงเรียนมือถือ" />
