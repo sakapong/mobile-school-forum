@@ -394,3 +394,10 @@ iframe{
 .text-primary{
 	color: #00A8C9 !important;
 }
+
+.loading-wrapper{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}

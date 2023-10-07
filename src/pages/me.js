@@ -6,6 +6,7 @@ import Layout from "@/modules/layout/components"
 import showToast from '@/common/utils/showToast';
 import httpRequest from '@/common/utils/httpRequest';
 import { setCookie } from '@/common/utils/session';
+import LoadingSpinnerComponent from '@/common/components/LoadingSpinner/components';
 
 import axios from 'axios';
 
@@ -49,15 +50,18 @@ export default function MePage() {
                 };
                 await handleSocialLogin(user);
                 //res.json()
-            })
-
-            
+            }).catch((error) => {
+                showToast.error('ไม่สามารถเข้าสู่ระบบได้ กรุณาลองใหม่อีกครั้ง');
+                console.log("error", error)
+                router.push('/');
+            });
 
         }
 
     }, [code])
 
     const handleSocialLogin = async (user) => {
+        console.log("user Handle", user)
         try {
 
             setLoading(true);
@@ -71,8 +75,9 @@ export default function MePage() {
                 router.push('/register/student');
             }
         } catch (error) {
-            // showToast.error('Login failed');
+            showToast.error('ไม่สามารถเข้าสู่ระบบได้ กรุณาลองใหม่อีกครั้ง');
             console.log("error", error)
+            router.push('/');
         } finally {
             setLoading(false);
         }
@@ -80,28 +85,30 @@ export default function MePage() {
 
     return (
         <Layout>
-     <div className="container-xl py-4">
-                    <div className="row">
-                        <div className="col-lg-4 col-md-8 mx-auto">
-      <Head>
-        <title>My Profile</title>
-      </Head>
-      <h1>Profile</h1>
-      <div>
-        {profile.pictureUrl && <Image
-          src={profile.pictureUrl}
-          alt={profile.displayName}
-          width={500}
-          height={500}
-        />}
-        <div>Name: {profile.displayName}</div>
-       
-      </div>
-      <pre>{JSON.stringify(profile, null, 2)}</pre>
-      <pre>{accessToken}</pre>
-      </div>
-      </div>
-      </div>
-    </Layout>
+            <div className='loading-wrapper'>
+                <LoadingSpinnerComponent />
+            </div>
+            {/*             <div className="container-xl py-4">
+                <div className="row">
+                    <div className="col-lg-4 col-md-8 mx-auto">
+                        <Head>
+                            <title>My Profile</title>
+                        </Head>
+                        <h1>Profile</h1>
+                        <div>
+                            {profile.pictureUrl && <Image
+                                src={profile.pictureUrl}
+                                alt={profile.displayName}
+                                width={500}
+                                height={500}
+                            />}
+                            <div>Name: {profile.displayName}</div>
+                        </div>
+                        <pre>{JSON.stringify(profile, null, 2)}</pre>
+                        <pre>{accessToken}</pre>
+                    </div>
+                </div>
+            </div> */}
+        </Layout>
     )
 }
