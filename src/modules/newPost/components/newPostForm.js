@@ -180,7 +180,7 @@ const NewPostFormComponent = ({ isPreview }) => {
 									</div>
 									<div className="mb-3 col-md-12">
 										<ImagePostForm
-											label="ภาพประกอบ (.png, .jpg, .jpeg .gif)"
+											label="ภาพประกอบ (ขอเฉพลาะไฟล์ .png, .jpg, .jpeg .gif เท่านั้นนะ ขนาดไฟล์ขอไม่เกิน 20 MB นะ)"
 											id="image"
 											name="image"
 											type="file"
